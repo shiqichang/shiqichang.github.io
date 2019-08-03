@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Python 日期和时间的基本使用(2) | import 诗琦</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="datetime 常见用法和关系转换参考 PYTHON-基础-时间日期处理小结  常见用法 123456789&amp;gt;&amp;gt;&amp;gt; from datetime import date, timedelta, datetime&amp;gt;&amp;gt;&amp;gt; import calendar&amp;gt;&amp;gt;&amp;gt; date.today() + timedelta(days=1)  # 明天datetim">
+<meta name="keywords" content="date,time,datetime,python-dateutil">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 日期和时间的基本使用(2)">
+<meta property="og:url" content="https://s7.zzs7.top/python-date-2.html">
+<meta property="og:site_name" content="import 诗琦">
+<meta property="og:description" content="datetime 常见用法和关系转换参考 PYTHON-基础-时间日期处理小结  常见用法 123456789&amp;gt;&amp;gt;&amp;gt; from datetime import date, timedelta, datetime&amp;gt;&amp;gt;&amp;gt; import calendar&amp;gt;&amp;gt;&amp;gt; date.today() + timedelta(days=1)  # 明天datetim">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-02T11:31:55.230Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 日期和时间的基本使用(2)">
+<meta name="twitter:description" content="datetime 常见用法和关系转换参考 PYTHON-基础-时间日期处理小结  常见用法 123456789&amp;gt;&amp;gt;&amp;gt; from datetime import date, timedelta, datetime&amp;gt;&amp;gt;&amp;gt; import calendar&amp;gt;&amp;gt;&amp;gt; date.today() + timedelta(days=1)  # 明天datetim">
+  
+    <link rel="alternate" href="/atom.xml" title="import 诗琦" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">import 诗琦</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">tough cookie</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://s7.zzs7.top"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python-date-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/python-date-2.html" class="article-date">
+  <time datetime="2019-06-10T11:57:55.000Z" itemprop="datePublished">2019-06-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/日期和时间/">日期和时间</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python 日期和时间的基本使用(2)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="datetime-常见用法和关系转换"><a href="#datetime-常见用法和关系转换" class="headerlink" title="datetime 常见用法和关系转换"></a><code>datetime</code> 常见用法和关系转换</h2><p><em>参考 <a href="http://www.wklken.me/posts/2015/03/03/python-base-datetime.html" target="_blank" rel="noopener">PYTHON-基础-时间日期处理小结</a></em></p>
+<ul>
+<li><p>常见用法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> datetime <span class="keyword">import</span> date, timedelta, datetime</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> calendar</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>date.today() + timedelta(days=<span class="number">1</span>)  <span class="comment"># 明天</span></span><br><span class="line">datetime.date(<span class="number">2019</span>, <span class="number">6</span>, <span class="number">11</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime.today() + timedelta(hours=<span class="number">1</span>))  <span class="comment"># 下个小时</span></span><br><span class="line">datetime.datetime(<span class="number">2019</span>, <span class="number">6</span>, <span class="number">10</span>, <span class="number">21</span>, <span class="number">7</span>, <span class="number">35</span>, <span class="number">169594</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime.combine(date.today(), time.min)  <span class="comment"># 当天开始时间</span></span><br><span class="line">datetime.datetime(<span class="number">2019</span>, <span class="number">6</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime.combine(date.today(), time.max)  <span class="comment"># 结束时间</span></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">datetime.datetime(<span class="number">2019</span>, <span class="number">6</span>, <span class="number">10</span>, <span class="number">23</span>, <span class="number">59</span>, <span class="number">59</span>, <span class="number">999999</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>today = date.today()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>today</span><br><span class="line">datetime.date(<span class="number">2019</span>, <span class="number">6</span>, <span class="number">10</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sunday = today + timedelta(<span class="number">6</span>-today.weekday())  <span class="comment"># 本周的最后一天</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sunday</span><br><span class="line">datetime.date(<span class="number">2019</span>, <span class="number">6</span>, <span class="number">16</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>_, last_day_num = calendar.monthrange(today.year, today.month)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>last_day = date(today.year, today.month, last_day_num)  <span class="comment"># 本月的最后一天</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>last_day</span><br><span class="line">datetime.date(<span class="number">2019</span>, <span class="number">6</span>, <span class="number">30</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>first = date(day=<span class="number">1</span>, month=today.month, year=today.year)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>last_month = first - timedelta(days=<span class="number">1</span>)  <span class="comment"># 上个月的最后一天</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>last_month</span><br><span class="line">datetime.date(<span class="number">2019</span>, <span class="number">5</span>, <span class="number">31</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关系转换</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> time</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> datetime</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime, date</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime.now().strftime(<span class="string">"%Y:%m:%d %H:%M:%S"</span>)  <span class="comment"># datetime -&gt; string</span></span><br><span class="line"><span class="string">'2019:06:10 20:24:34'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime.strptime(<span class="string">"2019:06:10 20:24:34"</span>, <span class="string">"%Y:%m:%d %H:%M:%S"</span>)  <span class="comment"># string -&gt; datetime</span></span><br><span class="line">datetime.datetime(<span class="number">2019</span>, <span class="number">6</span>, <span class="number">10</span>, <span class="number">20</span>, <span class="number">24</span>, <span class="number">34</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime.now().timetuple()  <span class="comment"># datetime -&gt; timetuple</span></span><br><span class="line">time.struct_time(tm_year=<span class="number">2019</span>, tm_mon=<span class="number">6</span>, tm_mday=<span class="number">10</span>, tm_hour=<span class="number">20</span>, tm_min=<span class="number">25</span>, tm_sec=<span class="number">23</span>, tm_wday=<span class="number">0</span>, tm_yday=<span class="number">161</span>, tm_isdst=<span class="number">-1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime.now().date()  <span class="comment"># datetime -&gt; date</span></span><br><span class="line">datetime.date(<span class="number">2019</span>, <span class="number">6</span>, <span class="number">10</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>today = date.today()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime.combine(today, datetime.time())  <span class="comment"># date -&gt; datetime</span></span><br><span class="line">datetime.datetime(<span class="number">2019</span>, <span class="number">6</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>now = datetime.now()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>timestamp = time.mktime(now.timetuple())  <span class="comment"># datetime -&gt; timestamp</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>timestamp</span><br><span class="line"><span class="number">1560169629.0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime.fromtimestamp(timestamp)  <span class="comment"># timestamp -&gt; datetime</span></span><br><span class="line">datetime.datetime(<span class="number">2019</span>, <span class="number">6</span>, <span class="number">10</span>, <span class="number">20</span>, <span class="number">27</span>, <span class="number">9</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="python-dateutil-学习"><a href="#python-dateutil-学习" class="headerlink" title="python-dateutil 学习"></a><code>python-dateutil</code> 学习</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> dateutil.relativedelta <span class="keyword">import</span> relativedelta</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> dateutil.easter <span class="keyword">import</span> easter</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> dateutil.rrule <span class="keyword">import</span> rrule, YEARLY, FR</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> dateutil.parser <span class="keyword">import</span> parse</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text = datetime.now().strftime(<span class="string">"%a %b %d %H:%M:%S UTC %Y"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text  <span class="comment"># UTC 时间格式</span></span><br><span class="line"><span class="string">'Mon Jun 10 20:45:24 UTC 2019'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>now = parse(text)  <span class="comment"># string -&gt; datetime, 字符串可以是任意的，汉字，英文，数字等</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>today = now.date()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>year = rrule(YEARLY, dtstart=now, bymonth=<span class="number">8</span>, bymonthday=<span class="number">13</span>, byweekday=FR)[<span class="number">0</span>].year</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>rdelta = relativedelta(easter(year), today)  <span class="comment">#　下一个复活节距离今天的日期差</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">"Today is: %s"</span> % today)</span><br><span class="line">Today <span class="keyword">is</span>: <span class="number">2019</span><span class="number">-06</span><span class="number">-10</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">"Year with next Aug 13th on a Friday is: %s"</span> % year)</span><br><span class="line">Year <span class="keyword">with</span> next Aug <span class="number">13</span>th on a Friday <span class="keyword">is</span>: <span class="number">2021</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">"How far is the Easter of that year: %s"</span> % rdelta)</span><br><span class="line">How far <span class="keyword">is</span> the Easter of that year: relativedelta(years=+<span class="number">1</span>, months=+<span class="number">9</span>, days=+<span class="number">25</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">"And the Easter of that year is: %s"</span> % (today + rdelta))</span><br><span class="line">And the Easter of that year <span class="keyword">is</span>: <span class="number">2021</span><span class="number">-04</span><span class="number">-04</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="rrule"><a href="#rrule" class="headerlink" title="rrule"></a>rrule</h3><p><strong><a href="https://dateutil.readthedocs.io/en/stable/rrule.html" target="_blank" rel="noopener">官方文档</a></strong></p>
+<pre><code>class dateutil.rrule.rrule(freq, dtstart=None, interval=1, wkst=None, count=None, until=None, bysetpos=None, bymonth=None, bymonthday=None, byyearday=None, byeaster=None, byweekno=None, byweekday=None, byhour=None, byminute=None, bysecond=None, cache=False)</code></pre><p>其中，</p>
+<ul>
+<li><p>freq: 必须是 YEARLY, MONTHLY, WEEKLY, DAILY, HOURLY, MINUTELY, or SECONDLY 之一；</p>
+</li>
+<li><p>dtstart, until: 重复的开始和结束时间；</p>
+</li>
+<li><p>interval: 每个 freq 迭代之间的间隔；</p>
+</li>
+<li><p>wkst: 一周的开始日；</p>
+</li>
+<li><p>count: 将生成多少次；</p>
+</li>
+<li><p>cache: 布尔值，启用或禁用缓存结果；</p>
+</li>
+<li><p>byxxx: 指定匹配的周期。bymonth=8 表示每年8月，从下一个8月开始算起。</p>
+</li>
+</ul>
+<h2 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h2><ul>
+<li>本章重点介绍了 Python datetime 模块的常见使用和关系转换，以及第三方库 <code>python-dateutil</code> 的学习，主要包括<code>parse</code>, <code>rrule</code>, <code>relativedelta</code>.</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://s7.zzs7.top/python-date-2.html" data-id="cjyv0d4pk00027cfykwd3hc1v" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/date/">date</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/datetime/">datetime</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-dateutil/">python-dateutil</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/time/">time</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/python-date.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python 日期和时间的基本使用(1)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/字符串/">字符串</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/并发/">并发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/日期和时间/">日期和时间</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ProcessPool/">ProcessPool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ThreadPool/">ThreadPool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/date/">date</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/datetime/">datetime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/encoding/">encoding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-dateutil/">python-dateutil</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/string/">string</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多进程/">多进程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Docker/" style="font-size: 20px;">Docker</a> <a href="/tags/ProcessPool/" style="font-size: 10px;">ProcessPool</a> <a href="/tags/ThreadPool/" style="font-size: 10px;">ThreadPool</a> <a href="/tags/date/" style="font-size: 20px;">date</a> <a href="/tags/datetime/" style="font-size: 20px;">datetime</a> <a href="/tags/encoding/" style="font-size: 10px;">encoding</a> <a href="/tags/python-dateutil/" style="font-size: 10px;">python-dateutil</a> <a href="/tags/string/" style="font-size: 10px;">string</a> <a href="/tags/time/" style="font-size: 20px;">time</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/多进程/" style="font-size: 10px;">多进程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/python-date-2.html">Python 日期和时间的基本使用(2)</a>
+          </li>
+        
+          <li>
+            <a href="/python-date.html">Python 日期和时间的基本使用(1)</a>
+          </li>
+        
+          <li>
+            <a href="/character-encoding.html">Python 字符编码</a>
+          </li>
+        
+          <li>
+            <a href="/threadpool-processpool.html">Python 线程池和进程池(1)</a>
+          </li>
+        
+          <li>
+            <a href="/docker-2.html">Docker 的学习笔记(2)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 诗琦<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

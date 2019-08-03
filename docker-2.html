@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Docker 的学习笔记(2) | import 诗琦</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="构建 Docker 镜像有些时候，pull 下来的镜像只能作为基础镜像，我们需要在这个基础镜像上再自定义一个 Docker 镜像，将应用程序及其所需要的配置和环境放进这个镜像，后续还可以进行更新和管理。 构建 Docker 镜像有两种方法 使用 docker commit 命令  编写 Dockerfile 文件之后使用 docker build 命令   个人推荐更加强大和方便灵活的第二种方法。">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 的学习笔记(2)">
+<meta property="og:url" content="https://s7.zzs7.top/docker-2.html">
+<meta property="og:site_name" content="import 诗琦">
+<meta property="og:description" content="构建 Docker 镜像有些时候，pull 下来的镜像只能作为基础镜像，我们需要在这个基础镜像上再自定义一个 Docker 镜像，将应用程序及其所需要的配置和环境放进这个镜像，后续还可以进行更新和管理。 构建 Docker 镜像有两种方法 使用 docker commit 命令  编写 Dockerfile 文件之后使用 docker build 命令   个人推荐更加强大和方便灵活的第二种方法。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-18T06:27:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker 的学习笔记(2)">
+<meta name="twitter:description" content="构建 Docker 镜像有些时候，pull 下来的镜像只能作为基础镜像，我们需要在这个基础镜像上再自定义一个 Docker 镜像，将应用程序及其所需要的配置和环境放进这个镜像，后续还可以进行更新和管理。 构建 Docker 镜像有两种方法 使用 docker commit 命令  编写 Dockerfile 文件之后使用 docker build 命令   个人推荐更加强大和方便灵活的第二种方法。">
+  
+    <link rel="alternate" href="/atom.xml" title="import 诗琦" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">import 诗琦</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">tough cookie</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://s7.zzs7.top"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-docker-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/docker-2.html" class="article-date">
+  <time datetime="2019-05-03T06:33:44.000Z" itemprop="datePublished">2019-05-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Docker/">Docker</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Docker 的学习笔记(2)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="构建-Docker-镜像"><a href="#构建-Docker-镜像" class="headerlink" title="构建 Docker 镜像"></a>构建 Docker 镜像</h2><p>有些时候，pull 下来的镜像只能作为基础镜像，我们需要在这个基础镜像上再自定义一个 Docker 镜像，将应用程序及其所需要的配置和环境放进这个镜像，后续还可以进行更新和管理。</p>
+<h3 id="构建-Docker-镜像有两种方法"><a href="#构建-Docker-镜像有两种方法" class="headerlink" title="构建 Docker 镜像有两种方法"></a>构建 Docker 镜像有两种方法</h3><ul>
+<li><p>使用 docker commit 命令</p>
+</li>
+<li><p>编写 Dockerfile 文件之后使用 docker build 命令</p>
+</li>
+</ul>
+<p>个人推荐更加强大和方便灵活的第二种方法。下面只针对 <code>用 Dockerfile 构建镜像</code> 展开。</p>
+<a id="more"></a>
+
+<h3 id="用-Dockerfile-构建-django-镜像"><a href="#用-Dockerfile-构建-django-镜像" class="headerlink" title="用 Dockerfile 构建 django 镜像"></a>用 Dockerfile 构建 <code>django</code> 镜像</h3><h4 id="事先准备一个-django-项目"><a href="#事先准备一个-django-项目" class="headerlink" title="事先准备一个 django 项目"></a>事先准备一个 django 项目</h4><p>项目结构如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">$ tree</span><br><span class="line">.</span><br><span class="line">├── db.sqlite3</span><br><span class="line">├── demo</span><br><span class="line">│   ├── __init__.py</span><br><span class="line">│   ├── __pycache__</span><br><span class="line">│   │   ├── __init__.cpython-37.pyc</span><br><span class="line">│   │   ├── settings.cpython-37.pyc</span><br><span class="line">│   │   ├── urls.cpython-37.pyc</span><br><span class="line">│   │   └── wsgi.cpython-37.pyc</span><br><span class="line">│   ├── settings.py</span><br><span class="line">│   ├── urls.py</span><br><span class="line">│   └── wsgi.py</span><br><span class="line">├── Dockerfile</span><br><span class="line">├── hello</span><br><span class="line">│   ├── admin.py</span><br><span class="line">│   ├── apps.py</span><br><span class="line">│   ├── __init__.py</span><br><span class="line">│   ├── migrations</span><br><span class="line">│   │   ├── __init__.py</span><br><span class="line">│   │   └── __pycache__</span><br><span class="line">│   │       └── __init__.cpython-37.pyc</span><br><span class="line">│   ├── models.py</span><br><span class="line">│   ├── __pycache__</span><br><span class="line">│   │   ├── admin.cpython-37.pyc</span><br><span class="line">│   │   ├── __init__.cpython-37.pyc</span><br><span class="line">│   │   ├── models.cpython-37.pyc</span><br><span class="line">│   │   ├── urls.cpython-37.pyc</span><br><span class="line">│   │   └── views.cpython-37.pyc</span><br><span class="line">│   ├── tests.py</span><br><span class="line">│   ├── urls.py</span><br><span class="line">│   └── views.py</span><br><span class="line">├── manage.py</span><br><span class="line">└── requirements.txt</span><br><span class="line"></span><br><span class="line">6 directories, 25 files</span><br></pre></td></tr></table></figure>
+
+<h4 id="编写-Dockerfile-文件"><a href="#编写-Dockerfile-文件" class="headerlink" title="编写 Dockerfile 文件"></a>编写 Dockerfile 文件</h4><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基础镜像选择 python3.7</span></span><br><span class="line"><span class="keyword">FROM</span> python:<span class="number">3.7</span></span><br><span class="line"><span class="comment"># 镜像所有者信息</span></span><br><span class="line"><span class="keyword">LABEL</span><span class="bash"> maintainer=<span class="string">"shiqi"</span></span></span><br><span class="line"><span class="comment"># 设置时区</span></span><br><span class="line"><span class="keyword">ENV</span> TZ <span class="string">"Asia/Shanghai"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建应用目录</span></span><br><span class="line"><span class="comment"># RUN mkdir /demo</span></span><br><span class="line"><span class="comment"># 指定工作目录，WORKDIR 会自己创建目录</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /demo</span></span><br><span class="line"><span class="comment"># 将应用文件复制到镜像中，推荐使用 COPY， ADD 只适合拷贝压缩包文件</span></span><br><span class="line"><span class="comment"># ADD ./ /demo/</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> ./ /demo/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># pip 安装依赖包，切换下载的源</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露端口</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8000</span></span><br></pre></td></tr></table></figure>
+
+<p>其中，</p>
+<ul>
+<li><p><code>FROM</code> 指定要用的基础镜像</p>
+</li>
+<li><p><code>LABEL</code> 为镜像添加元数据</p>
+</li>
+<li><p><code>ENV</code> 设置环境变量</p>
+</li>
+<li><p><code>RUN</code> 后面可接 <code>shell</code> 命令，或者 <code>[&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]</code></p>
+</li>
+<li><p><code>WORKDIR</code> 指定工作目录，类似于 <code>cd</code> 命令</p>
+</li>
+<li><p><code>ADD</code> 将构建镜像所需的文件和目录复制到镜像中，注意：目录中必须包含 <code>Dockerfile</code> 文件，不然会报错找不到文件</p>
+</li>
+<li><p><code>EXPORSE</code> 声明容器运行时暴露的端口</p>
+</li>
+</ul>
+<p>注意：Dockerfile 文件的存放位置在项目的根目录下</p>
+<h4 id="使用-docker-compose-编排镜像"><a href="#使用-docker-compose-编排镜像" class="headerlink" title="使用 docker-compose 编排镜像"></a>使用 <code>docker-compose</code> 编排镜像</h4><h5 id="编写-docker-compose-yml"><a href="#编写-docker-compose-yml" class="headerlink" title="编写 docker-compose.yml"></a>编写 <code>docker-compose.yml</code></h5><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  web:</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">"web"</span></span><br><span class="line"><span class="attr">    build:</span></span><br><span class="line">      <span class="string">./demo</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"8000:8000"</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="attr">      - web:</span><span class="string">/demo</span></span><br><span class="line"><span class="attr">    command:</span> <span class="string">python</span> <span class="string">manage.py</span> <span class="string">runserver</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span><span class="string">:8000</span></span><br><span class="line"><span class="attr">    restart:</span> <span class="string">always</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line"><span class="attr">  web:</span></span><br><span class="line"><span class="attr">    driver:</span> <span class="string">local</span></span><br></pre></td></tr></table></figure>
+
+<p>其中，</p>
+<ul>
+<li><p><code>version</code> 的 <code>&quot;3&quot;</code> 对应的 docker 版本在 v1.13 以上</p>
+</li>
+<li><p><code>services</code> 下包含了需要编排的 容器，我这里只有一个 web 容器</p>
+</li>
+<li><p><code>container_name</code> 给容器命名</p>
+</li>
+<li><p><code>build</code> 指定了 Dockerfile 文件所在路径</p>
+</li>
+<li><p><code>ports</code> 是宿主机和容器的端口映射</p>
+</li>
+<li><p><code>volumes</code> 将当前目录挂载到容器内的 <code>/demo</code> 目录下，并给卷命名为 <code>web</code></p>
+</li>
+<li><p><code>command</code> 为应用启动的命令</p>
+</li>
+<li><p><code>restart</code> 指定为 <code>always</code> ，容器退出时会重启容器</p>
+</li>
+</ul>
+<h5 id="pip-安装-docker-compose"><a href="#pip-安装-docker-compose" class="headerlink" title="pip 安装 docker-compose"></a>pip 安装 <code>docker-compose</code></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">$ pip install docker-compose</span><br></pre></td></tr></table></figure>
+
+<h4 id="docker-compose-创建镜像并启动容器"><a href="#docker-compose-创建镜像并启动容器" class="headerlink" title="docker-compose 创建镜像并启动容器"></a>docker-compose 创建镜像并启动容器</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建镜像</span></span><br><span class="line">$ sudo docker-compose build</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动容器</span></span><br><span class="line">$ docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<h2 id="将构建好的镜像推送到-Docker-Hub"><a href="#将构建好的镜像推送到-Docker-Hub" class="headerlink" title="将构建好的镜像推送到 Docker Hub"></a>将构建好的镜像推送到 Docker Hub</h2><p>Docker Hub 离我们比较远，国内一般会使用阿里云的镜像仓库服务。这里只是作为演示，用的Docker Hub.首先需要在 Docker Hub 网址注册一个账户，然后进入正题。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 登录 Docker Hub, 根据提示输入用户名和密码</span></span><br><span class="line">$ sudo docker login</span><br><span class="line"></span><br><span class="line"><span class="comment"># 给要 push 的镜像打一个 tag</span></span><br><span class="line">$ sudo docker tag csq_web:latest shiqichang/csq_web:1.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将本地镜像 push 到远程镜像仓库</span></span><br><span class="line">$ sudo docker push shiqichang/web:1.0</span><br></pre></td></tr></table></figure>
+
+<h2 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h2><ul>
+<li>本章主要通过构建一个 django 服务的镜像，讲述了镜像创建的过程，和一些参数的含义以及用法，除此之外，还简单演示了如何将自己构建的镜像推送到远程镜像仓库，以供在其他机器上 pull 下来使用。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://s7.zzs7.top/docker-2.html" data-id="cjyv0d4pr000b7cfyemfxu8zw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/threadpool-processpool.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Python 线程池和进程池(1)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/docker.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Docker 的学习笔记(1)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/字符串/">字符串</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/并发/">并发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/日期和时间/">日期和时间</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ProcessPool/">ProcessPool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ThreadPool/">ThreadPool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/date/">date</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/datetime/">datetime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/encoding/">encoding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-dateutil/">python-dateutil</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/string/">string</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多进程/">多进程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Docker/" style="font-size: 20px;">Docker</a> <a href="/tags/ProcessPool/" style="font-size: 10px;">ProcessPool</a> <a href="/tags/ThreadPool/" style="font-size: 10px;">ThreadPool</a> <a href="/tags/date/" style="font-size: 20px;">date</a> <a href="/tags/datetime/" style="font-size: 20px;">datetime</a> <a href="/tags/encoding/" style="font-size: 10px;">encoding</a> <a href="/tags/python-dateutil/" style="font-size: 10px;">python-dateutil</a> <a href="/tags/string/" style="font-size: 10px;">string</a> <a href="/tags/time/" style="font-size: 20px;">time</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/多进程/" style="font-size: 10px;">多进程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/python-date-2.html">Python 日期和时间的基本使用(2)</a>
+          </li>
+        
+          <li>
+            <a href="/python-date.html">Python 日期和时间的基本使用(1)</a>
+          </li>
+        
+          <li>
+            <a href="/character-encoding.html">Python 字符编码</a>
+          </li>
+        
+          <li>
+            <a href="/threadpool-processpool.html">Python 线程池和进程池(1)</a>
+          </li>
+        
+          <li>
+            <a href="/docker-2.html">Docker 的学习笔记(2)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 诗琦<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Python 线程池和进程池(1) | import 诗琦</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="官方文档和源码 docs: concurrent.futures - Launching parallel tasks  Source code: Lib/concurrent/futures/thread.py and Lib/concurrent/futures/process.py   Python 并发 多进程并发是运行多个独立的程序，优势在于并发处理的任务都由操作系统管理，不足是程序与各">
+<meta name="keywords" content="ThreadPool,ProcessPool,多线程,多进程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 线程池和进程池(1)">
+<meta property="og:url" content="https://s7.zzs7.top/threadpool-processpool.html">
+<meta property="og:site_name" content="import 诗琦">
+<meta property="og:description" content="官方文档和源码 docs: concurrent.futures - Launching parallel tasks  Source code: Lib/concurrent/futures/thread.py and Lib/concurrent/futures/process.py   Python 并发 多进程并发是运行多个独立的程序，优势在于并发处理的任务都由操作系统管理，不足是程序与各">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-18T09:17:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 线程池和进程池(1)">
+<meta name="twitter:description" content="官方文档和源码 docs: concurrent.futures - Launching parallel tasks  Source code: Lib/concurrent/futures/thread.py and Lib/concurrent/futures/process.py   Python 并发 多进程并发是运行多个独立的程序，优势在于并发处理的任务都由操作系统管理，不足是程序与各">
+  
+    <link rel="alternate" href="/atom.xml" title="import 诗琦" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">import 诗琦</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">tough cookie</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://s7.zzs7.top"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-threadpool-processpool" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/threadpool-processpool.html" class="article-date">
+  <time datetime="2019-05-31T12:37:54.000Z" itemprop="datePublished">2019-05-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/并发/">并发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python 线程池和进程池(1)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="官方文档和源码"><a href="#官方文档和源码" class="headerlink" title="官方文档和源码"></a>官方文档和源码</h2><ul>
+<li><p>docs: <a href="https://docs.python.org/3/library/concurrent.futures.html" target="_blank" rel="noopener">concurrent.futures - Launching parallel tasks</a></p>
+</li>
+<li><p>Source code: <a href="https://github.com/python/cpython/blob/3.7/Lib/concurrent/futures/thread.py" target="_blank" rel="noopener">Lib/concurrent/futures/thread.py</a> and <a href="https://github.com/python/cpython/blob/3.7/Lib/concurrent/futures/process.py" target="_blank" rel="noopener">Lib/concurrent/futures/process.py</a></p>
+</li>
+</ul>
+<h2 id="Python-并发"><a href="#Python-并发" class="headerlink" title="Python 并发"></a>Python 并发</h2><ul>
+<li><p>多进程并发是运行多个独立的程序，优势在于并发处理的任务都由操作系统管理，不足是程序与各进程之间的通信和数据共享不方便；</p>
+</li>
+<li><p>多线程并发则由程序员管理并发处理的任务，这种并发方式可以方便地在线程间共享数据；</p>
+</li>
+<li><p>多进程适合 CPU 密集型程序，多线程则适合 IO 密集型程序。</p>
+</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="concurrent-futures-模块"><a href="#concurrent-futures-模块" class="headerlink" title="concurrent.futures 模块"></a>concurrent.futures 模块</h2><ul>
+<li><p>Python 标准库为我们提供了 <code>threading</code> 和 <code>multiprocessing</code> 模块编写相应的异步多线程/多进程代码。</p>
+</li>
+<li><p>从 Python 3.2 开始，标准库为我们提供了 <code>concurrent.futures</code> 模块，它提供了 <code>ThreadPoolExecutor</code> 和 <code>ProcessPoolExecutor</code> 两个类。</p>
+</li>
+<li><p><code>ThreadPoolExecutor</code> 和 <code>ProcessPoolExecutor</code> 继承了 <code>Executor</code>, 分别被用来编写线程池和进程池。实现对 <code>threading</code> 和 <code>multiprocessing</code> 的更高级的抽象，对编写线程池/进程池提供了直接的支持；</p>
+</li>
+<li><p><code>concurrent.futures</code> 基础模块是 <code>executor</code> 和 <code>future</code>.</p>
+</li>
+</ul>
+<h3 id="Exeuctor"><a href="#Exeuctor" class="headerlink" title="Exeuctor"></a>Exeuctor</h3><p><code>Executor</code> 提供异步执行调用方法。通过它的子类调用，而不是直接调用。</p>
+<h3 id="ThreadPoolExecutor"><a href="#ThreadPoolExecutor" class="headerlink" title="ThreadPoolExecutor"></a>ThreadPoolExecutor</h3><p><code>ThreadPoolExecutor</code> 是 <code>Executor</code> 的子类，它使用线程池来异步执行调用。</p>
+<p>结合官方示例讨论：利用线程池并发爬取指定网站的数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> concurrent.futures</span><br><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"></span><br><span class="line">URLS = [</span><br><span class="line">    <span class="string">'http://www.foxnews.com/'</span>,</span><br><span class="line">    <span class="string">'http://www.cnn.com/'</span>,</span><br><span class="line">    <span class="string">'http://europe.wsj.com/'</span>,</span><br><span class="line">    <span class="string">'http://bbc.co.uk'</span>,</span><br><span class="line">    <span class="string">'http://some-made-up-domain.com/'</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Retrieve a single page and report the URL and contents</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_url</span><span class="params">(url, timeout)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> urllib.request.urlopen(url, timeout=timeout) <span class="keyword">as</span> conn:</span><br><span class="line">        <span class="keyword">return</span> conn.read()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># We can use a with statement to ensure threads are cleaned up promptly</span></span><br><span class="line"><span class="keyword">with</span> concurrent.futures.ThreadPoolExecutor(max_workers=<span class="number">5</span>) <span class="keyword">as</span> executor:</span><br><span class="line">    <span class="comment"># Start the load operations and mark each furture with its URL</span></span><br><span class="line">    future_to_url = &#123;executor.submit(load_url, url, <span class="number">60</span>): url <span class="keyword">for</span> url <span class="keyword">in</span> URLS&#125;</span><br><span class="line">    <span class="keyword">for</span> future <span class="keyword">in</span> concurrent.futures.as_completed(future_to_url):</span><br><span class="line">        url = future_to_url(future)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            data = future.result()</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> exc:</span><br><span class="line">            print(<span class="string">'%r generated an exception: %s'</span> % (url exc))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'%r page is %d bytes'</span> % (url, len(data)))</span><br></pre></td></tr></table></figure>
+
+<p>参数如下：</p>
+<ul>
+<li><p><code>max_workers</code>: 线程池中最多能同时运行的线程数量；</p>
+</li>
+<li><p><code>submit(fn, *args, **kwargs)</code>: 调度可调用对象 fn, 以 fn(<em>args, *</em>kwargs) 方式执行并返回 Future 对象，代表可调用对象的执行，<code>submit()</code> 不是阻塞的，而是立即返回的；</p>
+</li>
+<li><p><code>result()</code>: <code>Future</code> 对象的 <code>result()</code> 为任务的返回结果，<code>result()</code> 是阻塞的；</p>
+</li>
+<li><p><code>as_completed()</code>: 一次取出所有任务的结果。<code>as_completed()</code> 是一个生成器。在没有任务完成时，会阻塞，若某个任务完成，会 <code>yield</code> 该任务，就能执行 <code>for</code> 循环下面的语句，然后继续阻塞，循环到所有任务结束。先完成的任务会先通知主线程。</p>
+</li>
+</ul>
+<p>其他参数：</p>
+<ul>
+<li><p><code>done()</code>: <code>Future</code> 对象的 <code>done()</code> 判断任务是否结束；</p>
+</li>
+<li><p><code>cancel()</code>: <code>Future</code> 对象的 <code>cancel()</code> 可以取消提交的任务，若任务在运行中，则无法取消。</p>
+</li>
+</ul>
+<h3 id="ProcessPoolExecutor"><a href="#ProcessPoolExecutor" class="headerlink" title="ProcessPoolExecutor"></a>ProcessPoolExecutor</h3><p><code>ProcessPoolExecutor</code> 是 <code>Executor</code> 的子类，它使用进程池来实现异步执行回调。<code>ProcessPoolExecutor</code> 使用 <code>multiprocessing</code> 回避 <code>Global Interpreter Lock</code>, 但也意味着只可以处理和返回可序列化的对象。</p>
+<p>结合官方示例讨论：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> concurrent.futures</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">PRIMES = [</span><br><span class="line">    <span class="number">112272535095293</span>,</span><br><span class="line">    <span class="number">112582705942171</span>,</span><br><span class="line">    <span class="number">112272535095293</span>,</span><br><span class="line">    <span class="number">115280095190773</span>,</span><br><span class="line">    <span class="number">115797848077099</span>,</span><br><span class="line">    <span class="number">1099726899285419</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_prime</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> n % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    sqrt_n = int(math.floor(math.sqrt(n)))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>, sqrt_n +<span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">        <span class="keyword">if</span> n % i == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">with</span> concurrent.futures.ProcessPoolExecutor() <span class="keyword">as</span> executor:</span><br><span class="line">        <span class="keyword">for</span> number, prime <span class="keyword">in</span> zip(PRIMES, executor.map(is_prime, PRIMES)):</span><br><span class="line">            print(<span class="string">'%d is prime: %s'</span> % (number, prime))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<p>参数如下：</p>
+<ul>
+<li><code>map()</code>: 替代 <code>submit()</code> 和 <code>as_completed()</code> 的结合使用。与 Python 标准库的 <code>map</code> 含义相同，对序列中的每个元素都执行同一个函数。与 <code>as_completed()</code> 返回的结果不同，输出顺序和 <code>url</code> 列表的顺序一致。</li>
+</ul>
+<p><code>ProcessPoolExecutor</code> 和 <code>ThreadPoolExecutor</code> 的使用很相似，但是具体实现完全不一样，这非常能体现出 Python 的优雅。</p>
+<h2 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h2><ul>
+<li><p>简单介绍了 Python 并发，包括多线程并发和多进程并发；</p>
+</li>
+<li><p>具体讲述了 <code>concurrent.futures</code> 模块中的线程池 <code>ThreadPoolExecutor</code> 和进程池 <code>ProcessPoolExecutor</code> 的基本使用。</p>
+</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><p><a href="https://www.jianshu.com/p/b9b3d66aa0be" target="_blank" rel="noopener">[python] ThreadPoolExecutor线程池</a></p>
+</li>
+<li><p><a href="https://www.cnblogs.com/huchong/p/7459324.html" target="_blank" rel="noopener">使用concurrent.futures模块并发，实现进程池、线程池</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://s7.zzs7.top/threadpool-processpool.html" data-id="cjyv0d4pq00087cfy5xf94ww0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ProcessPool/">ProcessPool</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ThreadPool/">ThreadPool</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/多线程/">多线程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/多进程/">多进程</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/character-encoding.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Python 字符编码
+        
+      </div>
+    </a>
+  
+  
+    <a href="/docker-2.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Docker 的学习笔记(2)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/字符串/">字符串</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/并发/">并发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/日期和时间/">日期和时间</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ProcessPool/">ProcessPool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ThreadPool/">ThreadPool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/date/">date</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/datetime/">datetime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/encoding/">encoding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-dateutil/">python-dateutil</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/string/">string</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多进程/">多进程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Docker/" style="font-size: 20px;">Docker</a> <a href="/tags/ProcessPool/" style="font-size: 10px;">ProcessPool</a> <a href="/tags/ThreadPool/" style="font-size: 10px;">ThreadPool</a> <a href="/tags/date/" style="font-size: 20px;">date</a> <a href="/tags/datetime/" style="font-size: 20px;">datetime</a> <a href="/tags/encoding/" style="font-size: 10px;">encoding</a> <a href="/tags/python-dateutil/" style="font-size: 10px;">python-dateutil</a> <a href="/tags/string/" style="font-size: 10px;">string</a> <a href="/tags/time/" style="font-size: 20px;">time</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/多进程/" style="font-size: 10px;">多进程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/python-date-2.html">Python 日期和时间的基本使用(2)</a>
+          </li>
+        
+          <li>
+            <a href="/python-date.html">Python 日期和时间的基本使用(1)</a>
+          </li>
+        
+          <li>
+            <a href="/character-encoding.html">Python 字符编码</a>
+          </li>
+        
+          <li>
+            <a href="/threadpool-processpool.html">Python 线程池和进程池(1)</a>
+          </li>
+        
+          <li>
+            <a href="/docker-2.html">Docker 的学习笔记(2)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 诗琦<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

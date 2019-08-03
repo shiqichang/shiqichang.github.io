@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Python 字符编码 | import 诗琦</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Python 字符串官方文档中介绍 Python 3 字符串：Strings are immutable sequences of Unicode code points.翻译过来就是，字符串是由 Unicode 码点组成的不可变序列。 字符串在 Python 2 和 Python 3 的不同在 Python 2 中，字符串有两种类型：str 和 unicode。str 对象存储的是 bytes(">
+<meta name="keywords" content="string,encoding">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 字符编码">
+<meta property="og:url" content="https://s7.zzs7.top/character-encoding.html">
+<meta property="og:site_name" content="import 诗琦">
+<meta property="og:description" content="Python 字符串官方文档中介绍 Python 3 字符串：Strings are immutable sequences of Unicode code points.翻译过来就是，字符串是由 Unicode 码点组成的不可变序列。 字符串在 Python 2 和 Python 3 的不同在 Python 2 中，字符串有两种类型：str 和 unicode。str 对象存储的是 bytes(">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-03T12:58:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 字符编码">
+<meta name="twitter:description" content="Python 字符串官方文档中介绍 Python 3 字符串：Strings are immutable sequences of Unicode code points.翻译过来就是，字符串是由 Unicode 码点组成的不可变序列。 字符串在 Python 2 和 Python 3 的不同在 Python 2 中，字符串有两种类型：str 和 unicode。str 对象存储的是 bytes(">
+  
+    <link rel="alternate" href="/atom.xml" title="import 诗琦" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">import 诗琦</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">tough cookie</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://s7.zzs7.top"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-character-encoding" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/character-encoding.html" class="article-date">
+  <time datetime="2019-06-03T08:06:18.000Z" itemprop="datePublished">2019-06-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/字符串/">字符串</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python 字符编码
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Python-字符串"><a href="#Python-字符串" class="headerlink" title="Python 字符串"></a>Python 字符串</h2><p>官方文档中介绍 Python 3 字符串：<em>Strings are immutable sequences of Unicode code points.</em>翻译过来就是，字符串是由 Unicode 码点组成的不可变序列。</p>
+<h3 id="字符串在-Python-2-和-Python-3-的不同"><a href="#字符串在-Python-2-和-Python-3-的不同" class="headerlink" title="字符串在 Python 2 和 Python 3 的不同"></a>字符串在 Python 2 和 Python 3 的不同</h3><p>在 Python 2 中，字符串有两种类型：<code>str</code> 和 <code>unicode</code>。<code>str</code> 对象存储的是 <code>bytes(字节码)</code>，有 <code>u</code> 前缀的是 <code>unicode</code> 对象，存储的是 <code>code points(码点)</code>。注意，这里的 <code>unicode</code> 才是真正意义上的字符串。</p>
+<p><code>字符串</code> 是一种数据结构。<strong>数据结构 = 源数据 + 数据描述</strong>，<code>数据描述</code> 指的是数据使用的字符编码，比如 Unicode 字符集，ASCII 码等。而字节码没有数据描述。</p>
+<a id="more"></a>
+
+<p><code>字节</code> 是计算机中存储数据的单元，<code>字符</code> 是人们使用的记号，如 ‘1’, ‘a’, ‘&amp;’, …</p>
+<p>在 Python 2 中，字符串使用的默认编码格式是 <code>ASCII 编码</code>，Python 3 默认支持 <code>Unicode 字符集</code>。</p>
+<p>Python 3 的字符串也有两种类型：<code>bytes</code> 和 <code>str</code>，严格区分文本和二进制数据。<code>bytes</code> 相当于 Python 2 的 <code>str</code>，<code>str</code> 相当于 Python 2 的 <code>unicode</code>。这样一来，<code>str</code> 成为了真正意义上的字符串。Python 3 字符串支持多语言。</p>
+<p>Python 3 字符串类型在内存中以 Unicode 表示，但在网络上传输或保存到磁盘里，需要转换成 bytes 字节流。</p>
+<p><code>bytes</code> 和 <code>unicode</code> 的转换通过 <code>编码解码(encode &amp; decode)</code> 的方式。</p>
+<h3 id="Unicode-和-UTF-8"><a href="#Unicode-和-UTF-8" class="headerlink" title="Unicode 和 UTF-8"></a>Unicode 和 UTF-8</h3><p>还记得 Python 3 中字符串的定义吗？Unicode 码点就是用 Unicode 编码的字符。那 <code>Unicode</code> 是什么？</p>
+<p><code>Unicode</code> 是一种字符集，不同于 <code>ASCII 码</code> 只规定了 128 个字符编码，<code>Unicode</code> 可以容纳的规模已经超过 100 万。</p>
+<p>但是 <code>Unicode</code> 只规定了符号的二进制代码，没有规定这个二进制代码如何存储，为了解决存储问题和优化存储空间，对 Unicode 进一步转换成 <code>UTF-8</code> 编码。<code>UTF-8</code> 是一种变长的编码方式。比如，英文字符只需要一个字节存储，中文需要三个字节。</p>
+<h2 id="字符编码与解码"><a href="#字符编码与解码" class="headerlink" title="字符编码与解码"></a>字符编码与解码</h2><ul>
+<li><p>编码：将字符串编码成 bytes 对象；</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.encode(encoding=<span class="string">'utf-8'</span>, errors=<span class="string">'strict'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解码：将 bytes 对象解码成字符串。</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bytes.decode(encoding=<span class="string">'utf-8'</span>, errors=<span class="string">'strict'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>参数：</p>
+<ol>
+<li><p><code>encoding</code> 默认编码为 <code>utf-8</code>;</p>
+</li>
+<li><p><code>errors</code> 设置不同错误的处理方案，默认为 <code>strict</code>，参数其他值还有 <code>ignore</code>, <code>replace</code>, <code>xmlcharrefreplace</code>, <code>backslashreplace</code>等。<code>ignore</code> 表示忽略非法字符，<code>replace</code> 表示会用 <code>?</code> 取代非法字符，<code>xmlcharrefreplace</code> 表示使用 XML 的字符引用。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h3><ul>
+<li><p>区分 Python 2 和 Python 3 中的字符串;</p>
+</li>
+<li><p>认识 Unicode 和 UTF-8;</p>
+</li>
+<li><p>在 Python 中，使用 encode() 编码 Unicode 和 使用 decode() 解码 bytes.</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://s7.zzs7.top/character-encoding.html" data-id="cjyv0d4pg00007cfyy86f5glt" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/encoding/">encoding</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/string/">string</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/python-date.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Python 日期和时间的基本使用(1)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/threadpool-processpool.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python 线程池和进程池(1)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/字符串/">字符串</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/并发/">并发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/日期和时间/">日期和时间</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ProcessPool/">ProcessPool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ThreadPool/">ThreadPool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/date/">date</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/datetime/">datetime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/encoding/">encoding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python-dateutil/">python-dateutil</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/string/">string</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多进程/">多进程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Docker/" style="font-size: 20px;">Docker</a> <a href="/tags/ProcessPool/" style="font-size: 10px;">ProcessPool</a> <a href="/tags/ThreadPool/" style="font-size: 10px;">ThreadPool</a> <a href="/tags/date/" style="font-size: 20px;">date</a> <a href="/tags/datetime/" style="font-size: 20px;">datetime</a> <a href="/tags/encoding/" style="font-size: 10px;">encoding</a> <a href="/tags/python-dateutil/" style="font-size: 10px;">python-dateutil</a> <a href="/tags/string/" style="font-size: 10px;">string</a> <a href="/tags/time/" style="font-size: 20px;">time</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/多进程/" style="font-size: 10px;">多进程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/python-date-2.html">Python 日期和时间的基本使用(2)</a>
+          </li>
+        
+          <li>
+            <a href="/python-date.html">Python 日期和时间的基本使用(1)</a>
+          </li>
+        
+          <li>
+            <a href="/character-encoding.html">Python 字符编码</a>
+          </li>
+        
+          <li>
+            <a href="/threadpool-processpool.html">Python 线程池和进程池(1)</a>
+          </li>
+        
+          <li>
+            <a href="/docker-2.html">Docker 的学习笔记(2)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 诗琦<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
