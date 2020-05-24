@@ -58,19 +58,19 @@
   };
 </script>
 
-  <meta name="description" content="题干给定一个数组 nums 和一个值 val, 你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。 不用使用额外的数组空间，必须在原地修改输入数组，使用 O(1) 额外空间完成。元素的顺序可以改变。 难度：简单 方法一：逆序循环法这种解法是我在评论里看到的，觉得很棒！相比较正序解法会导致索引越界的问题，逆序的过程中，无论相不相等，最终都会向前移一位，保证每个元素都能被比较到。">
+  <meta name="description" content="题干给定一个整数数组 nums, 找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。 难度：简单 基本没有思路😓，只能想到定个初值 nums[0], 再从索引 1 开始遍历数组。 方法一：暴力法思路：用两个变量，一个记录最大和，一个记录当前和。时间复杂度 O(n). python 12345678910111213class Solution:    def maxSubA">
 <meta name="keywords" content="算法,LeetCode,array">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode 算法：移除元素">
-<meta property="og:url" content="https://s7.zzs7.top/remove-element.html">
+<meta property="og:title" content="LeetCode 算法：最大子序和">
+<meta property="og:url" content="https://s7.zzs7.top/maximum-subarray.html">
 <meta property="og:site_name" content="import 诗琦">
-<meta property="og:description" content="题干给定一个数组 nums 和一个值 val, 你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。 不用使用额外的数组空间，必须在原地修改输入数组，使用 O(1) 额外空间完成。元素的顺序可以改变。 难度：简单 方法一：逆序循环法这种解法是我在评论里看到的，觉得很棒！相比较正序解法会导致索引越界的问题，逆序的过程中，无论相不相等，最终都会向前移一位，保证每个元素都能被比较到。">
+<meta property="og:description" content="题干给定一个整数数组 nums, 找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。 难度：简单 基本没有思路😓，只能想到定个初值 nums[0], 再从索引 1 开始遍历数组。 方法一：暴力法思路：用两个变量，一个记录最大和，一个记录当前和。时间复杂度 O(n). python 12345678910111213class Solution:    def maxSubA">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-30T03:58:02.456Z">
+<meta property="og:updated_time" content="2020-05-23T09:52:21.343Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode 算法：移除元素">
-<meta name="twitter:description" content="题干给定一个数组 nums 和一个值 val, 你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。 不用使用额外的数组空间，必须在原地修改输入数组，使用 O(1) 额外空间完成。元素的顺序可以改变。 难度：简单 方法一：逆序循环法这种解法是我在评论里看到的，觉得很棒！相比较正序解法会导致索引越界的问题，逆序的过程中，无论相不相等，最终都会向前移一位，保证每个元素都能被比较到。">
-  <link rel="canonical" href="https://s7.zzs7.top/remove-element">
+<meta name="twitter:title" content="LeetCode 算法：最大子序和">
+<meta name="twitter:description" content="题干给定一个整数数组 nums, 找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。 难度：简单 基本没有思路😓，只能想到定个初值 nums[0], 再从索引 1 开始遍历数组。 方法一：暴力法思路：用两个变量，一个记录最大和，一个记录当前和。时间复杂度 O(n). python 12345678910111213class Solution:    def maxSubA">
+  <link rel="canonical" href="https://s7.zzs7.top/maximum-subarray">
 
 
 <script id="page.configurations">
@@ -79,7 +79,7 @@
   };
 </script>
 
-  <title>LeetCode 算法：移除元素 | import 诗琦</title>
+  <title>LeetCode 算法：最大子序和 | import 诗琦</title>
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139554538-1"></script>
   <script>
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/remove-element.html">
+    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/maximum-subarray.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="诗琦">
@@ -277,7 +277,7 @@
       <header class="post-header">
 
         
-          <h2 class="post-title" itemprop="name headline">LeetCode 算法：移除元素
+          <h2 class="post-title" itemprop="name headline">LeetCode 算法：最大子序和
 
               
             
@@ -297,7 +297,7 @@
                 
               
 
-              <time title="创建时间：2020-04-30 11:30:00 / 修改时间：11:58:02" itemprop="dateCreated datePublished" datetime="2020-04-30T11:30:00+08:00">2020-04-30</time>
+              <time title="创建时间：2020-05-23 17:49:05 / 修改时间：17:52:21" itemprop="dateCreated datePublished" datetime="2020-05-23T17:49:05+08:00">2020-05-23</time>
             </span>
           
             
@@ -321,7 +321,7 @@
           
 
           
-            <span id="/remove-element.html" class="post-meta-item leancloud_visitors" data-flag-title="LeetCode 算法：移除元素">
+            <span id="/maximum-subarray.html" class="post-meta-item leancloud_visitors" data-flag-title="LeetCode 算法：最大子序和">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -342,8 +342,8 @@
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/remove-element.html#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/remove-element.html" itemprop="commentCount"></span>
+    <a href="/maximum-subarray.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/maximum-subarray.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -359,28 +359,40 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="题干"><a href="#题干" class="headerlink" title="题干"></a><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvcmVtb3ZlLWVsZW1lbnQv" title="https://leetcode-cn.com/problems/remove-element/">题干<i class="fa fa-external-link"></i></span></h2><p>给定一个数组 nums 和一个值 val, 你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。</p>
-<p>不用使用额外的数组空间，必须在原地修改输入数组，使用 <code>O(1)</code> 额外空间完成。元素的顺序可以改变。</p>
+        <h2 id="题干"><a href="#题干" class="headerlink" title="题干"></a><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbWF4aW11bS1zdWJhcnJheS8=" title="https://leetcode-cn.com/problems/maximum-subarray/">题干<i class="fa fa-external-link"></i></span></h2><p>给定一个整数数组 <code>nums</code>, 找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
 <p>难度：简单</p>
-<h2 id="方法一：逆序循环法"><a href="#方法一：逆序循环法" class="headerlink" title="方法一：逆序循环法"></a>方法一：逆序循环法</h2><p>这种解法是我在评论里看到的，觉得很棒！相比较正序解法会导致<code>索引越界</code>的问题，逆序的过程中，无论相不相等，最终都会向前移一位，保证每个元素都能被比较到。</p>
+<p>基本没有思路😓，只能想到定个初值 <code>nums[0]</code>, 再从索引 1 开始遍历数组。</p>
+<h2 id="方法一：暴力法"><a href="#方法一：暴力法" class="headerlink" title="方法一：暴力法"></a>方法一：暴力法</h2><p>思路：用两个变量，一个记录最大和，一个记录当前和。时间复杂度 <code>O(n)</code>.</p>
+<p>python</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxSubArray</span><span class="params">(self, nums: List[int])</span> -&gt; int:</span></span><br><span class="line">        tmp = nums[<span class="number">0</span>]</span><br><span class="line">        max_sum = tmp</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</span><br><span class="line">            <span class="keyword">if</span> tmp + nums[i] &gt; nums[i]:</span><br><span class="line">                max_sum = max(max_sum, tmp + nums[i])</span><br><span class="line">                tmp += nums[i]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="comment"># 当 nums[i] &gt;= tmp + nums[i], 则从该元素开始，重新寻找最大子序列</span></span><br><span class="line">                max_sum = max(max_sum, nums[i])</span><br><span class="line">                tmp = nums[i]</span><br><span class="line">        <span class="keyword">return</span> max_sum</span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
 
-<p>python</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeElement</span><span class="params">(self, nums: List[int], val: int)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)<span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">            <span class="keyword">if</span> nums[i] == val:</span><br><span class="line">                nums.pop(i)</span><br><span class="line">        <span class="keyword">return</span> len(nums)</span><br></pre></td></tr></table></figure>
+<p>下面是官方解法：</p>
+<h2 id="方法二：动态规划"><a href="#方法二：动态规划" class="headerlink" title="方法二：动态规划"></a>方法二：动态规划</h2><p>时间复杂度 <code>O(n)</code>, 空间复杂度 <code>O(1)</code>.</p>
+<p>思路：用 f(i) 代表以第 i 个数结尾的<strong>连续子数组的的最大和</strong>, 则动态规划转移方程：f(i) = max{f(i-1) + a[i], a[i]}.</p>
+<p>实现：用一个 f 数组来保存 f(i) 的值，用一个循环求出所有的 f(i). 我们可以只用一个变量 <code>pre</code> 来维护对于当前 f(i) 的 f(i-1)的值。类似 <code>滚动数组</code> 的思想。</p>
+<p>c++</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> pre = <span class="number">0</span>, maxAns = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;x: nums) &#123;</span><br><span class="line">            pre = max(pre + x, x);</span><br><span class="line">            maxAns = max(maxAns, pre);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxAns;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>下面进入官方解法👇</p>
-<h2 id="方法二：双指针法"><a href="#方法二：双指针法" class="headerlink" title="方法二：双指针法"></a>方法二：双指针法</h2><p>思路是用两个指针，一个慢指针 i, 一个快指针 j. 当 nums[j] 与给定值相等时，递增 j, 反之，复制 nums[j] 到 nums[i], 并同时递增两个索引。</p>
-<p>解法与 <a href="./remove-duplicates-from-sorted-array.md">删除排序数组中的重复项</a> 相似。</p>
-<p>python</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeElement</span><span class="params">(self, nums: List[int], val: int)</span> -&gt; int:</span></span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            <span class="keyword">if</span> nums[j] != val:</span><br><span class="line">                nums[i] = nums[j]</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> i</span><br></pre></td></tr></table></figure>
-
-<p>java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; nums.length; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[j] != val) &#123;</span><br><span class="line">                nums[i] = nums[j];</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注意⚠️：算法题的每一步都是很严谨的，随意调换顺序，结果完全不一样。</p>
-<h2 id="方法三：双指针法-–-当要删除的元素很少时"><a href="#方法三：双指针法-–-当要删除的元素很少时" class="headerlink" title="方法三：双指针法 – 当要删除的元素很少时"></a>方法三：双指针法 – 当要删除的元素很少时</h2><p>算法：当 nums[i] = val 时，将当前元素与最后一个元素交换，并释放最后一个元素，使数组大小减 1.</p>
-<p>java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; n) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == val) &#123;</span><br><span class="line">                nums[i] = nums[n - <span class="number">1</span>];</span><br><span class="line">                n--;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="方法三：分治法"><a href="#方法三：分治法" class="headerlink" title="方法三：分治法"></a>方法三：分治法</h2><p>分治方法类似于 <code>线段树求解 LCIS 问题</code> 的 <code>pushUp</code> 操作。</p>
+<p>时间复杂度 <code>O(nlogn)</code>, 空间复杂度 <code>O(logn)</code>.</p>
+<p>对于一个区间 [l,r], 维护四个量：</p>
+<ul>
+<li><code>lSum</code> 表示 [l,r] 内以 l 为左端点的最大子段和</li>
+<li><code>rSum</code> 表示 [l,r] 内以 r 为右端点的最大子段和</li>
+<li><code>mSum</code> 表示 [l,r] 内的最大子段和</li>
+<li><code>iSum</code> 表示 [l,r] 的区间和</li>
+</ul>
+<p>以下简称 [l,m] 为 [l,r] 的左子区间, [m+1,r] 为 [l,r] 的右子区间。对于长度为 1 的区间 [i,i], 四个量的值都和 a[i] 相等。对于长度大于 1 的区间：</p>
+<ul>
+<li><code>iSum</code>: 左子区间的 <code>iSum</code> + 右子区间的 <code>iSum</code>;</li>
+<li><code>lSum</code>: 要么等于左子区间的 <code>lSum</code>, 要么等于左子区间的 <code>iSum</code> + 右子区间的 <code>lSum</code>;</li>
+<li><code>rSum</code>: 要么等于右子区间的 <code>rSum</code>, 要么等于右子区间的 <code>iSum</code> + 左子区间的 <code>rSum</code>;</li>
+<li><code>mSum</code>: 如果 <code>mSum</code> 对应的区间不跨越 m, <code>mSum</code> 为左右子区间的 <code>mSum</code> 的一个；反之，则是左子区间的 <code>rSum</code> + 右子区间的 <code>lSum</code>.</li>
+</ul>
+<p>c++</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Status</span> &#123;</span></span><br><span class="line">        <span class="keyword">int</span> lSum, rSum, mSum, iSum;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function">Status <span class="title">pushUp</span><span class="params">(Status l, Status r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> iSum = l.iSum + r.iSum;</span><br><span class="line">        <span class="keyword">int</span> lSum = max(l.lSum, l.iSum + r.lSum);</span><br><span class="line">        <span class="keyword">int</span> rSum = max(r.rSum, r.iSum + l.rSum);</span><br><span class="line">        <span class="keyword">int</span> mSum = max(max(l.mSum, r.mSum), l.rSum + r.lSum);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function">Status <span class="title">get</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;a, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i == r) <span class="keyword">return</span> (Status) &#123;a[l], a[l], a[l], a[l]&#125;;</span><br><span class="line">        <span class="keyword">int</span> m = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        Status lSub = get(a, l, m);</span><br><span class="line">        Status rSub = get(a, m + <span class="number">1</span>, r);</span><br><span class="line">        <span class="keyword">return</span> pushUp(lSub, rSub);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> get(nums, <span class="number">0</span>, nums.size() - <span class="number">1</span>).mSum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -402,8 +414,8 @@
         </div>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-              <a href="/remove-duplicates-from-sorted-array.html" rel="next" title="LeetCode 算法：删除排序数组中的重复项">
-                <i class="fa fa-chevron-left"></i> LeetCode 算法：删除排序数组中的重复项
+              <a href="/c-auto-const.html" rel="next" title="了解 C++ 中的 auto, const">
+                <i class="fa fa-chevron-left"></i> 了解 C++ 中的 auto, const
               </a>
             
           </div>
@@ -411,10 +423,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-              <a href="/search-insert-position.html" rel="prev" title="LeetCode 算法：搜索插入位置">
-                LeetCode 算法：搜索插入位置 <i class="fa fa-chevron-right"></i>
-              </a>
-            
           </div>
         </div>
     </footer>
@@ -596,7 +604,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题干"><span class="nav-number">1.</span> <span class="nav-text">题干</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法一：逆序循环法"><span class="nav-number">2.</span> <span class="nav-text">方法一：逆序循环法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法二：双指针法"><span class="nav-number">3.</span> <span class="nav-text">方法二：双指针法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法三：双指针法-–-当要删除的元素很少时"><span class="nav-number">4.</span> <span class="nav-text">方法三：双指针法 – 当要删除的元素很少时</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题干"><span class="nav-number">1.</span> <span class="nav-text">题干</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法一：暴力法"><span class="nav-number">2.</span> <span class="nav-text">方法一：暴力法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法二：动态规划"><span class="nav-number">3.</span> <span class="nav-text">方法二：动态规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法三：分治法"><span class="nav-number">4.</span> <span class="nav-text">方法三：分治法</span></a></li></ol></div>
             
 
           </div>

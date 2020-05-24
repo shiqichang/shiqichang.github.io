@@ -58,18 +58,19 @@
   };
 </script>
 
-  <meta name="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
-<meta name="keywords" content="Python">
-<meta property="og:type" content="website">
-<meta property="og:title" content="import 诗琦">
-<meta property="og:url" content="https://s7.zzs7.top/categories/算法/index.html">
+  <meta name="description" content="刷算法题，也是学习其他语言的一个机会，以下是我在学习用 C++ 解题时碰到的几个知识点👇 介绍 auto, const存储类定义 C++ 程序中变量/函数的范围和生命周期，C++ 程序中可用的存储类有：auto, register, static, extern, mutatble, thread_local. auto 关键字用于两种情况：声明变量时根据初始化表达式自动推断该变量的类型、声明函">
+<meta name="keywords" content="C++,引用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="了解 C++ 中的 auto, const">
+<meta property="og:url" content="https://s7.zzs7.top/c-auto-const.html">
 <meta property="og:site_name" content="import 诗琦">
-<meta property="og:description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
+<meta property="og:description" content="刷算法题，也是学习其他语言的一个机会，以下是我在学习用 C++ 解题时碰到的几个知识点👇 介绍 auto, const存储类定义 C++ 程序中变量/函数的范围和生命周期，C++ 程序中可用的存储类有：auto, register, static, extern, mutatble, thread_local. auto 关键字用于两种情况：声明变量时根据初始化表达式自动推断该变量的类型、声明函">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-23T09:05:18.953Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="import 诗琦">
-<meta name="twitter:description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
-  <link rel="canonical" href="https://s7.zzs7.top/categories/算法/">
+<meta name="twitter:title" content="了解 C++ 中的 auto, const">
+<meta name="twitter:description" content="刷算法题，也是学习其他语言的一个机会，以下是我在学习用 C++ 解题时碰到的几个知识点👇 介绍 auto, const存储类定义 C++ 程序中变量/函数的范围和生命周期，C++ 程序中可用的存储类有：auto, register, static, extern, mutatble, thread_local. auto 关键字用于两种情况：声明变量时根据初始化表达式自动推断该变量的类型、声明函">
+  <link rel="canonical" href="https://s7.zzs7.top/c-auto-const">
 
 
 <script id="page.configurations">
@@ -78,7 +79,7 @@
   };
 </script>
 
-  <title>分类: 算法 | import 诗琦</title>
+  <title>了解 C++ 中的 auto, const | import 诗琦</title>
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139554538-1"></script>
   <script>
@@ -127,7 +128,7 @@
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -188,7 +189,7 @@
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
       
     
       
@@ -251,185 +252,190 @@
         <div class="content-wrap">
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block category">
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/c-auto-const.html">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>算法<small>分类</small>
-        </h2>
-      </div>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="诗琦">
+      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="import 诗琦">
+    </span>
+      <header class="post-header">
+
+        
+          <h2 class="post-title" itemprop="name headline">了解 C++ 中的 auto, const
+
+              
+            
+          </h2>
         
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
 
-      <h3 class="post-title">
-          <a class="post-title-link" href="/maximum-subarray.html" itemprop="url">
+              
+                
+              
+
+              <time title="创建时间：2020-05-23 16:17:18 / 修改时间：17:05:18" itemprop="dateCreated datePublished" datetime="2020-05-23T16:17:18+08:00">2020-05-23</time>
+            </span>
+          
             
-              <span itemprop="name">LeetCode 算法：最大子序和</span>
+
             
-          </a>
-        
-      </h3>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a></span>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-05-23T17:49:05+08:00"
-              content="2020-05-23">
-          05-23
-        </time>
-      </div>
+                
+                
+              
+            </span>
+          
 
-    </header>
-  </article>
+          
+            <span id="/c-auto-const.html" class="post-meta-item leancloud_visitors" data-flag-title="了解 C++ 中的 auto, const">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/c-auto-const.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/c-auto-const.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
 
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+        <p>刷算法题，也是学习其他语言的一个机会，以下是我在学习用 C++ 解题时碰到的几个知识点👇</p>
+<h2 id="介绍-auto-const"><a href="#介绍-auto-const" class="headerlink" title="介绍 auto, const"></a>介绍 auto, const</h2><p>存储类定义 C++ 程序中变量/函数的范围和生命周期，C++ 程序中可用的存储类有：<code>auto</code>, <code>register</code>, <code>static</code>, <code>extern</code>, <code>mutatble</code>, <code>thread_local</code>.</p>
+<p><code>auto</code> 关键字用于两种情况：声明变量时根据初始化表达式自动推断该变量的类型、声明函数时函数返回值的占位符。</p>
+<p><code>const</code> 关键字可用于定义常量，还有一种方式是使用 #define 预处理器。</p>
+<a id="more"></a>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<h2 id="C-引用-vs-指针"><a href="#C-引用-vs-指针" class="headerlink" title="C++ 引用 vs 指针"></a>C++ 引用 vs 指针</h2><p>引用变量是一个别名，它是某个已存在变量的另一个名字。一旦把引用初始化为某个变量，就可以使用该引用名称或变量名称来指向变量。</p>
+<ul>
+<li><p>不存在空引用，引用必须连接到一块合法的内存；</p>
+</li>
+<li><p>一旦引用被初始化为一个对象，就不能被指向到另一个对象，指针可以在任何时候指向到另一个对象；</p>
+</li>
+<li><p>引用必须在创建时被初始化，指针可以在任何时候被初始化。</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>&amp; r = i;</span><br><span class="line"><span class="keyword">double</span>&amp; s = d;</span><br></pre></td></tr></table></figure>
 
-      <h3 class="post-title">
-          <a class="post-title-link" href="/search-insert-position.html" itemprop="url">
-            
-              <span itemprop="name">LeetCode 算法：搜索插入位置</span>
-            
-          </a>
-        
-      </h3>
+<p>这里，&amp; 读作引用。比如，r 是一个初始化为 i 的整型引用。</p>
+<h2 id="auto-auto-amp-const-auto-const-auto-amp"><a href="#auto-auto-amp-const-auto-const-auto-amp" class="headerlink" title="auto, auto&amp;, const auto, const auto&amp;"></a>auto, auto&amp;, const auto, const auto&amp;</h2><ol>
+<li><p><code>auto</code>: for(auto x:range)，会拷贝 range 元素，但不改变其元素；</p>
+</li>
+<li><p><code>auto&amp;</code>: for(auto&amp; x:range), 会修改 range 元素；</p>
+</li>
+<li><p><code>const auto&amp;</code>: for(const auto&amp; x:range), 只读 range 元素；</p>
+</li>
+<li><p><code>const auto</code>: for(const auto x:range), 会拷贝元素，但不可修改拷贝出来的值。</p>
+</li>
+</ol>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-04-30T15:32:23+08:00"
-              content="2020-04-30">
-          04-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/remove-element.html" itemprop="url">
-            
-              <span itemprop="name">LeetCode 算法：移除元素</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-04-30T11:30:00+08:00"
-              content="2020-04-30">
-          04-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/remove-duplicates-from-sorted-array.html" itemprop="url">
-            
-              <span itemprop="name">LeetCode 算法：删除排序数组中的重复项</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-21T10:24:38+08:00"
-              content="2020-03-21">
-          03-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/two-sum.html" itemprop="url">
-            
-              <span itemprop="name">LeetCode 算法：两数之和</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-21T10:23:20+08:00"
-              content="2020-03-21">
-          03-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
     </div>
 
+    
+    
+    
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          
+            <a href="/tags/引用/" rel="tag"><i class="fa fa-tag"></i> 引用</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/search-insert-position.html" rel="next" title="LeetCode 算法：搜索插入位置">
+                <i class="fa fa-chevron-left"></i> LeetCode 算法：搜索插入位置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/maximum-subarray.html" rel="prev" title="LeetCode 算法：最大子序和">
+                LeetCode 算法：最大子序和 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
-
+  </div>
 
 
           </div>
           
+    
+    <div class="comments" id="comments"></div>
+  
+
 
         </div>
           
@@ -444,8 +450,17 @@
 
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -574,6 +589,23 @@
 
         </div>
       </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍-auto-const"><span class="nav-number">1.</span> <span class="nav-text">介绍 auto, const</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-引用-vs-指针"><span class="nav-number">2.</span> <span class="nav-text">C++ 引用 vs 指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#auto-auto-amp-const-auto-const-auto-amp"><span class="nav-number">3.</span> <span class="nav-text">auto, auto&amp;, const auto, const auto&amp;</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
     </div>
   </aside>
@@ -626,6 +658,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
 
   <script src="/js/next-boot.js?v=7.3.0"></script>
 

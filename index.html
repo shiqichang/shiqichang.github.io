@@ -181,7 +181,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">14</span></a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">16</span></a>
 
   </li>
         
@@ -194,7 +194,7 @@
       
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">5</span></a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">6</span></a>
 
   </li>
         
@@ -207,7 +207,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">10</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">12</span></a>
 
   </li>
         <li class="menu-item menu-item-search">
@@ -261,6 +261,280 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/maximum-subarray.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="诗琦">
+      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="import 诗琦">
+    </span>
+      <header class="post-header">
+
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/maximum-subarray.html" class="post-title-link" itemprop="url">LeetCode 算法：最大子序和</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-23 17:49:05 / 修改时间：17:52:21" itemprop="dateCreated datePublished" datetime="2020-05-23T17:49:05+08:00">2020-05-23</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/maximum-subarray.html" class="post-meta-item leancloud_visitors" data-flag-title="LeetCode 算法：最大子序和">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/maximum-subarray.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/maximum-subarray.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="题干"><a href="#题干" class="headerlink" title="题干"></a><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbWF4aW11bS1zdWJhcnJheS8=" title="https://leetcode-cn.com/problems/maximum-subarray/">题干<i class="fa fa-external-link"></i></span></h2><p>给定一个整数数组 <code>nums</code>, 找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
+<p>难度：简单</p>
+<p>基本没有思路😓，只能想到定个初值 <code>nums[0]</code>, 再从索引 1 开始遍历数组。</p>
+<h2 id="方法一：暴力法"><a href="#方法一：暴力法" class="headerlink" title="方法一：暴力法"></a>方法一：暴力法</h2><p>思路：用两个变量，一个记录最大和，一个记录当前和。时间复杂度 <code>O(n)</code>.</p>
+<p>python</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxSubArray</span><span class="params">(self, nums: List[int])</span> -&gt; int:</span></span><br><span class="line">        tmp = nums[<span class="number">0</span>]</span><br><span class="line">        max_sum = tmp</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</span><br><span class="line">            <span class="keyword">if</span> tmp + nums[i] &gt; nums[i]:</span><br><span class="line">                max_sum = max(max_sum, tmp + nums[i])</span><br><span class="line">                tmp += nums[i]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="comment"># 当 nums[i] &gt;= tmp + nums[i], 则从该元素开始，重新寻找最大子序列</span></span><br><span class="line">                max_sum = max(max_sum, nums[i])</span><br><span class="line">                tmp = nums[i]</span><br><span class="line">        <span class="keyword">return</span> max_sum</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/maximum-subarray.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/c-auto-const.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="诗琦">
+      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="import 诗琦">
+    </span>
+      <header class="post-header">
+
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/c-auto-const.html" class="post-title-link" itemprop="url">了解 C++ 中的 auto, const</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-23 16:17:18 / 修改时间：17:05:18" itemprop="dateCreated datePublished" datetime="2020-05-23T16:17:18+08:00">2020-05-23</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/c-auto-const.html" class="post-meta-item leancloud_visitors" data-flag-title="了解 C++ 中的 auto, const">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/c-auto-const.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/c-auto-const.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>刷算法题，也是学习其他语言的一个机会，以下是我在学习用 C++ 解题时碰到的几个知识点👇</p>
+<h2 id="介绍-auto-const"><a href="#介绍-auto-const" class="headerlink" title="介绍 auto, const"></a>介绍 auto, const</h2><p>存储类定义 C++ 程序中变量/函数的范围和生命周期，C++ 程序中可用的存储类有：<code>auto</code>, <code>register</code>, <code>static</code>, <code>extern</code>, <code>mutatble</code>, <code>thread_local</code>.</p>
+<p><code>auto</code> 关键字用于两种情况：声明变量时根据初始化表达式自动推断该变量的类型、声明函数时函数返回值的占位符。</p>
+<p><code>const</code> 关键字可用于定义常量，还有一种方式是使用 #define 预处理器。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/c-auto-const.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/search-insert-position.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -297,11 +571,21 @@
                 
               
 
-              <time title="创建时间：2020-04-30 15:32:23 / 修改时间：15:34:37" itemprop="dateCreated datePublished" datetime="2020-04-30T15:32:23+08:00">2020-04-30</time>
+              <time title="创建时间：2020-04-30 15:32:23" itemprop="dateCreated datePublished" datetime="2020-04-30T15:32:23+08:00">2020-04-30</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-05-06 18:11:01" itemprop="dateModified" datetime="2020-05-06T18:11:01+08:00">2020-05-06</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -1411,311 +1695,12 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/docker-2.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="诗琦">
-      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="import 诗琦">
-    </span>
-      <header class="post-header">
-
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/docker-2.html" class="post-title-link" itemprop="url">Docker 的学习笔记(2)</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-03 14:33:44" itemprop="dateCreated datePublished" datetime="2019-05-03T14:33:44+08:00">2019-05-03</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-18 14:27:34" itemprop="dateModified" datetime="2019-06-18T14:27:34+08:00">2019-06-18</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/docker-2.html" class="post-meta-item leancloud_visitors" data-flag-title="Docker 的学习笔记(2)">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/docker-2.html#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/docker-2.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="构建-Docker-镜像"><a href="#构建-Docker-镜像" class="headerlink" title="构建 Docker 镜像"></a>构建 Docker 镜像</h2><p>有些时候，pull 下来的镜像只能作为基础镜像，我们需要在这个基础镜像上再自定义一个 Docker 镜像，将应用程序及其所需要的配置和环境放进这个镜像，后续还可以进行更新和管理。</p>
-<h3 id="构建-Docker-镜像有两种方法"><a href="#构建-Docker-镜像有两种方法" class="headerlink" title="构建 Docker 镜像有两种方法"></a>构建 Docker 镜像有两种方法</h3><ul>
-<li><p>使用 docker commit 命令</p>
-</li>
-<li><p>编写 Dockerfile 文件之后使用 docker build 命令</p>
-</li>
-</ul>
-<p>个人推荐更加强大和方便灵活的第二种方法。下面只针对 <code>用 Dockerfile 构建镜像</code> 展开。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/docker-2.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/docker.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="诗琦">
-      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="import 诗琦">
-    </span>
-      <header class="post-header">
-
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/docker.html" class="post-title-link" itemprop="url">Docker 的学习笔记(1)</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-01 02:32:27" itemprop="dateCreated datePublished" datetime="2019-05-01T02:32:27+08:00">2019-05-01</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-04-29 14:32:43" itemprop="dateModified" datetime="2020-04-29T14:32:43+08:00">2020-04-29</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/docker.html" class="post-meta-item leancloud_visitors" data-flag-title="Docker 的学习笔记(1)">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/docker.html#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/docker.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Docker-简介"><a href="#Docker-简介" class="headerlink" title="Docker 简介"></a>Docker 简介</h2><h3 id="这里引用了《第一本-Docker-书》的解释"><a href="#这里引用了《第一本-Docker-书》的解释" class="headerlink" title="这里引用了《第一本 Docker 书》的解释"></a>这里引用了《第一本 Docker 书》的解释</h3><pre><code>Docker 是一种能够把开发的应用程序自动部署到容器的开源引擎；
-
-容器是直接运行在操作系统内核之上的用户空间，所以它只能运行与底层宿主机相同或相似的操作系统，容器技术可以让多个独立的用户空间运行在同一台宿主机上；
-
-镜像是 Docker 生命周期中的构建或打包阶段，容器是启动或执行阶段。</code></pre><ul>
-<li><p><code>Docker</code> 遵循 <code>客户端-服务器(C/S)</code> 架构模式，Docker 服务器也可以叫做守护进程，Docker 提供了一个命令行工具 <code>docker</code> 和一套 <code>RESTful API</code> 与守护进程交互，目前，我对 docker 命令行的使用比较熟，所以下面介绍的也是 docker 命令行的基本使用和通过 <code>docker-compose</code> 编排容器。</p>
-</li>
-<li><p>Docker <code>镜像(Image)</code> 是一个特殊的文件系统，它提供了容器运行需要的环境，应用程序，配置文件等。一般来说，构建一个镜像需要一个基本镜像。比如，一个 <code>Django</code> 服务的镜像构建需要一个 <code>python</code> 基本镜像。</p>
-</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/docker.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
           </div>
@@ -1750,7 +1735,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1775,7 +1760,9 @@
         
           
         
-        <span class="site-state-item-count">5</span>
+          
+        
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -1818,7 +1805,11 @@
         
           
         
-        <span class="site-state-item-count">14</span>
+          
+        
+          
+        
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
