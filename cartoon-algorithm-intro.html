@@ -58,19 +58,19 @@
   };
 </script>
 
-  <meta name="description" content="题干给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。 难度：简单 乍一看，输出是新数组的长度，一想，将数组转换成集合，然后输出集合的长度，不就搞定了嘛。然后马上去提交，结果 解答错误，输出的是一个数组！ 原来我忽略了要在原数组上做修改，使用 O(1) 额外空间完成😅，下面进入正题吧。">
-<meta name="keywords" content="算法,LeetCode,array">
+  <meta name="description" content="数据结构 线性结构：数组、链表、栈、堆、哈希表 树：二叉树，二叉堆 图 其他：跳表、哈希链表、位图  时间复杂度基本操作执行次数设 T(n) 为程序基本操作执行次数的函数，n 为输入规模，以下4个场景对应程序中最常见的4中执行方式👇  T(n) = 3n, 执行次数为线性的； T(n) = 5logn, 执行次数是用对数计算的； T(n) = 2, 执行次数是常量； T(n) = 0.5n^2+">
+<meta name="keywords" content="Algorithm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode 算法：删除排序数组中的重复项">
-<meta property="og:url" content="https://s7.zzs7.top/remove-duplicates-from-sorted-array.html">
+<meta property="og:title" content="《漫画算法》学习笔记(1)">
+<meta property="og:url" content="https://s7.zzs7.top/cartoon-algorithm-intro.html">
 <meta property="og:site_name" content="import 诗琦">
-<meta property="og:description" content="题干给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。 难度：简单 乍一看，输出是新数组的长度，一想，将数组转换成集合，然后输出集合的长度，不就搞定了嘛。然后马上去提交，结果 解答错误，输出的是一个数组！ 原来我忽略了要在原数组上做修改，使用 O(1) 额外空间完成😅，下面进入正题吧。">
+<meta property="og:description" content="数据结构 线性结构：数组、链表、栈、堆、哈希表 树：二叉树，二叉堆 图 其他：跳表、哈希链表、位图  时间复杂度基本操作执行次数设 T(n) 为程序基本操作执行次数的函数，n 为输入规模，以下4个场景对应程序中最常见的4中执行方式👇  T(n) = 3n, 执行次数为线性的； T(n) = 5logn, 执行次数是用对数计算的； T(n) = 2, 执行次数是常量； T(n) = 0.5n^2+">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-30T03:57:17.656Z">
+<meta property="og:updated_time" content="2020-05-24T12:00:12.053Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode 算法：删除排序数组中的重复项">
-<meta name="twitter:description" content="题干给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。 难度：简单 乍一看，输出是新数组的长度，一想，将数组转换成集合，然后输出集合的长度，不就搞定了嘛。然后马上去提交，结果 解答错误，输出的是一个数组！ 原来我忽略了要在原数组上做修改，使用 O(1) 额外空间完成😅，下面进入正题吧。">
-  <link rel="canonical" href="https://s7.zzs7.top/remove-duplicates-from-sorted-array">
+<meta name="twitter:title" content="《漫画算法》学习笔记(1)">
+<meta name="twitter:description" content="数据结构 线性结构：数组、链表、栈、堆、哈希表 树：二叉树，二叉堆 图 其他：跳表、哈希链表、位图  时间复杂度基本操作执行次数设 T(n) 为程序基本操作执行次数的函数，n 为输入规模，以下4个场景对应程序中最常见的4中执行方式👇  T(n) = 3n, 执行次数为线性的； T(n) = 5logn, 执行次数是用对数计算的； T(n) = 2, 执行次数是常量； T(n) = 0.5n^2+">
+  <link rel="canonical" href="https://s7.zzs7.top/cartoon-algorithm-intro">
 
 
 <script id="page.configurations">
@@ -79,7 +79,7 @@
   };
 </script>
 
-  <title>LeetCode 算法：删除排序数组中的重复项 | import 诗琦</title>
+  <title>《漫画算法》学习笔记(1) | import 诗琦</title>
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139554538-1"></script>
   <script>
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/remove-duplicates-from-sorted-array.html">
+    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/cartoon-algorithm-intro.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="诗琦">
@@ -277,7 +277,7 @@
       <header class="post-header">
 
         
-          <h2 class="post-title" itemprop="name headline">LeetCode 算法：删除排序数组中的重复项
+          <h2 class="post-title" itemprop="name headline">《漫画算法》学习笔记(1)
 
               
             
@@ -297,21 +297,11 @@
                 
               
 
-              <time title="创建时间：2020-03-21 10:24:38" itemprop="dateCreated datePublished" datetime="2020-03-21T10:24:38+08:00">2020-03-21</time>
+              <time title="创建时间：2020-05-24 18:30:26 / 修改时间：20:00:12" itemprop="dateCreated datePublished" datetime="2020-05-24T18:30:26+08:00">2020-05-24</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-04-30 11:57:17" itemprop="dateModified" datetime="2020-04-30T11:57:17+08:00">2020-04-30</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -331,7 +321,7 @@
           
 
           
-            <span id="/remove-duplicates-from-sorted-array.html" class="post-meta-item leancloud_visitors" data-flag-title="LeetCode 算法：删除排序数组中的重复项">
+            <span id="/cartoon-algorithm-intro.html" class="post-meta-item leancloud_visitors" data-flag-title="《漫画算法》学习笔记(1)">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -352,8 +342,8 @@
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/remove-duplicates-from-sorted-array.html#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/remove-duplicates-from-sorted-array.html" itemprop="commentCount"></span>
+    <a href="/cartoon-algorithm-intro.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/cartoon-algorithm-intro.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -369,25 +359,39 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="题干"><a href="#题干" class="headerlink" title="题干"></a><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvcmVtb3ZlLWR1cGxpY2F0ZXMtZnJvbS1zb3J0ZWQtYXJyYXkv" title="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/">题干<i class="fa fa-external-link"></i></span></h2><p>给定一个排序数组，你需要在<span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS8lRTUlOEUlOUYlRTUlOUMlQjAlRTclQUUlOTclRTYlQjMlOTU=" title="https://baike.baidu.com/item/%E5%8E%9F%E5%9C%B0%E7%AE%97%E6%B3%95">原地<i class="fa fa-external-link"></i></span>删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。</p>
-<p>难度：简单</p>
-<p>乍一看，输出是新数组的长度，一想，将数组转换成集合，然后输出集合的长度，不就搞定了嘛。然后马上去提交，结果 <code>解答错误</code>，输出的是一个数组！</p>
-<p>原来我忽略了要在原数组上做修改，使用 <code>O(1)</code> 额外空间完成😅，下面进入正题吧。</p>
-<a id="more"></a>
-
-<h2 id="我的解法：哈希表"><a href="#我的解法：哈希表" class="headerlink" title="我的解法：哈希表"></a>我的解法：哈希表</h2><p>受到 <span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvdHdvLXN1bS8=" title="https://leetcode-cn.com/problems/two-sum/">两数之和<i class="fa fa-external-link"></i></span> 的影响，我用字典的方式解了该题😓，顺便还用到了 <code>Python</code> 的深拷贝。执行时间 804ms……</p>
-<p>时间复杂度和空间复杂度均为 <code>O(n)</code>, 代码实现如下：</p>
-<p>python</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeDuplicates</span><span class="params">(self, nums: List[int])</span> -&gt; int:</span></span><br><span class="line">        hash_map = dict()</span><br><span class="line">        nums_cp = copy.deepcopy(nums)</span><br><span class="line">        <span class="keyword">for</span> index, elem <span class="keyword">in</span> enumerate(nums_cp):</span><br><span class="line">            <span class="keyword">if</span> elem <span class="keyword">in</span> hash_map:</span><br><span class="line">                nums.remove(elem)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                hash_map[elem] = index</span><br><span class="line">        <span class="keyword">return</span> len(nums)</span><br></pre></td></tr></table></figure>
-
-<p>注意⚠️：虽然这种解法通过了，但是它同样忽略了题干 - 空间复杂度要求为 <code>O(1)</code> (在审题方面，我装瞎能力很强呢 ◔ ‸◔？)</p>
-<h2 id="官方解法：双指针法"><a href="#官方解法：双指针法" class="headerlink" title="官方解法：双指针法"></a>官方解法：双指针法</h2><p>我的解法中忽略了一个很重要的信息：数组是有序的！</p>
-<p>官方解法中提到了双指针，思路是用两个指针 i(慢指针), j(快指针)。时间复杂度：<code>O(n)</code>, 空间复杂度：<code>O(1)</code>.</p>
-<p>只要 <code>nums[i] == nums[j]</code>, j 加1，跳过重复项；当遇到 <code>nums[i] != nums[j]</code>, i 递增，然后把 nums[j] 值复制给 nums[i].</p>
-<p>Show me codeヽ(✿ﾟ▽ﾟ)ノ</p>
-<p>python</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeDuplicates</span><span class="params">(self, nums: List[int])</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</span><br><span class="line">            <span class="keyword">if</span> nums[j] != nums[i]:</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">                nums[i] = nums[j]</span><br><span class="line">        <span class="keyword">return</span> i + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
+        <h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><ol>
+<li>线性结构：数组、链表、栈、堆、哈希表</li>
+<li>树：二叉树，二叉堆</li>
+<li>图</li>
+<li>其他：跳表、哈希链表、位图</li>
+</ol>
+<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><h3 id="基本操作执行次数"><a href="#基本操作执行次数" class="headerlink" title="基本操作执行次数"></a>基本操作执行次数</h3><p>设 <code>T(n)</code> 为程序基本操作执行次数的函数，<code>n</code> 为输入规模，以下4个场景对应程序中最常见的4中执行方式👇</p>
+<ol>
+<li>T(n) = 3n, 执行次数为<strong>线性</strong>的；</li>
+<li>T(n) = 5logn, 执行次数是用<strong>对数</strong>计算的；</li>
+<li>T(n) = 2, 执行次数是<strong>常量</strong>；</li>
+<li>T(n) = 0.5n^2+0.5n, 执行次数是用<strong>多项式</strong>计算的。</li>
+</ol>
+<h3 id="渐进时间复杂度"><a href="#渐进时间复杂度" class="headerlink" title="渐进时间复杂度"></a>渐进时间复杂度</h3><p><code>asymptotic time complexity</code>, 如存在函数 <code>f(n)</code>, 使得当 <code>n</code> 趋近于无穷大时，<code>T(n)/f(n)</code> 的极限值为不等于零的常量，则称 <code>f(n)</code> 是 <code>T(n)</code> 的同数量级函数。记作 <code>T(n) = O(f(n))</code>, 称为 <code>O(f(n))</code>, <code>O</code> 为算法的渐进时间复杂度，简称 <code>时间复杂度</code>。</p>
+<p>渐进时间复杂度用大写 O 表示，也称为 <code>大O表示法</code>。</p>
+<p>如何推导出时间复杂度？</p>
+<ol>
+<li>如果运行时间是常数量级，则用常数1表示；</li>
+<li>只保留时间函数中的最高阶项；</li>
+<li>如果最高阶项存在，则省去最高阶项前面的系数。</li>
+</ol>
+<p>👆上面的4个场景分别对应 <code>T(n)=O(n)</code>, <code>T(n)=O(logn)</code>, <code>T(n)=O(1)</code>, <code>T(n)=O(n^2)</code>.</p>
+<p>当 <code>n</code> 取值足够大时，<code>O(1)&lt;O(logn)&lt;O(n)&lt;O(n^2)</code>.</p>
+<p>还有其他的时间复杂度，<code>O(nlogn), O(n^3), O(mn), O(2^n), O(n!)</code>.</p>
+<h2 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h2><p><code>space complexity</code>, 对一个算法在运行过程中临时占用存储空间大小的量度，同样使用大O表达式。</p>
+<p><code>S(n)=O(f(n))</code>, 其中 <code>n</code> 为问题的规模，<code>f(n)</code> 为算法所占存储空间的函数。</p>
+<p>常见的空间复杂度：</p>
+<ol>
+<li>常量空间：<code>O(1)</code></li>
+<li>线性空间；<code>O(n)</code></li>
+<li>二维空间；<code>O(n^2)</code></li>
+<li>递归空间：<code>O(n)</code>, <code>方法调用栈</code> 包括 <code>进栈</code> 和 <code>出栈</code>。</li>
+</ol>
 
     </div>
 
@@ -399,17 +403,13 @@
           
         
         <div class="post-tags">
-            <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
-          
-            <a href="/tags/LeetCode/" rel="tag"><i class="fa fa-tag"></i> LeetCode</a>
-          
-            <a href="/tags/array/" rel="tag"><i class="fa fa-tag"></i> array</a>
+            <a href="/tags/Algorithm/" rel="tag"><i class="fa fa-tag"></i> Algorithm</a>
           
         </div>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-              <a href="/two-sum.html" rel="next" title="LeetCode 算法：两数之和">
-                <i class="fa fa-chevron-left"></i> LeetCode 算法：两数之和
+              <a href="/data-structure-intro.html" rel="next" title="《大话数据结构》学习笔记(1)">
+                <i class="fa fa-chevron-left"></i> 《大话数据结构》学习笔记(1)
               </a>
             
           </div>
@@ -417,10 +417,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-              <a href="/remove-element.html" rel="prev" title="LeetCode 算法：移除元素">
-                LeetCode 算法：移除元素 <i class="fa fa-chevron-right"></i>
-              </a>
-            
           </div>
         </div>
     </footer>
@@ -608,7 +604,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题干"><span class="nav-number">1.</span> <span class="nav-text">题干</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的解法：哈希表"><span class="nav-number">2.</span> <span class="nav-text">我的解法：哈希表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#官方解法：双指针法"><span class="nav-number">3.</span> <span class="nav-text">官方解法：双指针法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构"><span class="nav-number">1.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间复杂度"><span class="nav-number">2.</span> <span class="nav-text">时间复杂度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本操作执行次数"><span class="nav-number">2.1.</span> <span class="nav-text">基本操作执行次数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#渐进时间复杂度"><span class="nav-number">2.2.</span> <span class="nav-text">渐进时间复杂度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空间复杂度"><span class="nav-number">3.</span> <span class="nav-text">空间复杂度</span></a></li></ol></div>
             
 
           </div>
