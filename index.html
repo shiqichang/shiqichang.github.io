@@ -207,7 +207,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">14</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">15</span></a>
 
   </li>
         <li class="menu-item menu-item-search">
@@ -254,6 +254,144 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/plus-one.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="诗琦">
+      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="import 诗琦">
+    </span>
+      <header class="post-header">
+
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/plus-one.html" class="post-title-link" itemprop="url">LeetCode 算法：加一</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-27 18:12:58 / 修改时间：18:14:14" itemprop="dateCreated datePublished" datetime="2020-05-27T18:12:58+08:00">2020-05-27</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/plus-one.html" class="post-meta-item leancloud_visitors" data-flag-title="LeetCode 算法：加一">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/plus-one.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/plus-one.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="题干"><a href="#题干" class="headerlink" title="题干"></a><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvcGx1cy1vbmUv" title="https://leetcode-cn.com/problems/plus-one/">题干<i class="fa fa-external-link"></i></span></h2><p>给定一个由<strong>整数</strong>组成的<strong>非空</strong>数组所表示的非负整数，在该数的基础上加一。</p>
+<p>最高位数字存放在数组的首位，数组中的每个元素只存储<strong>单个</strong>数字。</p>
+<p>难度：简单</p>
+<h2 id="我的解法"><a href="#我的解法" class="headerlink" title="我的解法"></a>我的解法</h2><p>思路：倒序循环数组，用一个临时的字段，按 <code>digits[len(digits)-1-i] * (10**i)</code> 记数组元素组合加1的结果；然后，将临时字段类型由 int -&gt; str, 再一次循环，从高到低添加字符串元素。</p>
+<p>python</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">plusOne</span><span class="params">(self, digits: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">        tmp = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(digits)<span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">            tmp += (digits[len(digits)<span class="number">-1</span>-i] * (<span class="number">10</span>**i))</span><br><span class="line">        tmp += <span class="number">1</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> str(tmp):</span><br><span class="line">            res.append(int(i))</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/plus-one.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
       
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -1533,162 +1671,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/python-date.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="诗琦">
-      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="import 诗琦">
-    </span>
-      <header class="post-header">
-
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/python-date.html" class="post-title-link" itemprop="url">Python 日期和时间的基本使用(1)</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-03 21:04:15" itemprop="dateCreated datePublished" datetime="2019-06-03T21:04:15+08:00">2019-06-03</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-18 14:27:56" itemprop="dateModified" datetime="2019-06-18T14:27:56+08:00">2019-06-18</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/日期和时间/" itemprop="url" rel="index"><span itemprop="name">日期和时间</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/python-date.html" class="post-meta-item leancloud_visitors" data-flag-title="Python 日期和时间的基本使用(1)">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/python-date.html#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/python-date.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="官方文档和源码"><a href="#官方文档和源码" class="headerlink" title="官方文档和源码"></a>官方文档和源码</h2><ul>
-<li><p>docs: <span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnB5dGhvbi5vcmcvMy9saWJyYXJ5L2RhdGV0aW1lLmh0bWw=" title="https://docs.python.org/3/library/datetime.html">datetime - Basic date and time types<i class="fa fa-external-link"></i></span></p>
-</li>
-<li><p>Source code: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B5dGhvbi9jcHl0aG9uL2Jsb2IvMy43L0xpYi9kYXRldGltZS5weQ==" title="https://github.com/python/cpython/blob/3.7/Lib/datetime.py">Lib/datetime.py<i class="fa fa-external-link"></i></span></p>
-</li>
-</ul>
-<h2 id="Available-Types-可用类型"><a href="#Available-Types-可用类型" class="headerlink" title="Available Types(可用类型)"></a>Available Types(可用类型)</h2><ul>
-<li><p>datetime.date(日期) – Attributes(属性): year, month, day.</p>
-</li>
-<li><p>datetime.time(时间) – Attributes: hour, minute, second, microsecond, tzinfo.</p>
-</li>
-<li><p>datetime.datetime(日期和时间的组合) – Attributes: year, month, day, hour, minute, second, microsecond, tzinfo.</p>
-</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/python-date.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1729,7 +1711,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
