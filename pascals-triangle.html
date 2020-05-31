@@ -66,7 +66,7 @@
 <meta property="og:site_name" content="import 诗琦">
 <meta property="og:description" content="题干给定一个非负整数 numRows, 生成杨辉三角的前 numRows 行。 在杨辉三角中，每个数都是它左上方和右上方的数的和。 难度：简单 我的解法思路：公式 lists[i][j] = lists[i-1][j-1] + lists[i-1][j], 同时考虑 0, 1, 2 三种特殊情况。 python">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-31T09:53:29.276Z">
+<meta property="og:updated_time" content="2020-05-31T11:33:19.151Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode 算法：杨辉三角">
 <meta name="twitter:description" content="题干给定一个非负整数 numRows, 生成杨辉三角的前 numRows 行。 在杨辉三角中，每个数都是它左上方和右上方的数的和。 难度：简单 我的解法思路：公式 lists[i][j] = lists[i-1][j-1] + lists[i-1][j], 同时考虑 0, 1, 2 三种特殊情况。 python">
@@ -208,7 +208,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">18</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">19</span></a>
 
   </li>
         <li class="menu-item menu-item-search">
@@ -297,7 +297,7 @@
                 
               
 
-              <time title="创建时间：2020-05-31 17:51:21 / 修改时间：17:53:29" itemprop="dateCreated datePublished" datetime="2020-05-31T17:51:21+08:00">2020-05-31</time>
+              <time title="创建时间：2020-05-31 17:51:21 / 修改时间：19:33:19" itemprop="dateCreated datePublished" datetime="2020-05-31T17:51:21+08:00">2020-05-31</time>
             </span>
           
             
@@ -368,7 +368,7 @@
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">generate</span><span class="params">(self, numRows: int)</span> -&gt; List[List[int]]:</span></span><br><span class="line">        <span class="keyword">if</span> numRows == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        <span class="keyword">if</span> numRows == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> [[<span class="number">1</span>]]</span><br><span class="line">        <span class="keyword">if</span> numRows == <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> [[<span class="number">1</span>], [<span class="number">1</span>, <span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line">        lists = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(j)] <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, numRows + <span class="number">1</span>)]</span><br><span class="line">        lists[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">        lists[<span class="number">1</span>][<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">        lists[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, numRows):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, i + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> j == <span class="number">0</span> <span class="keyword">or</span> j == i:</span><br><span class="line">                    lists[i][j] = <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    lists[i][j] = lists[i - <span class="number">1</span>][j - <span class="number">1</span>] + lists[i - <span class="number">1</span>][j]</span><br><span class="line">        <span class="keyword">return</span> lists</span><br></pre></td></tr></table></figure>
 
-<h2 id="动态规划-官方解法"><a href="#动态规划-官方解法" class="headerlink" title="动态规划(官方解法)"></a>动态规划(官方解法)</h2><p>算法：先生成整个 <code>triangle</code> 列表，三角形的每一行都以子列表的形式存储。检查行数为0的情况。</p>
+<h2 id="官方解法：动态规划"><a href="#官方解法：动态规划" class="headerlink" title="官方解法：动态规划"></a>官方解法：动态规划</h2><p>算法：先生成整个 <code>triangle</code> 列表，三角形的每一行都以子列表的形式存储。检查行数为0的情况。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">generate</span><span class="params">(self, numRows: int)</span> -&gt; List[List[int]]:</span></span><br><span class="line">        triangle = []</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> row_num <span class="keyword">in</span> range(numRows):</span><br><span class="line">            row = [<span class="literal">None</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(row_num + <span class="number">1</span>)]</span><br><span class="line">            row[<span class="number">0</span>], row[<span class="number">-1</span>] = <span class="number">1</span>, <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(row) - <span class="number">1</span>):</span><br><span class="line">                row[j] = triangle[row_num - <span class="number">1</span>][j - <span class="number">1</span>] + triangle[row_num - <span class="number">1</span>][j]</span><br><span class="line"></span><br><span class="line">            triangle.append(row)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> triangle</span><br></pre></td></tr></table></figure>
 
 <p>复杂度分析：</p>
@@ -471,7 +471,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -601,7 +601,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题干"><span class="nav-number">1.</span> <span class="nav-text">题干</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的解法"><span class="nav-number">2.</span> <span class="nav-text">我的解法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态规划-官方解法"><span class="nav-number">3.</span> <span class="nav-text">动态规划(官方解法)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优秀解法"><span class="nav-number">4.</span> <span class="nav-text">优秀解法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题干"><span class="nav-number">1.</span> <span class="nav-text">题干</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的解法"><span class="nav-number">2.</span> <span class="nav-text">我的解法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#官方解法：动态规划"><span class="nav-number">3.</span> <span class="nav-text">官方解法：动态规划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优秀解法"><span class="nav-number">4.</span> <span class="nav-text">优秀解法</span></a></li></ol></div>
             
 
           </div>
