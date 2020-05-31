@@ -58,18 +58,18 @@
   };
 </script>
 
-  <meta name="description" content="题干给定一个非负索引 k, 其中 k &amp;lt;= 33, 返回杨辉三角的第 k 行。 难度：简单 进阶：你可以优化你的算法到 O(k) 空间复杂度。 我的解法python 1234567891011121314class Solution:    def getRow(self, rowIndex: int) -&amp;gt; List[int]:        triangle = []">
+  <meta name="description" content="题干给定一个非负索引 k, 其中 k &amp;lt;= 33, 返回杨辉三角的第 k 行。 难度：简单 进阶：你可以优化你的算法到 O(k) 空间复杂度。">
 <meta name="keywords" content="算法,LeetCode,array">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode 算法：杨辉三角 II">
 <meta property="og:url" content="https://s7.zzs7.top/pascals-triangle-ii.html">
 <meta property="og:site_name" content="import 诗琦">
-<meta property="og:description" content="题干给定一个非负索引 k, 其中 k &amp;lt;= 33, 返回杨辉三角的第 k 行。 难度：简单 进阶：你可以优化你的算法到 O(k) 空间复杂度。 我的解法python 1234567891011121314class Solution:    def getRow(self, rowIndex: int) -&amp;gt; List[int]:        triangle = []">
+<meta property="og:description" content="题干给定一个非负索引 k, 其中 k &amp;lt;= 33, 返回杨辉三角的第 k 行。 难度：简单 进阶：你可以优化你的算法到 O(k) 空间复杂度。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-31T10:38:05.512Z">
+<meta property="og:updated_time" content="2020-05-31T12:04:51.485Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode 算法：杨辉三角 II">
-<meta name="twitter:description" content="题干给定一个非负索引 k, 其中 k &amp;lt;= 33, 返回杨辉三角的第 k 行。 难度：简单 进阶：你可以优化你的算法到 O(k) 空间复杂度。 我的解法python 1234567891011121314class Solution:    def getRow(self, rowIndex: int) -&amp;gt; List[int]:        triangle = []">
+<meta name="twitter:description" content="题干给定一个非负索引 k, 其中 k &amp;lt;= 33, 返回杨辉三角的第 k 行。 难度：简单 进阶：你可以优化你的算法到 O(k) 空间复杂度。">
   <link rel="canonical" href="https://s7.zzs7.top/pascals-triangle-ii">
 
 
@@ -208,7 +208,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">19</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">20</span></a>
 
   </li>
         <li class="menu-item menu-item-search">
@@ -297,7 +297,7 @@
                 
               
 
-              <time title="创建时间：2020-05-31 18:34:17 / 修改时间：18:38:05" itemprop="dateCreated datePublished" datetime="2020-05-31T18:34:17+08:00">2020-05-31</time>
+              <time title="创建时间：2020-05-31 18:34:17 / 修改时间：20:04:51" itemprop="dateCreated datePublished" datetime="2020-05-31T18:34:17+08:00">2020-05-31</time>
             </span>
           
             
@@ -362,10 +362,10 @@
         <h2 id="题干"><a href="#题干" class="headerlink" title="题干"></a><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvcGFzY2Fscy10cmlhbmdsZS1paS8=" title="https://leetcode-cn.com/problems/pascals-triangle-ii/">题干<i class="fa fa-external-link"></i></span></h2><p>给定一个非负索引 k, 其中 k &lt;= 33, 返回杨辉三角的第 k 行。</p>
 <p>难度：简单</p>
 <p>进阶：你可以优化你的算法到 <code>O(k)</code> 空间复杂度。</p>
+<a id="more"></a>
+
 <h2 id="我的解法"><a href="#我的解法" class="headerlink" title="我的解法"></a>我的解法</h2><p>python</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getRow</span><span class="params">(self, rowIndex: int)</span> -&gt; List[int]:</span></span><br><span class="line">        triangle = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(rowIndex + <span class="number">1</span>):</span><br><span class="line">            row = [<span class="literal">None</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(i + <span class="number">1</span>)]</span><br><span class="line">            row[<span class="number">0</span>], row[<span class="number">-1</span>] = <span class="number">1</span>, <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(row) - <span class="number">1</span>):</span><br><span class="line">                row[j] = triangle[i - <span class="number">1</span>][j - <span class="number">1</span>] + triangle[i - <span class="number">1</span>][j]</span><br><span class="line"></span><br><span class="line">            triangle.append(row)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> i == rowIndex:</span><br><span class="line">                <span class="keyword">return</span> row</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
 
 <p>这里需要注意一点，第 k 行，指的是索引 k.</p>
 <h2 id="优秀解法"><a href="#优秀解法" class="headerlink" title="优秀解法"></a>优秀解法</h2><p>思路：从倒数第二个元素开始往前更新，<code>row[i] = row[i] + row[i -1]</code>.</p>
@@ -463,7 +463,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
