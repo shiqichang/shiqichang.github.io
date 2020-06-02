@@ -58,19 +58,19 @@
   };
 </script>
 
-  <meta name="description" content="题干给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。 最高位数字存放在数组的首位，数组中的每个元素只存储单个数字。 难度：简单">
+  <meta name="description" content="题干给定一个数组 nums, 编写一个函数将所有的 0 移动到数组的末尾，同时保持非零元素的相对顺序。 说明：  必须在原数组上操作，不要拷贝额外的数组。 尽量减少操作次数。  难度：简单">
 <meta name="keywords" content="算法,LeetCode,array">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode 算法：加一">
-<meta property="og:url" content="https://s7.zzs7.top/plus-one.html">
+<meta property="og:title" content="LeetCode 算法：移动零">
+<meta property="og:url" content="https://s7.zzs7.top/move-zeroes.html">
 <meta property="og:site_name" content="import 诗琦">
-<meta property="og:description" content="题干给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。 最高位数字存放在数组的首位，数组中的每个元素只存储单个数字。 难度：简单">
+<meta property="og:description" content="题干给定一个数组 nums, 编写一个函数将所有的 0 移动到数组的末尾，同时保持非零元素的相对顺序。 说明：  必须在原数组上操作，不要拷贝额外的数组。 尽量减少操作次数。  难度：简单">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-31T12:05:53.400Z">
+<meta property="og:updated_time" content="2020-06-02T10:35:57.757Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode 算法：加一">
-<meta name="twitter:description" content="题干给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。 最高位数字存放在数组的首位，数组中的每个元素只存储单个数字。 难度：简单">
-  <link rel="canonical" href="https://s7.zzs7.top/plus-one">
+<meta name="twitter:title" content="LeetCode 算法：移动零">
+<meta name="twitter:description" content="题干给定一个数组 nums, 编写一个函数将所有的 0 移动到数组的末尾，同时保持非零元素的相对顺序。 说明：  必须在原数组上操作，不要拷贝额外的数组。 尽量减少操作次数。  难度：简单">
+  <link rel="canonical" href="https://s7.zzs7.top/move-zeroes">
 
 
 <script id="page.configurations">
@@ -79,7 +79,7 @@
   };
 </script>
 
-  <title>LeetCode 算法：加一 | import 诗琦</title>
+  <title>LeetCode 算法：移动零 | import 诗琦</title>
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139554538-1"></script>
   <script>
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/plus-one.html">
+    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/move-zeroes.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="诗琦">
@@ -277,7 +277,7 @@
       <header class="post-header">
 
         
-          <h2 class="post-title" itemprop="name headline">LeetCode 算法：加一
+          <h2 class="post-title" itemprop="name headline">LeetCode 算法：移动零
 
               
             
@@ -297,21 +297,11 @@
                 
               
 
-              <time title="创建时间：2020-05-27 18:12:58" itemprop="dateCreated datePublished" datetime="2020-05-27T18:12:58+08:00">2020-05-27</time>
+              <time title="创建时间：2020-06-02 18:34:35 / 修改时间：18:35:57" itemprop="dateCreated datePublished" datetime="2020-06-02T18:34:35+08:00">2020-06-02</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-05-31 20:05:53" itemprop="dateModified" datetime="2020-05-31T20:05:53+08:00">2020-05-31</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -331,7 +321,7 @@
           
 
           
-            <span id="/plus-one.html" class="post-meta-item leancloud_visitors" data-flag-title="LeetCode 算法：加一">
+            <span id="/move-zeroes.html" class="post-meta-item leancloud_visitors" data-flag-title="LeetCode 算法：移动零">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -352,8 +342,8 @@
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/plus-one.html#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/plus-one.html" itemprop="commentCount"></span>
+    <a href="/move-zeroes.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/move-zeroes.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -369,21 +359,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="题干"><a href="#题干" class="headerlink" title="题干"></a><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvcGx1cy1vbmUv" title="https://leetcode-cn.com/problems/plus-one/">题干<i class="fa fa-external-link"></i></span></h2><p>给定一个由<strong>整数</strong>组成的<strong>非空</strong>数组所表示的非负整数，在该数的基础上加一。</p>
-<p>最高位数字存放在数组的首位，数组中的每个元素只存储<strong>单个</strong>数字。</p>
+        <h2 id="题干"><a href="#题干" class="headerlink" title="题干"></a><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbW92ZS16ZXJvZXMv" title="https://leetcode-cn.com/problems/move-zeroes/">题干<i class="fa fa-external-link"></i></span></h2><p>给定一个数组 <code>nums</code>, 编写一个函数将所有的 <code>0</code> 移动到数组的末尾，同时保持非零元素的相对顺序。</p>
+<p>说明：</p>
+<ol>
+<li>必须在原数组上操作，不要拷贝额外的数组。</li>
+<li>尽量减少操作次数。</li>
+</ol>
 <p>难度：简单</p>
 <a id="more"></a>
 
-<h2 id="我的解法"><a href="#我的解法" class="headerlink" title="我的解法"></a>我的解法</h2><p>思路：倒序循环数组，用一个临时的字段，按 <code>digits[len(digits)-1-i] * (10**i)</code> 记数组元素组合加1的结果；然后，将临时字段类型由 int -&gt; str, 再一次循环，从高到低添加字符串元素。</p>
-<p>python</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">plusOne</span><span class="params">(self, digits: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">        tmp = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(digits)<span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">            tmp += (digits[len(digits)<span class="number">-1</span>-i] * (<span class="number">10</span>**i))</span><br><span class="line">        tmp += <span class="number">1</span></span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> str(tmp):</span><br><span class="line">            res.append(int(i))</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<h2 id="我的解法"><a href="#我的解法" class="headerlink" title="我的解法"></a>我的解法</h2><p>python</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">moveZeroes</span><span class="params">(self, nums: List[int])</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Do not return anything, modify nums in-place instead.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        counts = nums.count(<span class="number">0</span>)</span><br><span class="line">        [nums.remove(<span class="number">0</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> range(counts)]</span><br><span class="line">        nums[:] = nums + [<span class="number">0</span>] * counts</span><br></pre></td></tr></table></figure>
 
-<h2 id="其他解法"><a href="#其他解法" class="headerlink" title="其他解法"></a>其他解法</h2><h3 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h3><p>思路：遍历是否为9，是9变0，不是返回即可</p>
-<p>python</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">plusOne</span><span class="params">(self, digits: List[int])</span> -&gt; List[int]:</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(digits) + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> digits[-i] != <span class="number">9</span>:</span><br><span class="line">                digits[-i] += <span class="number">1</span></span><br><span class="line">                <span class="keyword">return</span> digits</span><br><span class="line">            digits[-i] = <span class="number">0</span></span><br><span class="line">        digits.insert(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> digits</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">moveZeroes</span><span class="params">(self, nums: List[int])</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Do not return anything, modify nums in-place instead.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        counts = nums.count(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> range(counts):</span><br><span class="line">            nums.remove(<span class="number">0</span>)</span><br><span class="line">            nums.append(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
 
-<h3 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h3><p>java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] plusOne(<span class="keyword">int</span>[] digits) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = digits.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            digits[i]++;</span><br><span class="line">            digits[i] = digits[i] % <span class="number">10</span>;</span><br><span class="line">            <span class="keyword">if</span> (digits[i] != <span class="number">0</span>) <span class="keyword">return</span> digits;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 针对特殊情况：99, 999, ...</span></span><br><span class="line">        digits = <span class="keyword">new</span> <span class="keyword">int</span>[digits.length + <span class="number">1</span>];</span><br><span class="line">        digits[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> digits;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="两次遍历"><a href="#两次遍历" class="headerlink" title="两次遍历"></a>两次遍历</h2><p>时间复杂度：O(n), 空间复杂度：O(1).</p>
+<p>python</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">moveZeroes</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        j = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(len(nums)):</span><br><span class="line">            <span class="keyword">if</span> nums[i]:</span><br><span class="line">                nums[j] = nums[i]</span><br><span class="line">                j += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(j, len(nums)):</span><br><span class="line">            nums[i] = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="一次遍历"><a href="#一次遍历" class="headerlink" title="一次遍历"></a>一次遍历</h2><p>思路：参考快速排序的思想，首先确定一个待分割的元素做中间点 <code>x</code>, 然后把所有小于等于 <code>x</code> 的元素放到 <code>x</code> 的左边，大于 <code>x</code> 的元素放到其右边。</p>
+<p>时间复杂度：O(n), 空间复杂度：O(1).</p>
+<p>python</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">moveZeroes</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        j = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(len(nums)):</span><br><span class="line">            <span class="keyword">if</span> nums[i]:</span><br><span class="line">                nums[j], nums[i] = nums[i], nums[j]</span><br><span class="line">                j += <span class="number">1</span></span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -405,8 +402,8 @@
         </div>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-              <a href="/cartoon-algorithm-intro.html" rel="next" title="《漫画算法》学习笔记(1)">
-                <i class="fa fa-chevron-left"></i> 《漫画算法》学习笔记(1)
+              <a href="/missing-number.html" rel="next" title="LeetCode 算法：缺失数字">
+                <i class="fa fa-chevron-left"></i> LeetCode 算法：缺失数字
               </a>
             
           </div>
@@ -414,10 +411,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-              <a href="/merge-sorted-array.html" rel="prev" title="LeetCode 算法：合并两个有序数组">
-                LeetCode 算法：合并两个有序数组 <i class="fa fa-chevron-right"></i>
-              </a>
-            
           </div>
         </div>
     </footer>
@@ -605,7 +598,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题干"><span class="nav-number">1.</span> <span class="nav-text">题干</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的解法"><span class="nav-number">2.</span> <span class="nav-text">我的解法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他解法"><span class="nav-number">3.</span> <span class="nav-text">其他解法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解法一"><span class="nav-number">3.1.</span> <span class="nav-text">解法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解法二"><span class="nav-number">3.2.</span> <span class="nav-text">解法二</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题干"><span class="nav-number">1.</span> <span class="nav-text">题干</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的解法"><span class="nav-number">2.</span> <span class="nav-text">我的解法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两次遍历"><span class="nav-number">3.</span> <span class="nav-text">两次遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一次遍历"><span class="nav-number">4.</span> <span class="nav-text">一次遍历</span></a></li></ol></div>
             
 
           </div>
