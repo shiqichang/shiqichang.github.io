@@ -207,7 +207,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">25</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">26</span></a>
 
   </li>
         <li class="menu-item menu-item-search">
@@ -254,6 +254,152 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/python-date-2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="诗琦">
+      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="import 诗琦">
+    </span>
+      <header class="post-header">
+
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/python-date-2.html" class="post-title-link" itemprop="url">Python 日期和时间的基本使用(2)</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-10 19:57:55" itemprop="dateCreated datePublished" datetime="2019-06-10T19:57:55+08:00">2019-06-10</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-04-29 14:33:41" itemprop="dateModified" datetime="2020-04-29T14:33:41+08:00">2020-04-29</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/日期和时间/" itemprop="url" rel="index"><span itemprop="name">日期和时间</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/python-date-2.html" class="post-meta-item leancloud_visitors" data-flag-title="Python 日期和时间的基本使用(2)">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/python-date-2.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/python-date-2.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="datetime-常见用法和关系转换"><a href="#datetime-常见用法和关系转换" class="headerlink" title="datetime 常见用法和关系转换"></a><code>datetime</code> 常见用法和关系转换</h2><p><em>参考 <span class="exturl" data-url="aHR0cDovL3d3dy53a2xrZW4ubWUvcG9zdHMvMjAxNS8wMy8wMy9weXRob24tYmFzZS1kYXRldGltZS5odG1s" title="http://www.wklken.me/posts/2015/03/03/python-base-datetime.html">PYTHON-基础-时间日期处理小结<i class="fa fa-external-link"></i></span></em></p>
+<ul>
+<li><p>常见用法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> datetime <span class="keyword">import</span> date, timedelta, datetime</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> calendar</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>date.today() + timedelta(days=<span class="number">1</span>)  <span class="comment"># 明天</span></span><br><span class="line">datetime.date(<span class="number">2019</span>, <span class="number">6</span>, <span class="number">11</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime.today() + timedelta(hours=<span class="number">1</span>))  <span class="comment"># 下个小时</span></span><br><span class="line">datetime.datetime(<span class="number">2019</span>, <span class="number">6</span>, <span class="number">10</span>, <span class="number">21</span>, <span class="number">7</span>, <span class="number">35</span>, <span class="number">169594</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime.combine(date.today(), time.min)  <span class="comment"># 当天开始时间</span></span><br><span class="line">datetime.datetime(<span class="number">2019</span>, <span class="number">6</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime.combine(date.today(), time.max)  <span class="comment"># 结束时间</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/python-date-2.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
       
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -1043,7 +1189,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
