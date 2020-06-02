@@ -58,19 +58,19 @@
   };
 </script>
 
-  <meta name="description" content="题干给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。 难度：简单 乍一看，输出是新数组的长度，一想，将数组转换成集合，然后输出集合的长度，不就搞定了嘛。然后马上去提交，结果 解答错误，输出的是一个数组！ 原来我忽略了要在原数组上做修改，使用 O(1) 额外空间完成😅，下面进入正题吧。">
+  <meta name="description" content="题干给定一个整数数组，判断是否存在重复元素。 如果任意一值在数组中出现至少两次，函数返回 true, 如果数组中每个元素都不相同，则返回 false. 难度：简单">
 <meta name="keywords" content="算法,LeetCode,array">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode 算法：删除排序数组中的重复项">
-<meta property="og:url" content="https://s7.zzs7.top/remove-duplicates-from-sorted-array.html">
+<meta property="og:title" content="LeetCode 算法：存在重复元素">
+<meta property="og:url" content="https://s7.zzs7.top/contains-duplicate.html">
 <meta property="og:site_name" content="import 诗琦">
-<meta property="og:description" content="题干给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。 难度：简单 乍一看，输出是新数组的长度，一想，将数组转换成集合，然后输出集合的长度，不就搞定了嘛。然后马上去提交，结果 解答错误，输出的是一个数组！ 原来我忽略了要在原数组上做修改，使用 O(1) 额外空间完成😅，下面进入正题吧。">
+<meta property="og:description" content="题干给定一个整数数组，判断是否存在重复元素。 如果任意一值在数组中出现至少两次，函数返回 true, 如果数组中每个元素都不相同，则返回 false. 难度：简单">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-30T03:57:17.656Z">
+<meta property="og:updated_time" content="2020-06-02T07:36:47.942Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode 算法：删除排序数组中的重复项">
-<meta name="twitter:description" content="题干给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。 难度：简单 乍一看，输出是新数组的长度，一想，将数组转换成集合，然后输出集合的长度，不就搞定了嘛。然后马上去提交，结果 解答错误，输出的是一个数组！ 原来我忽略了要在原数组上做修改，使用 O(1) 额外空间完成😅，下面进入正题吧。">
-  <link rel="canonical" href="https://s7.zzs7.top/remove-duplicates-from-sorted-array">
+<meta name="twitter:title" content="LeetCode 算法：存在重复元素">
+<meta name="twitter:description" content="题干给定一个整数数组，判断是否存在重复元素。 如果任意一值在数组中出现至少两次，函数返回 true, 如果数组中每个元素都不相同，则返回 false. 难度：简单">
+  <link rel="canonical" href="https://s7.zzs7.top/contains-duplicate">
 
 
 <script id="page.configurations">
@@ -79,7 +79,7 @@
   };
 </script>
 
-  <title>LeetCode 算法：删除排序数组中的重复项 | import 诗琦</title>
+  <title>LeetCode 算法：存在重复元素 | import 诗琦</title>
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139554538-1"></script>
   <script>
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/remove-duplicates-from-sorted-array.html">
+    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/contains-duplicate.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="诗琦">
@@ -277,7 +277,7 @@
       <header class="post-header">
 
         
-          <h2 class="post-title" itemprop="name headline">LeetCode 算法：删除排序数组中的重复项
+          <h2 class="post-title" itemprop="name headline">LeetCode 算法：存在重复元素
 
               
             
@@ -297,21 +297,11 @@
                 
               
 
-              <time title="创建时间：2020-03-21 10:24:38" itemprop="dateCreated datePublished" datetime="2020-03-21T10:24:38+08:00">2020-03-21</time>
+              <time title="创建时间：2020-06-02 15:33:18 / 修改时间：15:36:47" itemprop="dateCreated datePublished" datetime="2020-06-02T15:33:18+08:00">2020-06-02</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-04-30 11:57:17" itemprop="dateModified" datetime="2020-04-30T11:57:17+08:00">2020-04-30</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -331,7 +321,7 @@
           
 
           
-            <span id="/remove-duplicates-from-sorted-array.html" class="post-meta-item leancloud_visitors" data-flag-title="LeetCode 算法：删除排序数组中的重复项">
+            <span id="/contains-duplicate.html" class="post-meta-item leancloud_visitors" data-flag-title="LeetCode 算法：存在重复元素">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -352,8 +342,8 @@
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/remove-duplicates-from-sorted-array.html#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/remove-duplicates-from-sorted-array.html" itemprop="commentCount"></span>
+    <a href="/contains-duplicate.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/contains-duplicate.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -369,24 +359,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="题干"><a href="#题干" class="headerlink" title="题干"></a><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvcmVtb3ZlLWR1cGxpY2F0ZXMtZnJvbS1zb3J0ZWQtYXJyYXkv" title="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/">题干<i class="fa fa-external-link"></i></span></h2><p>给定一个排序数组，你需要在<span class="exturl" data-url="aHR0cHM6Ly9iYWlrZS5iYWlkdS5jb20vaXRlbS8lRTUlOEUlOUYlRTUlOUMlQjAlRTclQUUlOTclRTYlQjMlOTU=" title="https://baike.baidu.com/item/%E5%8E%9F%E5%9C%B0%E7%AE%97%E6%B3%95">原地<i class="fa fa-external-link"></i></span>删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。</p>
+        <h2 id="题干"><a href="#题干" class="headerlink" title="题干"></a><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvY29udGFpbnMtZHVwbGljYXRlLw==" title="https://leetcode-cn.com/problems/contains-duplicate/">题干<i class="fa fa-external-link"></i></span></h2><p>给定一个整数数组，判断是否存在重复元素。</p>
+<p>如果任意一值在数组中出现至少两次，函数返回 <code>true</code>, 如果数组中每个元素都不相同，则返回 <code>false</code>.</p>
 <p>难度：简单</p>
-<p>乍一看，输出是新数组的长度，一想，将数组转换成集合，然后输出集合的长度，不就搞定了嘛。然后马上去提交，结果 <code>解答错误</code>，输出的是一个数组！</p>
-<p>原来我忽略了要在原数组上做修改，使用 <code>O(1)</code> 额外空间完成😅，下面进入正题吧。</p>
 <a id="more"></a>
 
-<h2 id="我的解法：哈希表"><a href="#我的解法：哈希表" class="headerlink" title="我的解法：哈希表"></a>我的解法：哈希表</h2><p>受到 <span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvdHdvLXN1bS8=" title="https://leetcode-cn.com/problems/two-sum/">两数之和<i class="fa fa-external-link"></i></span> 的影响，我用字典的方式解了该题😓，顺便还用到了 <code>Python</code> 的深拷贝。执行时间 804ms……</p>
-<p>时间复杂度和空间复杂度均为 <code>O(n)</code>, 代码实现如下：</p>
-<p>python</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeDuplicates</span><span class="params">(self, nums: List[int])</span> -&gt; int:</span></span><br><span class="line">        hash_map = dict()</span><br><span class="line">        nums_cp = copy.deepcopy(nums)</span><br><span class="line">        <span class="keyword">for</span> index, elem <span class="keyword">in</span> enumerate(nums_cp):</span><br><span class="line">            <span class="keyword">if</span> elem <span class="keyword">in</span> hash_map:</span><br><span class="line">                nums.remove(elem)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                hash_map[elem] = index</span><br><span class="line">        <span class="keyword">return</span> len(nums)</span><br></pre></td></tr></table></figure>
+<h2 id="我的解法"><a href="#我的解法" class="headerlink" title="我的解法"></a>我的解法</h2><p>python</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">containsDuplicate</span><span class="params">(self, nums: List[int])</span> -&gt; bool:</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">        <span class="keyword">if</span> nums.count(num) &gt;= <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
 
-<p>注意⚠️：虽然这种解法通过了，但是它同样忽略了题干 - 空间复杂度要求为 <code>O(1)</code> (在审题方面，我装瞎能力很强呢 ◔ ‸◔？)</p>
-<h2 id="官方解法：双指针法"><a href="#官方解法：双指针法" class="headerlink" title="官方解法：双指针法"></a>官方解法：双指针法</h2><p>我的解法中忽略了一个很重要的信息：数组是有序的！</p>
-<p>官方解法中提到了双指针，思路是用两个指针 i(慢指针), j(快指针)。时间复杂度：<code>O(n)</code>, 空间复杂度：<code>O(1)</code>.</p>
-<p>只要 <code>nums[i] == nums[j]</code>, j 加1，跳过重复项；当遇到 <code>nums[i] != nums[j]</code>, i 递增，然后把 nums[j] 值复制给 nums[i].</p>
-<p>Show me codeヽ(✿ﾟ▽ﾟ)ノ</p>
-<p>python</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeDuplicates</span><span class="params">(self, nums: List[int])</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</span><br><span class="line">            <span class="keyword">if</span> nums[j] != nums[i]:</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">                nums[i] = nums[j]</span><br><span class="line">        <span class="keyword">return</span> i + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">containsDuplicate</span><span class="params">(self, nums: List[int])</span> -&gt; bool:</span></span><br><span class="line">        counts = collections.Counter(nums)</span><br><span class="line">        <span class="keyword">if</span> max(counts.values()) &gt;= <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+
+<p>以上两种方法均超出时间限制。</p>
+<h2 id="优秀解法"><a href="#优秀解法" class="headerlink" title="优秀解法"></a>优秀解法</h2><p>python</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">containsDuplicate</span><span class="params">(self, nums: List[int])</span> -&gt; bool:</span></span><br><span class="line">        <span class="keyword">return</span> len(nums) != len(set(nums))</span><br></pre></td></tr></table></figure>
+
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><p>时间复杂度：O(nlogn), 空间复杂度：O(1).</p>
+<p>java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containsDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == nums[i + <span class="number">1</span>]) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h2><p>利用支持快速搜索和插入操作的动态数据结构。</p>
+<p>时间复杂度：O(n), 空间复杂度：O(n).</p>
+<p>java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containsDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        Set&lt;Integer&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;(nums.length);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x: nums) &#123;</span><br><span class="line">            <span class="keyword">if</span> (set.contains(x)) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            set.add(x);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -408,8 +402,8 @@
         </div>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-              <a href="/two-sum.html" rel="next" title="LeetCode 算法：两数之和">
-                <i class="fa fa-chevron-left"></i> LeetCode 算法：两数之和
+              <a href="/rotate-array.html" rel="next" title="LeetCode 算法：旋转数组">
+                <i class="fa fa-chevron-left"></i> LeetCode 算法：旋转数组
               </a>
             
           </div>
@@ -417,10 +411,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-              <a href="/remove-element.html" rel="prev" title="LeetCode 算法：移除元素">
-                LeetCode 算法：移除元素 <i class="fa fa-chevron-right"></i>
-              </a>
-            
           </div>
         </div>
     </footer>
@@ -608,7 +598,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题干"><span class="nav-number">1.</span> <span class="nav-text">题干</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的解法：哈希表"><span class="nav-number">2.</span> <span class="nav-text">我的解法：哈希表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#官方解法：双指针法"><span class="nav-number">3.</span> <span class="nav-text">官方解法：双指针法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题干"><span class="nav-number">1.</span> <span class="nav-text">题干</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的解法"><span class="nav-number">2.</span> <span class="nav-text">我的解法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优秀解法"><span class="nav-number">3.</span> <span class="nav-text">优秀解法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">4.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希表"><span class="nav-number">5.</span> <span class="nav-text">哈希表</span></a></li></ol></div>
             
 
           </div>
