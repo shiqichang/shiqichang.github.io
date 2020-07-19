@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/favicon.png?v=7.3.0" color="#222">
+  <meta name="google-site-verification" content="dxoMiZ9NBUFWvHj9roOlkaBhNg5MIXQThTekAXHaLKk">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: 'search.xml'
+    },
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="构建 Docker 镜像有些时候，pull 下来的镜像只能作为基础镜像，我们需要在这个基础镜像上再自定义一个 Docker 镜像，将应用程序及其所需要的配置和环境放进这个镜像，后续还可以进行更新和管理。 构建 Docker 镜像有两种方法 使用 docker commit 命令  编写 Dockerfile 文件之后使用 docker build 命令   个人推荐更加强大和方便灵活的第二种方法。">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 的学习笔记(2)">
+<meta property="og:url" content="https://s7.zzs7.top/docker-2.html">
+<meta property="og:site_name" content="import 诗琦">
+<meta property="og:description" content="构建 Docker 镜像有些时候，pull 下来的镜像只能作为基础镜像，我们需要在这个基础镜像上再自定义一个 Docker 镜像，将应用程序及其所需要的配置和环境放进这个镜像，后续还可以进行更新和管理。 构建 Docker 镜像有两种方法 使用 docker commit 命令  编写 Dockerfile 文件之后使用 docker build 命令   个人推荐更加强大和方便灵活的第二种方法。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-18T06:27:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker 的学习笔记(2)">
+<meta name="twitter:description" content="构建 Docker 镜像有些时候，pull 下来的镜像只能作为基础镜像，我们需要在这个基础镜像上再自定义一个 Docker 镜像，将应用程序及其所需要的配置和环境放进这个镜像，后续还可以进行更新和管理。 构建 Docker 镜像有两种方法 使用 docker commit 命令  编写 Dockerfile 文件之后使用 docker build 命令   个人推荐更加强大和方便灵活的第二种方法。">
+  <link rel="canonical" href="https://s7.zzs7.top/docker-2">
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Docker 的学习笔记(2) | import 诗琦</title>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139554538-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-139554538-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">import 诗琦</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">tough cookie</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+      
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+      
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">18</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+      
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">7</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+      
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">31</span></a>
+
+  </li>
+        <li class="menu-item menu-item-search">
+          <a href="javascript:;" class="popup-trigger">
+          
+            <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+    </div>
+</nav>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/docker-2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="诗琦">
+      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="import 诗琦">
+    </span>
+      <header class="post-header">
+
+        
+          <h2 class="post-title" itemprop="name headline">Docker 的学习笔记(2)
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-03 14:33:44" itemprop="dateCreated datePublished" datetime="2019-05-03T14:33:44+08:00">2019-05-03</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-18 14:27:34" itemprop="dateModified" datetime="2019-06-18T14:27:34+08:00">2019-06-18</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/docker-2.html" class="post-meta-item leancloud_visitors" data-flag-title="Docker 的学习笔记(2)">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/docker-2.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/docker-2.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="构建-Docker-镜像"><a href="#构建-Docker-镜像" class="headerlink" title="构建 Docker 镜像"></a>构建 Docker 镜像</h2><p>有些时候，pull 下来的镜像只能作为基础镜像，我们需要在这个基础镜像上再自定义一个 Docker 镜像，将应用程序及其所需要的配置和环境放进这个镜像，后续还可以进行更新和管理。</p>
+<h3 id="构建-Docker-镜像有两种方法"><a href="#构建-Docker-镜像有两种方法" class="headerlink" title="构建 Docker 镜像有两种方法"></a>构建 Docker 镜像有两种方法</h3><ul>
+<li><p>使用 docker commit 命令</p>
+</li>
+<li><p>编写 Dockerfile 文件之后使用 docker build 命令</p>
+</li>
+</ul>
+<p>个人推荐更加强大和方便灵活的第二种方法。下面只针对 <code>用 Dockerfile 构建镜像</code> 展开。</p>
+<a id="more"></a>
+
+<h3 id="用-Dockerfile-构建-django-镜像"><a href="#用-Dockerfile-构建-django-镜像" class="headerlink" title="用 Dockerfile 构建 django 镜像"></a>用 Dockerfile 构建 <code>django</code> 镜像</h3><h4 id="事先准备一个-django-项目"><a href="#事先准备一个-django-项目" class="headerlink" title="事先准备一个 django 项目"></a>事先准备一个 django 项目</h4><p>项目结构如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">$ tree</span><br><span class="line">.</span><br><span class="line">├── db.sqlite3</span><br><span class="line">├── demo</span><br><span class="line">│   ├── __init__.py</span><br><span class="line">│   ├── __pycache__</span><br><span class="line">│   │   ├── __init__.cpython-37.pyc</span><br><span class="line">│   │   ├── settings.cpython-37.pyc</span><br><span class="line">│   │   ├── urls.cpython-37.pyc</span><br><span class="line">│   │   └── wsgi.cpython-37.pyc</span><br><span class="line">│   ├── settings.py</span><br><span class="line">│   ├── urls.py</span><br><span class="line">│   └── wsgi.py</span><br><span class="line">├── Dockerfile</span><br><span class="line">├── hello</span><br><span class="line">│   ├── admin.py</span><br><span class="line">│   ├── apps.py</span><br><span class="line">│   ├── __init__.py</span><br><span class="line">│   ├── migrations</span><br><span class="line">│   │   ├── __init__.py</span><br><span class="line">│   │   └── __pycache__</span><br><span class="line">│   │       └── __init__.cpython-37.pyc</span><br><span class="line">│   ├── models.py</span><br><span class="line">│   ├── __pycache__</span><br><span class="line">│   │   ├── admin.cpython-37.pyc</span><br><span class="line">│   │   ├── __init__.cpython-37.pyc</span><br><span class="line">│   │   ├── models.cpython-37.pyc</span><br><span class="line">│   │   ├── urls.cpython-37.pyc</span><br><span class="line">│   │   └── views.cpython-37.pyc</span><br><span class="line">│   ├── tests.py</span><br><span class="line">│   ├── urls.py</span><br><span class="line">│   └── views.py</span><br><span class="line">├── manage.py</span><br><span class="line">└── requirements.txt</span><br><span class="line"></span><br><span class="line">6 directories, 25 files</span><br></pre></td></tr></table></figure>
+
+<h4 id="编写-Dockerfile-文件"><a href="#编写-Dockerfile-文件" class="headerlink" title="编写 Dockerfile 文件"></a>编写 Dockerfile 文件</h4><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基础镜像选择 python3.7</span></span><br><span class="line"><span class="keyword">FROM</span> python:<span class="number">3.7</span></span><br><span class="line"><span class="comment"># 镜像所有者信息</span></span><br><span class="line"><span class="keyword">LABEL</span><span class="bash"> maintainer=<span class="string">"shiqi"</span></span></span><br><span class="line"><span class="comment"># 设置时区</span></span><br><span class="line"><span class="keyword">ENV</span> TZ <span class="string">"Asia/Shanghai"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建应用目录</span></span><br><span class="line"><span class="comment"># RUN mkdir /demo</span></span><br><span class="line"><span class="comment"># 指定工作目录，WORKDIR 会自己创建目录</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /demo</span></span><br><span class="line"><span class="comment"># 将应用文件复制到镜像中，推荐使用 COPY， ADD 只适合拷贝压缩包文件</span></span><br><span class="line"><span class="comment"># ADD ./ /demo/</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> ./ /demo/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># pip 安装依赖包，切换下载的源</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 暴露端口</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8000</span></span><br></pre></td></tr></table></figure>
+
+<p>其中，</p>
+<ul>
+<li><p><code>FROM</code> 指定要用的基础镜像</p>
+</li>
+<li><p><code>LABEL</code> 为镜像添加元数据</p>
+</li>
+<li><p><code>ENV</code> 设置环境变量</p>
+</li>
+<li><p><code>RUN</code> 后面可接 <code>shell</code> 命令，或者 <code>[&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]</code></p>
+</li>
+<li><p><code>WORKDIR</code> 指定工作目录，类似于 <code>cd</code> 命令</p>
+</li>
+<li><p><code>ADD</code> 将构建镜像所需的文件和目录复制到镜像中，注意：目录中必须包含 <code>Dockerfile</code> 文件，不然会报错找不到文件</p>
+</li>
+<li><p><code>EXPORSE</code> 声明容器运行时暴露的端口</p>
+</li>
+</ul>
+<p>注意：Dockerfile 文件的存放位置在项目的根目录下</p>
+<h4 id="使用-docker-compose-编排镜像"><a href="#使用-docker-compose-编排镜像" class="headerlink" title="使用 docker-compose 编排镜像"></a>使用 <code>docker-compose</code> 编排镜像</h4><h5 id="编写-docker-compose-yml"><a href="#编写-docker-compose-yml" class="headerlink" title="编写 docker-compose.yml"></a>编写 <code>docker-compose.yml</code></h5><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  web:</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">"web"</span></span><br><span class="line"><span class="attr">    build:</span></span><br><span class="line">      <span class="string">./demo</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"8000:8000"</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="attr">      - web:</span><span class="string">/demo</span></span><br><span class="line"><span class="attr">    command:</span> <span class="string">python</span> <span class="string">manage.py</span> <span class="string">runserver</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span><span class="string">:8000</span></span><br><span class="line"><span class="attr">    restart:</span> <span class="string">always</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line"><span class="attr">  web:</span></span><br><span class="line"><span class="attr">    driver:</span> <span class="string">local</span></span><br></pre></td></tr></table></figure>
+
+<p>其中，</p>
+<ul>
+<li><p><code>version</code> 的 <code>&quot;3&quot;</code> 对应的 docker 版本在 v1.13 以上</p>
+</li>
+<li><p><code>services</code> 下包含了需要编排的 容器，我这里只有一个 web 容器</p>
+</li>
+<li><p><code>container_name</code> 给容器命名</p>
+</li>
+<li><p><code>build</code> 指定了 Dockerfile 文件所在路径</p>
+</li>
+<li><p><code>ports</code> 是宿主机和容器的端口映射</p>
+</li>
+<li><p><code>volumes</code> 将当前目录挂载到容器内的 <code>/demo</code> 目录下，并给卷命名为 <code>web</code></p>
+</li>
+<li><p><code>command</code> 为应用启动的命令</p>
+</li>
+<li><p><code>restart</code> 指定为 <code>always</code> ，容器退出时会重启容器</p>
+</li>
+</ul>
+<h5 id="pip-安装-docker-compose"><a href="#pip-安装-docker-compose" class="headerlink" title="pip 安装 docker-compose"></a>pip 安装 <code>docker-compose</code></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">$ pip install docker-compose</span><br></pre></td></tr></table></figure>
+
+<h4 id="docker-compose-创建镜像并启动容器"><a href="#docker-compose-创建镜像并启动容器" class="headerlink" title="docker-compose 创建镜像并启动容器"></a>docker-compose 创建镜像并启动容器</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建镜像</span></span><br><span class="line">$ sudo docker-compose build</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动容器</span></span><br><span class="line">$ docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<h2 id="将构建好的镜像推送到-Docker-Hub"><a href="#将构建好的镜像推送到-Docker-Hub" class="headerlink" title="将构建好的镜像推送到 Docker Hub"></a>将构建好的镜像推送到 Docker Hub</h2><p>Docker Hub 离我们比较远，国内一般会使用阿里云的镜像仓库服务。这里只是作为演示，用的Docker Hub.首先需要在 Docker Hub 网址注册一个账户，然后进入正题。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 登录 Docker Hub, 根据提示输入用户名和密码</span></span><br><span class="line">$ sudo docker login</span><br><span class="line"></span><br><span class="line"><span class="comment"># 给要 push 的镜像打一个 tag</span></span><br><span class="line">$ sudo docker tag csq_web:latest shiqichang/csq_web:1.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将本地镜像 push 到远程镜像仓库</span></span><br><span class="line">$ sudo docker push shiqichang/web:1.0</span><br></pre></td></tr></table></figure>
+
+<h2 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h2><ul>
+<li>本章主要通过构建一个 django 服务的镜像，讲述了镜像创建的过程，和一些参数的含义以及用法，除此之外，还简单演示了如何将自己构建的镜像推送到远程镜像仓库，以供在其他机器上 pull 下来使用。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/Docker/" rel="tag"><i class="fa fa-tag"></i> Docker</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/docker.html" rel="next" title="Docker 的学习笔记(1)">
+                <i class="fa fa-chevron-left"></i> Docker 的学习笔记(1)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/threadpool-processpool.html" rel="prev" title="Python 线程池和进程池(1)">
+                Python 线程池和进程池(1) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.gif"
+      alt="诗琦">
+  <p class="site-author-name" itemprop="name">诗琦</p>
+  <div class="site-description motion-element" itemprop="description">If debugging is the process of removing software bugs, the programming must be the process of putting them in.</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1NoYXJvbkNoaW9uZw==" title="GitHub &rarr; https://github.com/SharonChiong"><i class="fa fa-fw fa-github"></i></span>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <span class="exturl" data-url="bWFpbHRvOnNoYXJvbmNoaW9uZzM0N0BnbWFpbC5jb20=" title="E-Mail &rarr; mailto:sharonchiong347@gmail.com"><i class="fa fa-fw fa-envelope"></i></span>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS91c2Vycy84NTg4MTQ2L3NoYXJvbg==" title="StackOverflow &rarr; https://stackoverflow.com/users/8588146/sharon"><i class="fa fa-fw fa-stack-overflow"></i></span>
+      </span>
+    
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#构建-Docker-镜像"><span class="nav-number">1.</span> <span class="nav-text">构建 Docker 镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构建-Docker-镜像有两种方法"><span class="nav-number">1.1.</span> <span class="nav-text">构建 Docker 镜像有两种方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用-Dockerfile-构建-django-镜像"><span class="nav-number">1.2.</span> <span class="nav-text">用 Dockerfile 构建 django 镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事先准备一个-django-项目"><span class="nav-number">1.2.1.</span> <span class="nav-text">事先准备一个 django 项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写-Dockerfile-文件"><span class="nav-number">1.2.2.</span> <span class="nav-text">编写 Dockerfile 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-docker-compose-编排镜像"><span class="nav-number">1.2.3.</span> <span class="nav-text">使用 docker-compose 编排镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#编写-docker-compose-yml"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">编写 docker-compose.yml</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pip-安装-docker-compose"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">pip 安装 docker-compose</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#docker-compose-创建镜像并启动容器"><span class="nav-number">1.2.4.</span> <span class="nav-text">docker-compose 创建镜像并启动容器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将构建好的镜像推送到-Docker-Hub"><span class="nav-number">2.</span> <span class="nav-text">将构建好的镜像推送到 Docker Hub</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本章小结"><span class="nav-number">3.</span> <span class="nav-text">本章小结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <span class="exturl" data-url="aHR0cDovL3d3dy5iZWlhbi5taWl0Lmdvdi5jbg==">京ICP备19016512号 </span>&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">诗琦</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  <script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+  
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.3.0"></script>
+
+  
+
+  
+  <script src="/js/exturl.js?v=7.3.0"></script>
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'vebAdR7GqyKaflJTWHrShOaU-gzGzoHsz',
+    appKey: 'MRmzap1yYxkdbfBN5ftONT4x',
+    placeholder: '欢迎围观，批评指正～',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn'
+  });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/favicon.png?v=7.3.0" color="#222">
+  <meta name="google-site-verification" content="dxoMiZ9NBUFWvHj9roOlkaBhNg5MIXQThTekAXHaLKk">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: 'search.xml'
+    },
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="官方文档和源码 docs: datetime - Basic date and time types  Source code: Lib/datetime.py   Available Types(可用类型) datetime.date(日期) – Attributes(属性): year, month, day.  datetime.time(时间) – Attributes: hour, mi">
+<meta name="keywords" content="date,time,datetime">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 日期和时间的基本使用(1)">
+<meta property="og:url" content="https://s7.zzs7.top/python-date.html">
+<meta property="og:site_name" content="import 诗琦">
+<meta property="og:description" content="官方文档和源码 docs: datetime - Basic date and time types  Source code: Lib/datetime.py   Available Types(可用类型) datetime.date(日期) – Attributes(属性): year, month, day.  datetime.time(时间) – Attributes: hour, mi">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-18T06:27:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 日期和时间的基本使用(1)">
+<meta name="twitter:description" content="官方文档和源码 docs: datetime - Basic date and time types  Source code: Lib/datetime.py   Available Types(可用类型) datetime.date(日期) – Attributes(属性): year, month, day.  datetime.time(时间) – Attributes: hour, mi">
+  <link rel="canonical" href="https://s7.zzs7.top/python-date">
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Python 日期和时间的基本使用(1) | import 诗琦</title>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139554538-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-139554538-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">import 诗琦</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">tough cookie</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+      
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+      
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">18</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+      
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">7</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+      
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">31</span></a>
+
+  </li>
+        <li class="menu-item menu-item-search">
+          <a href="javascript:;" class="popup-trigger">
+          
+            <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+    </div>
+</nav>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/python-date.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="诗琦">
+      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="import 诗琦">
+    </span>
+      <header class="post-header">
+
+        
+          <h2 class="post-title" itemprop="name headline">Python 日期和时间的基本使用(1)
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-03 21:04:15" itemprop="dateCreated datePublished" datetime="2019-06-03T21:04:15+08:00">2019-06-03</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-18 14:27:56" itemprop="dateModified" datetime="2019-06-18T14:27:56+08:00">2019-06-18</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/日期和时间/" itemprop="url" rel="index"><span itemprop="name">日期和时间</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/python-date.html" class="post-meta-item leancloud_visitors" data-flag-title="Python 日期和时间的基本使用(1)">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/python-date.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/python-date.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="官方文档和源码"><a href="#官方文档和源码" class="headerlink" title="官方文档和源码"></a>官方文档和源码</h2><ul>
+<li><p>docs: <span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnB5dGhvbi5vcmcvMy9saWJyYXJ5L2RhdGV0aW1lLmh0bWw=" title="https://docs.python.org/3/library/datetime.html">datetime - Basic date and time types<i class="fa fa-external-link"></i></span></p>
+</li>
+<li><p>Source code: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3B5dGhvbi9jcHl0aG9uL2Jsb2IvMy43L0xpYi9kYXRldGltZS5weQ==" title="https://github.com/python/cpython/blob/3.7/Lib/datetime.py">Lib/datetime.py<i class="fa fa-external-link"></i></span></p>
+</li>
+</ul>
+<h2 id="Available-Types-可用类型"><a href="#Available-Types-可用类型" class="headerlink" title="Available Types(可用类型)"></a>Available Types(可用类型)</h2><ul>
+<li><p>datetime.date(日期) – Attributes(属性): year, month, day.</p>
+</li>
+<li><p>datetime.time(时间) – Attributes: hour, minute, second, microsecond, tzinfo.</p>
+</li>
+<li><p>datetime.datetime(日期和时间的组合) – Attributes: year, month, day, hour, minute, second, microsecond, tzinfo.</p>
+</li>
+</ul>
+<a id="more"></a>
+
+<ul>
+<li><p>datetime.timedelta(两个 date, time, 或 datetime 的时间差)</p>
+</li>
+<li><p>datetime.tzinfo(时区信息对象的抽象基类)</p>
+</li>
+<li><p>datetime.timezone(将 tzinfo 抽象基类实现为与 UTC 的固定偏移量的类)</p>
+</li>
+</ul>
+<h2 id="timedelta-对象"><a href="#timedelta-对象" class="headerlink" title="timedelta 对象"></a><code>timedelta</code> 对象</h2><ul>
+<li><p>实例的属性(只读): days, seconds, microseconds</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> datetime <span class="keyword">import</span> timedelta</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d = timedelta(microseconds=<span class="number">-1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>(d.days, d.seconds, d.microseconds)</span><br><span class="line">(<span class="number">-1</span>, <span class="number">86399</span>, <span class="number">999999</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>支持 <code>+ - * / //</code> 等数值操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> datetime <span class="keyword">import</span> timedelta</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>year = timedelta(days=<span class="number">365</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>another_year = timedelta(weeks=<span class="number">40</span>, days=<span class="number">84</span>, hours=<span class="number">23</span>, minutes=<span class="number">50</span>, seconds=<span class="number">600</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>year.total_seconds()</span><br><span class="line"><span class="number">31536000.0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>year == another_year</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ten_years = <span class="number">10</span> * year</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ten_years, ten_years.days // <span class="number">365</span></span><br><span class="line">(datetime.timedelta(days=<span class="number">3650</span>), <span class="number">10</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>nine_years = ten_years - year</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>three_years = nine_years // <span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>abs(three_years - ten_years) == <span class="number">2</span> * three_years + year</span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="date-对象"><a href="#date-对象" class="headerlink" title="date 对象"></a><code>date</code> 对象</h2><ul>
+<li><p>date.fromtimestamp(), date.replace() 的示例：计算离下次生日还有多少天</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> time</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> datetime <span class="keyword">import</span> date</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>today = date.today()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>today</span><br><span class="line">datetime.date(<span class="number">2019</span>, <span class="number">6</span>, <span class="number">10</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>today == date.fromtimestamp(time.time())</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>my_birthday = date(today.year, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">if</span> my_birthday &lt; today:</span><br><span class="line"><span class="meta">... </span>    my_birthday = my_birthday.replace(year=today.year + <span class="number">1</span>)</span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>my_birthday</span><br><span class="line">datetime.date(<span class="number">2020</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>time_to_birthday = abs(my_birthday - today)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>time_to_birthday.days</span><br><span class="line"><span class="number">268</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>有关 <code>date</code> 的使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> datetime <span class="keyword">import</span> date</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d = date.fromordinal(<span class="number">730920</span>)  <span class="comment"># after 1. 1. 0001</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d</span><br><span class="line">datetime.date(<span class="number">2002</span>, <span class="number">3</span>, <span class="number">11</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>t = d.timetuple()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> t:</span><br><span class="line"><span class="meta">... </span>    print(i)</span><br><span class="line">...</span><br><span class="line"><span class="number">2002</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">11</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">0</span>  <span class="comment"># weekday: 0 = Monday</span></span><br><span class="line"><span class="number">70</span>  <span class="comment"># 70th day</span></span><br><span class="line"><span class="number">-1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ic = d.isocalendar()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> ic:</span><br><span class="line"><span class="meta">... </span>    print(i)</span><br><span class="line">...</span><br><span class="line"><span class="number">2002</span>  <span class="comment"># year</span></span><br><span class="line"><span class="number">11</span>  <span class="comment"># week</span></span><br><span class="line"><span class="number">1</span>  <span class="comment"># 1 = Monday</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d.isoformat()</span><br><span class="line"><span class="string">'2002-03-11'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d.strftime(<span class="string">"%d/%m/%y"</span>)</span><br><span class="line"><span class="string">'11/03/02'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d.strftime(<span class="string">"%A %d. %B %Y"</span>)  <span class="comment"># strftime: 将 datetime.date 对象转换成字符串</span></span><br><span class="line"><span class="string">'Monday 11. March 2002'</span>  <span class="comment"># %A - 周(Sunday, Monday, ..., Saturday), %B - 月(January, February, ..., December)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'The &#123;1&#125; is &#123;0:%d&#125;, the &#123;2&#125; is &#123;0:%B&#125;.'</span>.format(d, <span class="string">"day"</span>, <span class="string">"month"</span>)</span><br><span class="line"><span class="string">'The day is 11, the month is March.'</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="datetime-对象"><a href="#datetime-对象" class="headerlink" title="datetime 对象"></a><code>datetime</code> 对象</h2><ul>
+<li><p>使用 <code>datetime</code> 对象的示例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime, date, time</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d = date(<span class="number">2005</span>,<span class="number">7</span>,<span class="number">14</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>t = time(<span class="number">12</span>,<span class="number">30</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime.combine(d, t)</span><br><span class="line">datetime.datetime(<span class="number">2005</span>, <span class="number">7</span>, <span class="number">14</span>, <span class="number">12</span>, <span class="number">30</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime.now()</span><br><span class="line">datetime.datetime(<span class="number">2019</span>, <span class="number">6</span>, <span class="number">10</span>, <span class="number">19</span>, <span class="number">22</span>, <span class="number">59</span>, <span class="number">163679</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime.utcnow()</span><br><span class="line">datetime.datetime(<span class="number">2019</span>, <span class="number">6</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">23</span>, <span class="number">18</span>, <span class="number">455750</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt = datetime.strptime(<span class="string">"21/11/06 16:30"</span>, <span class="string">"%d/%m/%y %H:%M"</span>)  <span class="comment"># strptime: 将字符串转换成 datetime.datetime 对象</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt</span><br><span class="line">datetime.datetime(<span class="number">2006</span>, <span class="number">11</span>, <span class="number">21</span>, <span class="number">16</span>, <span class="number">30</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt.strftime(<span class="string">"%A, %d. %B %Y %I:%M%p"</span>)  <span class="comment"># %I(12-hour clock 01, 02, ..., 12), %p(AM, PM)</span></span><br><span class="line"><span class="string">'Tuesday, 21. November 2006 04:30PM'</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="time-对象"><a href="#time-对象" class="headerlink" title="time 对象"></a><code>time</code> 对象</h2><ul>
+<li><p>示例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> datetime <span class="keyword">import</span> time, tzinfo, timedelta</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">TZ1</span><span class="params">(tzinfo)</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">utcoffset</span><span class="params">(self, dt)</span>:</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">return</span> timedelta(hours=<span class="number">1</span>)</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">dst</span><span class="params">(self,dt)</span>:</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">return</span> timedelta(<span class="number">0</span>)</span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">tzname</span><span class="params">(self, dt)</span>:</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">return</span> <span class="string">"+01:00"</span></span><br><span class="line"><span class="meta">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line"><span class="meta">... </span>        <span class="keyword">return</span> <span class="string">f"<span class="subst">&#123;self.__class__.__name__&#125;</span>()"</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>t = time(<span class="number">12</span>, <span class="number">10</span>, <span class="number">30</span>, tzinfo=TZ1())</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>t</span><br><span class="line">datetime.time(<span class="number">12</span>, <span class="number">10</span>, <span class="number">30</span>, tzinfo=TZ1())</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>t.isoformat()</span><br><span class="line"><span class="string">'12:10:30+01:00'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>t.dst()</span><br><span class="line">datetime.timedelta(<span class="number">0</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>t.tzname()</span><br><span class="line"><span class="string">'+01:00'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>t.strftime(<span class="string">"%H:%M:%S %Z"</span>)</span><br><span class="line"><span class="string">'12:10:30 +01:00'</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h2><ul>
+<li><p>本章主要通过阅读官方文档，介绍了 <code>date</code>, <code>time</code>, <code>datetime</code>, <code>timedelta</code> 对象的基本使用；</p>
+</li>
+<li><p>下一章将着重介绍常用的日期和时间方法，以及 python 第三方库 <code>python-dateutil</code> 的学习。</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/date/" rel="tag"><i class="fa fa-tag"></i> date</a>
+          
+            <a href="/tags/time/" rel="tag"><i class="fa fa-tag"></i> time</a>
+          
+            <a href="/tags/datetime/" rel="tag"><i class="fa fa-tag"></i> datetime</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/character-encoding.html" rel="next" title="Python 字符编码">
+                <i class="fa fa-chevron-left"></i> Python 字符编码
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/python-date-2.html" rel="prev" title="Python 日期和时间的基本使用(2)">
+                Python 日期和时间的基本使用(2) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.gif"
+      alt="诗琦">
+  <p class="site-author-name" itemprop="name">诗琦</p>
+  <div class="site-description motion-element" itemprop="description">If debugging is the process of removing software bugs, the programming must be the process of putting them in.</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1NoYXJvbkNoaW9uZw==" title="GitHub &rarr; https://github.com/SharonChiong"><i class="fa fa-fw fa-github"></i></span>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <span class="exturl" data-url="bWFpbHRvOnNoYXJvbmNoaW9uZzM0N0BnbWFpbC5jb20=" title="E-Mail &rarr; mailto:sharonchiong347@gmail.com"><i class="fa fa-fw fa-envelope"></i></span>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS91c2Vycy84NTg4MTQ2L3NoYXJvbg==" title="StackOverflow &rarr; https://stackoverflow.com/users/8588146/sharon"><i class="fa fa-fw fa-stack-overflow"></i></span>
+      </span>
+    
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#官方文档和源码"><span class="nav-number">1.</span> <span class="nav-text">官方文档和源码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Available-Types-可用类型"><span class="nav-number">2.</span> <span class="nav-text">Available Types(可用类型)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#timedelta-对象"><span class="nav-number">3.</span> <span class="nav-text">timedelta 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#date-对象"><span class="nav-number">4.</span> <span class="nav-text">date 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#datetime-对象"><span class="nav-number">5.</span> <span class="nav-text">datetime 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#time-对象"><span class="nav-number">6.</span> <span class="nav-text">time 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本章小结"><span class="nav-number">7.</span> <span class="nav-text">本章小结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <span class="exturl" data-url="aHR0cDovL3d3dy5iZWlhbi5taWl0Lmdvdi5jbg==">京ICP备19016512号 </span>&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">诗琦</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  <script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+  
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.3.0"></script>
+
+  
+
+  
+  <script src="/js/exturl.js?v=7.3.0"></script>
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'vebAdR7GqyKaflJTWHrShOaU-gzGzoHsz',
+    appKey: 'MRmzap1yYxkdbfBN5ftONT4x',
+    placeholder: '欢迎围观，批评指正～',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn'
+  });
+</script>
+
+
+</body>
+</html>

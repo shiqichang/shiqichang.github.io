@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/favicon.png?v=7.3.0" color="#222">
+  <meta name="google-site-verification" content="dxoMiZ9NBUFWvHj9roOlkaBhNg5MIXQThTekAXHaLKk">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: 'search.xml'
+    },
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="Docker 简介这里引用了《第一本 Docker 书》的解释Docker 是一种能够把开发的应用程序自动部署到容器的开源引擎；  容器是直接运行在操作系统内核之上的用户空间，所以它只能运行与底层宿主机相同或相似的操作系统，容器技术可以让多个独立的用户空间运行在同一台宿主机上；  镜像是 Docker 生命周期中的构建或打包阶段，容器是启动或执行阶段。 Docker 遵循 客户端-服务器(C/S)">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 的学习笔记(1)">
+<meta property="og:url" content="https://s7.zzs7.top/docker.html">
+<meta property="og:site_name" content="import 诗琦">
+<meta property="og:description" content="Docker 简介这里引用了《第一本 Docker 书》的解释Docker 是一种能够把开发的应用程序自动部署到容器的开源引擎；  容器是直接运行在操作系统内核之上的用户空间，所以它只能运行与底层宿主机相同或相似的操作系统，容器技术可以让多个独立的用户空间运行在同一台宿主机上；  镜像是 Docker 生命周期中的构建或打包阶段，容器是启动或执行阶段。 Docker 遵循 客户端-服务器(C/S)">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-23T08:19:08.327Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker 的学习笔记(1)">
+<meta name="twitter:description" content="Docker 简介这里引用了《第一本 Docker 书》的解释Docker 是一种能够把开发的应用程序自动部署到容器的开源引擎；  容器是直接运行在操作系统内核之上的用户空间，所以它只能运行与底层宿主机相同或相似的操作系统，容器技术可以让多个独立的用户空间运行在同一台宿主机上；  镜像是 Docker 生命周期中的构建或打包阶段，容器是启动或执行阶段。 Docker 遵循 客户端-服务器(C/S)">
+  <link rel="canonical" href="https://s7.zzs7.top/docker">
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Docker 的学习笔记(1) | import 诗琦</title>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139554538-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-139554538-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">import 诗琦</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">tough cookie</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+      
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+      
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">18</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+      
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">7</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+      
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">31</span></a>
+
+  </li>
+        <li class="menu-item menu-item-search">
+          <a href="javascript:;" class="popup-trigger">
+          
+            <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+    </div>
+</nav>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/docker.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="诗琦">
+      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="import 诗琦">
+    </span>
+      <header class="post-header">
+
+        
+          <h2 class="post-title" itemprop="name headline">Docker 的学习笔记(1)
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-01 02:32:27" itemprop="dateCreated datePublished" datetime="2019-05-01T02:32:27+08:00">2019-05-01</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-05-23 16:19:08" itemprop="dateModified" datetime="2020-05-23T16:19:08+08:00">2020-05-23</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/docker.html" class="post-meta-item leancloud_visitors" data-flag-title="Docker 的学习笔记(1)">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/docker.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/docker.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Docker-简介"><a href="#Docker-简介" class="headerlink" title="Docker 简介"></a>Docker 简介</h2><h3 id="这里引用了《第一本-Docker-书》的解释"><a href="#这里引用了《第一本-Docker-书》的解释" class="headerlink" title="这里引用了《第一本 Docker 书》的解释"></a>这里引用了《第一本 Docker 书》的解释</h3><pre><code>Docker 是一种能够把开发的应用程序自动部署到容器的开源引擎；
+
+容器是直接运行在操作系统内核之上的用户空间，所以它只能运行与底层宿主机相同或相似的操作系统，容器技术可以让多个独立的用户空间运行在同一台宿主机上；
+
+镜像是 Docker 生命周期中的构建或打包阶段，容器是启动或执行阶段。</code></pre><ul>
+<li><p><code>Docker</code> 遵循 <code>客户端-服务器(C/S)</code> 架构模式，Docker 服务器也可以叫做守护进程，Docker 提供了一个命令行工具 <code>docker</code> 和一套 <code>RESTful API</code> 与守护进程交互，目前，我对 docker 命令行的使用比较熟，所以下面介绍的也是 docker 命令行的基本使用和通过 <code>docker-compose</code> 编排容器。</p>
+</li>
+<li><p>Docker <code>镜像(Image)</code> 是一个特殊的文件系统，它提供了容器运行需要的环境，应用程序，配置文件等。一般来说，构建一个镜像需要一个基本镜像。比如，一个 <code>Django</code> 服务的镜像构建需要一个 <code>python</code> 基本镜像。</p>
+</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="Centos7-安装-Docker"><a href="#Centos7-安装-Docker" class="headerlink" title="Centos7 安装 Docker"></a>Centos7 安装 Docker</h2><ul>
+<li>系统环境要求：64 位CPU, 内核版本 3.10 以上</li>
+</ul>
+<h3 id="这里只介绍使用-yum-安装"><a href="#这里只介绍使用-yum-安装" class="headerlink" title="这里只介绍使用 yum 安装"></a>这里只介绍使用 yum 安装</h3><pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查系统内核</span></span><br><span class="line">$ uname -a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 Docker</span></span><br><span class="line">$ yum -y install docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 Docker 守护进程</span></span><br><span class="line">$ systemctl start docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># 也可以设置 Docker 开机自启</span></span><br><span class="line">$ systemctl <span class="built_in">enable</span> docker</span><br></pre></td></tr></table></figure></code></pre><p>需要说的是，我这里安装的 Docker 是新版的， 属于 <code>docker-ce</code> 社区版，版本在 17.* 以上。</p>
+<h2 id="Docker-基本使用"><a href="#Docker-基本使用" class="headerlink" title="Docker 基本使用"></a>Docker 基本使用</h2><h3 id="检查-docker-是否正常工作"><a href="#检查-docker-是否正常工作" class="headerlink" title="检查 docker 是否正常工作"></a>检查 docker 是否正常工作</h3><pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看信息</span></span><br><span class="line">$ sudo docker info</span><br></pre></td></tr></table></figure></code></pre><p>这里返回的是 docker 的系统信息，包括 容器和镜像的数量、存储驱动、本地配置信息等。</p>
+<h3 id="现在我要通过-docker-部署-jenkins-来介绍-docker-命令行的使用"><a href="#现在我要通过-docker-部署-jenkins-来介绍-docker-命令行的使用" class="headerlink" title="现在我要通过 docker 部署 jenkins 来介绍 docker 命令行的使用"></a>现在我要通过 docker 部署 <code>jenkins</code> 来介绍 docker 命令行的使用</h3><ol>
+<li><p>搜索 jenkins 镜像</p>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 搜索</span></span><br><span class="line">$ sudo docker search jenkins</span><br></pre></td></tr></table></figure></code></pre></li>
+<li><p>拉取镜像： <code>jenkinsci/jenkins:lts</code></p>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pull</span></span><br><span class="line">$ sudo docker pull jenkinsci/jenkins:lts</span><br></pre></td></tr></table></figure></code></pre><p> 官方提供的 jenkins 版本太低了，很多插件已经不兼容；这里的 <code>lts</code> 是长期支持(Long Term Support)的缩写。</p>
+</li>
+<li><p>查看 pull 下来的 jenkins 镜像</p>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查询镜像</span></span><br><span class="line">$ sudo docker images</span><br><span class="line">jenkinsci/jenkins                                           lts                 d7c5abfe8477        5 months ago        703MB</span><br></pre></td></tr></table></figure></code></pre></li>
+<li><p>创建 jenkins 文件夹</p>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建文件夹</span></span><br><span class="line">$ mkdir ~/jenkins_home -p</span><br><span class="line"><span class="comment"># 由于镜像中 Dockerfile 文件，把需要挂载的文件夹的 uid 和 gid 必须是 1000, 所以更改文件的用户及用户组</span></span><br><span class="line">$ chown -R 1000:1000 ~/jenkins_home/</span><br></pre></td></tr></table></figure></code></pre></li>
+<li><p>启动 jenkins</p>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看容器</span></span><br><span class="line">$ sudo docker run -idt -p 8080:8080 -p 50000:50000 --name jenkins --privileged=<span class="literal">true</span> -v ~/jenkins_home/:/var/jenkins_home jenkinsci/jenkins:lts</span><br></pre></td></tr></table></figure></code></pre><p> 其中，</p>
+<ul>
+<li><p><code>-d</code> 表示在后台运行容器，<code>-i</code> 保证容器中 <code>STDIN</code> 是开启的，<code>-t</code> 给创建的容器分配一个伪 <code>tty</code> 终端，这样 <code>-it</code> 可提供一个交互式 shell;</p>
+</li>
+<li><p><code>-p</code> 用于端口映射，<code>:</code> 前面的端口对应于宿主机，后面的则对应于容器；</p>
+</li>
+<li><p><code>--name</code> 给容器命名，<code>--privileged=true</code> 则容器内的 <code>root</code> 将拥有真正的 root 权限；</p>
+</li>
+<li><p><code>-v</code> 给容器挂载存储卷，<code>:</code>前面对应的是宿主机的目录，后面的则是挂载到容器内的目录；</p>
+</li>
+</ul>
+</li>
+<li><p>查看容器</p>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看启动的容器</span></span><br><span class="line">$ sudo docker ps</span><br><span class="line">CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS              PORTS                                              NAMES</span><br><span class="line">ac0e7a62629a        jenkinsci/jenkins:lts   <span class="string">"/sbin/tini -- /usr/…"</span>   4 seconds ago       Up 3 seconds        0.0.0.0:8080-&gt;8080/tcp, 0.0.0.0:50000-&gt;50000/tcp   jenkins</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看已经在运行的容器</span></span><br><span class="line">$ sudo docker ps -a</span><br></pre></td></tr></table></figure></code></pre></li>
+<li><p>其他常见命令</p>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看镜像/容器的元数据</span></span><br><span class="line">$ sudo docker inspect jenkinsci/jenkins:lts</span><br><span class="line">$ sudo docker inspect jenkins</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取容器的日志</span></span><br><span class="line">$ sudo docker logs jenkins</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入容器</span></span><br><span class="line">$ sudo docker <span class="built_in">exec</span> -it jenkins bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭/启动/重启容器</span></span><br><span class="line">$ sudo docker stop jenkins</span><br><span class="line">$ sudo docker start jenkins</span><br><span class="line">$ sudo docker restart jenkins</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除容器/镜像, -f 表示强制性删除</span></span><br><span class="line">$ sudo docker rm -f jenkins</span><br><span class="line">$ sudo docker rmi -f jenkinsci/jenkins:lts</span><br></pre></td></tr></table></figure></code></pre></li>
+</ol>
+<h2 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h2><ul>
+<li><p>本章内容包括介绍了 <code>Docker</code>, 在 Centos7 安装 docker 的步骤，以及 通过用 docker 部署 <code>jenkis</code> 服务来介绍 docker 命令行的基本使用。</p>
+</li>
+<li><p>下一章主要讲如何创建镜像以及将镜像推送到镜像仓库。</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/Docker/" rel="tag"><i class="fa fa-tag"></i> Docker</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/docker-2.html" rel="prev" title="Docker 的学习笔记(2)">
+                Docker 的学习笔记(2) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.gif"
+      alt="诗琦">
+  <p class="site-author-name" itemprop="name">诗琦</p>
+  <div class="site-description motion-element" itemprop="description">If debugging is the process of removing software bugs, the programming must be the process of putting them in.</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1NoYXJvbkNoaW9uZw==" title="GitHub &rarr; https://github.com/SharonChiong"><i class="fa fa-fw fa-github"></i></span>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <span class="exturl" data-url="bWFpbHRvOnNoYXJvbmNoaW9uZzM0N0BnbWFpbC5jb20=" title="E-Mail &rarr; mailto:sharonchiong347@gmail.com"><i class="fa fa-fw fa-envelope"></i></span>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS91c2Vycy84NTg4MTQ2L3NoYXJvbg==" title="StackOverflow &rarr; https://stackoverflow.com/users/8588146/sharon"><i class="fa fa-fw fa-stack-overflow"></i></span>
+      </span>
+    
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-简介"><span class="nav-number">1.</span> <span class="nav-text">Docker 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#这里引用了《第一本-Docker-书》的解释"><span class="nav-number">1.1.</span> <span class="nav-text">这里引用了《第一本 Docker 书》的解释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Centos7-安装-Docker"><span class="nav-number">2.</span> <span class="nav-text">Centos7 安装 Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#这里只介绍使用-yum-安装"><span class="nav-number">2.1.</span> <span class="nav-text">这里只介绍使用 yum 安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-基本使用"><span class="nav-number">3.</span> <span class="nav-text">Docker 基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检查-docker-是否正常工作"><span class="nav-number">3.1.</span> <span class="nav-text">检查 docker 是否正常工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#现在我要通过-docker-部署-jenkins-来介绍-docker-命令行的使用"><span class="nav-number">3.2.</span> <span class="nav-text">现在我要通过 docker 部署 jenkins 来介绍 docker 命令行的使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本章小结"><span class="nav-number">4.</span> <span class="nav-text">本章小结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <span class="exturl" data-url="aHR0cDovL3d3dy5iZWlhbi5taWl0Lmdvdi5jbg==">京ICP备19016512号 </span>&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">诗琦</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  <script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+  
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.3.0"></script>
+
+  
+
+  
+  <script src="/js/exturl.js?v=7.3.0"></script>
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'vebAdR7GqyKaflJTWHrShOaU-gzGzoHsz',
+    appKey: 'MRmzap1yYxkdbfBN5ftONT4x',
+    placeholder: '欢迎围观，批评指正～',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn'
+  });
+</script>
+
+
+</body>
+</html>
