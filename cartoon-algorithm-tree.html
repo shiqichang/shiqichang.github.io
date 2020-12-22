@@ -58,19 +58,19 @@
   };
 </script>
 
-  <meta name="description" content="数据结构 线性结构：数组、链表、栈、堆、哈希表 树：二叉树，二叉堆 图 其他：跳表、哈希链表、位图  时间复杂度基本操作执行次数设 T(n) 为程序基本操作执行次数的函数，n 为输入规模，以下4个场景对应程序中最常见的 4 种执行方式👇">
+  <meta name="description" content="根节点(root)、叶子结点(leaf)、父节点(parent)、孩子节点(child)、兄弟节点(sibling). 二叉树(binary tree)二叉树：每个节点最多两个孩子节点。左孩子(left child)、右孩子(rigth child). 满二叉树、完全二叉树。 二叉树可以用链式存储结构和数组存储。 用数组存储：父节点 parent, 左孩子节点 2*parent+1, 右孩子节点">
 <meta name="keywords" content="Algorithm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《漫画算法》学习笔记(1) —— 算法概述">
-<meta property="og:url" content="https://s7.zzs7.top/cartoon-algorithm-intro.html">
+<meta property="og:title" content="《漫画算法》学习笔记(3) —— 树">
+<meta property="og:url" content="https://s7.zzs7.top/cartoon-algorithm-tree.html">
 <meta property="og:site_name" content="Shiqi Chang&#39;s Blog">
-<meta property="og:description" content="数据结构 线性结构：数组、链表、栈、堆、哈希表 树：二叉树，二叉堆 图 其他：跳表、哈希链表、位图  时间复杂度基本操作执行次数设 T(n) 为程序基本操作执行次数的函数，n 为输入规模，以下4个场景对应程序中最常见的 4 种执行方式👇">
+<meta property="og:description" content="根节点(root)、叶子结点(leaf)、父节点(parent)、孩子节点(child)、兄弟节点(sibling). 二叉树(binary tree)二叉树：每个节点最多两个孩子节点。左孩子(left child)、右孩子(rigth child). 满二叉树、完全二叉树。 二叉树可以用链式存储结构和数组存储。 用数组存储：父节点 parent, 左孩子节点 2*parent+1, 右孩子节点">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-08-11T02:20:22.014Z">
+<meta property="og:updated_time" content="2020-08-15T07:28:25.872Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《漫画算法》学习笔记(1) —— 算法概述">
-<meta name="twitter:description" content="数据结构 线性结构：数组、链表、栈、堆、哈希表 树：二叉树，二叉堆 图 其他：跳表、哈希链表、位图  时间复杂度基本操作执行次数设 T(n) 为程序基本操作执行次数的函数，n 为输入规模，以下4个场景对应程序中最常见的 4 种执行方式👇">
-  <link rel="canonical" href="https://s7.zzs7.top/cartoon-algorithm-intro">
+<meta name="twitter:title" content="《漫画算法》学习笔记(3) —— 树">
+<meta name="twitter:description" content="根节点(root)、叶子结点(leaf)、父节点(parent)、孩子节点(child)、兄弟节点(sibling). 二叉树(binary tree)二叉树：每个节点最多两个孩子节点。左孩子(left child)、右孩子(rigth child). 满二叉树、完全二叉树。 二叉树可以用链式存储结构和数组存储。 用数组存储：父节点 parent, 左孩子节点 2*parent+1, 右孩子节点">
+  <link rel="canonical" href="https://s7.zzs7.top/cartoon-algorithm-tree">
 
 
 <script id="page.configurations">
@@ -79,7 +79,7 @@
   };
 </script>
 
-  <title>《漫画算法》学习笔记(1) —— 算法概述 | Shiqi Chang's Blog</title>
+  <title>《漫画算法》学习笔记(3) —— 树 | Shiqi Chang's Blog</title>
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139554538-1"></script>
   <script>
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/cartoon-algorithm-intro.html">
+    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/cartoon-algorithm-tree.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Shiqi Chang">
@@ -277,7 +277,7 @@
       <header class="post-header">
 
         
-          <h2 class="post-title" itemprop="name headline">《漫画算法》学习笔记(1) —— 算法概述
+          <h2 class="post-title" itemprop="name headline">《漫画算法》学习笔记(3) —— 树
 
               
             
@@ -297,21 +297,11 @@
                 
               
 
-              <time title="创建时间：2020-05-24 18:30:26" itemprop="dateCreated datePublished" datetime="2020-05-24T18:30:26+08:00">2020-05-24</time>
+              <time title="创建时间：2020-08-15 10:34:24 / 修改时间：15:28:25" itemprop="dateCreated datePublished" datetime="2020-08-15T10:34:24+08:00">2020-08-15</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-08-11 10:20:22" itemprop="dateModified" datetime="2020-08-11T10:20:22+08:00">2020-08-11</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -331,7 +321,7 @@
           
 
           
-            <span id="/cartoon-algorithm-intro.html" class="post-meta-item leancloud_visitors" data-flag-title="《漫画算法》学习笔记(1) —— 算法概述">
+            <span id="/cartoon-algorithm-tree.html" class="post-meta-item leancloud_visitors" data-flag-title="《漫画算法》学习笔记(3) —— 树">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -352,8 +342,8 @@
       <span class="post-meta-item-text">评论数：</span>
     
   
-    <a href="/cartoon-algorithm-intro.html#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/cartoon-algorithm-intro.html" itemprop="commentCount"></span>
+    <a href="/cartoon-algorithm-tree.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/cartoon-algorithm-tree.html" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -369,41 +359,41 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><ol>
-<li>线性结构：数组、链表、栈、堆、哈希表</li>
-<li>树：二叉树，二叉堆</li>
-<li>图</li>
-<li>其他：跳表、哈希链表、位图</li>
-</ol>
-<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><h3 id="基本操作执行次数"><a href="#基本操作执行次数" class="headerlink" title="基本操作执行次数"></a>基本操作执行次数</h3><p>设 <code>T(n)</code> 为程序基本操作执行次数的函数，<code>n</code> 为输入规模，以下4个场景对应程序中最常见的 4 种执行方式👇</p>
+        <p>根节点(root)、叶子结点(leaf)、父节点(parent)、孩子节点(child)、兄弟节点(sibling).</p>
+<h2 id="二叉树-binary-tree"><a href="#二叉树-binary-tree" class="headerlink" title="二叉树(binary tree)"></a>二叉树(binary tree)</h2><p>二叉树：每个节点最多两个孩子节点。左孩子(left child)、右孩子(rigth child).</p>
+<p>满二叉树、完全二叉树。</p>
+<p>二叉树可以用链式存储结构和数组存储。</p>
+<p>用数组存储：父节点 parent, 左孩子节点 <code>2*parent+1</code>, 右孩子节点 <code>2*parent*2</code>.</p>
 <a id="more"></a>
 
-<ol>
-<li>T(n) = 3n, 执行次数为 <strong>线性</strong> 的；</li>
-<li>T(n) = 5logn, 执行次数是用 <strong>对数</strong> 计算的；</li>
-<li>T(n) = 2, 执行次数是 <strong>常量</strong>；</li>
-<li>T(n) = 0.5n^2+0.5n, 执行次数是用 <strong>多项式</strong> 计算的。</li>
+<p>应用：查找操作和维持相对顺序。</p>
+<h3 id="二叉查找树-binary-search-tree"><a href="#二叉查找树-binary-search-tree" class="headerlink" title="二叉查找树(binary search tree)"></a>二叉查找树(binary search tree)</h3><ol>
+<li>如果左子树不为空，则左子树上所有节点的值均小于根节点的值；</li>
+<li>如果右子树不为空，则右子树上所有节点的值均大于根节点的值；</li>
+<li>左、右子树也是二叉查找树。</li>
 </ol>
-<h3 id="渐进时间复杂度"><a href="#渐进时间复杂度" class="headerlink" title="渐进时间复杂度"></a>渐进时间复杂度</h3><p><code>asymptotic time complexity</code>, 如存在函数 <code>f(n)</code>, 使得当 <code>n</code> 趋近于无穷大时，<code>T(n)/f(n)</code> 的极限值为不等于零的常量，则称 <code>f(n)</code> 是 <code>T(n)</code> 的同数量级函数。记作 <code>T(n) = O(f(n))</code>, 称为 <code>O(f(n))</code>, <code>O</code> 为算法的渐进时间复杂度，简称 <code>时间复杂度</code>。</p>
-<p>渐进时间复杂度用大写 <code>O</code> 表示，也称为 <code>大O表示法</code>。</p>
-<p>如何推导出时间复杂度？</p>
-<ol>
-<li>如果运行时间是常数量级，则用常数 1 表示；</li>
-<li>只保留时间函数中的最高阶项；</li>
-<li>如果最高阶项存在，则省去最高阶项前面的系数。</li>
+<p>查找节点的时间复杂度：O(logn)</p>
+<h3 id="二叉排序树-binary-sort-tree"><a href="#二叉排序树-binary-sort-tree" class="headerlink" title="二叉排序树(binary sort tree)"></a>二叉排序树(binary sort tree)</h3><p>二叉树的<strong>自平衡</strong>: 红黑树、AVL树、树堆</p>
+<h2 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h2><h3 id="深度优先遍历"><a href="#深度优先遍历" class="headerlink" title="深度优先遍历"></a>深度优先遍历</h3><ol>
+<li>前序遍历：根节点、左子树、右子树</li>
+<li>中序遍历：左子树、根节点、右子树</li>
+<li>后序遍历：左子树、右子树、根节点</li>
 </ol>
-<p>👆上面的4个场景分别对应 <code>T(n)=O(n)</code>, <code>T(n)=O(logn)</code>, <code>T(n)=O(1)</code>, <code>T(n)=O(n^2)</code>.</p>
-<p>当 <code>n</code> 取值足够大时，<code>O(1)&lt;O(logn)&lt;O(n)&lt;O(n^2)</code>.</p>
-<p>还有其他的时间复杂度，<code>O(nlogn), O(n^3), O(mn), O(2^n), O(n!)</code>.</p>
-<h2 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h2><p><code>space complexity</code>, 对一个算法在运行过程中临时占用存储空间大小的量度，同样使用大 <code>O</code> 表达式。</p>
-<p><code>S(n)=O(f(n))</code>, 其中 <code>n</code> 为问题的规模，<code>f(n)</code> 为算法所占存储空间的函数。</p>
-<p>常见的空间复杂度：</p>
-<ol>
-<li>常量空间：<code>O(1)</code></li>
-<li>线性空间；<code>O(n)</code></li>
-<li>二维空间；<code>O(n^2)</code></li>
-<li>递归空间：<code>O(n)</code>, <code>方法调用栈</code> 包括 <code>进栈</code> 和 <code>出栈</code>。</li>
+<p>绝大多数可以用递归解决的问题，都可以用栈来解决。因为递归和栈都有回溯的特性。；</p>
+<h3 id="广度优先遍历"><a href="#广度优先遍历" class="headerlink" title="广度优先遍历"></a>广度优先遍历</h3><ol>
+<li>层序遍历：用队列实现</li>
 </ol>
+<h2 id="二叉堆"><a href="#二叉堆" class="headerlink" title="二叉堆"></a>二叉堆</h2><p>最大堆：任何一个父节点的值，都大于等于它的左、右孩子节点的值。<br>最小堆：任何一个父节点的值，都小于等于它的左、右孩子节点的值。</p>
+<p>二叉堆的根节点叫作堆顶。最大堆的堆顶是整个堆中的最大元素，最小堆的堆顶是整个堆中的最小元素。</p>
+<h3 id="自我调整"><a href="#自我调整" class="headerlink" title="自我调整"></a>自我调整</h3><ol>
+<li>插入节点：插入位置是完全二叉树的最后一个位置。单一节点的“上浮”。<strong>O(logn)</strong></li>
+<li>删除节点：删除的是处于堆顶的节点。单一节点的“下沉”。<strong>O(logn)</strong></li>
+<li>构建二叉堆：让所有非叶子节点依次“下沉”。<strong>O(n)</strong></li>
+</ol>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>二叉堆的存储方式是顺序存储。所以二叉堆的所有节点都存储在数组中。</p>
+<p>二叉堆是实现堆排序和优先队列的基础。</p>
+<h2 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h2><p>最大/最小优先队列</p>
+<p>入队和出队的时间复杂度：O(logn)</p>
 
     </div>
 
@@ -420,8 +410,8 @@
         </div>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-              <a href="/data-structure-intro.html" rel="next" title="《大话数据结构》学习笔记(1)">
-                <i class="fa fa-chevron-left"></i> 《大话数据结构》学习笔记(1)
+              <a href="/cartoon-algorithm-data-structure.html" rel="next" title="《漫画算法》学习笔记(2) —— 数据结构基础">
+                <i class="fa fa-chevron-left"></i> 《漫画算法》学习笔记(2) —— 数据结构基础
               </a>
             
           </div>
@@ -429,8 +419,8 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-              <a href="/plus-one.html" rel="prev" title="LeetCode 算法：加一">
-                LeetCode 算法：加一 <i class="fa fa-chevron-right"></i>
+              <a href="/cartoon-algorithm-sort.html" rel="prev" title="《漫画算法》学习笔记(4) —— 排序算法">
+                《漫画算法》学习笔记(4) —— 排序算法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -620,7 +610,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构"><span class="nav-number">1.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间复杂度"><span class="nav-number">2.</span> <span class="nav-text">时间复杂度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本操作执行次数"><span class="nav-number">2.1.</span> <span class="nav-text">基本操作执行次数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#渐进时间复杂度"><span class="nav-number">2.2.</span> <span class="nav-text">渐进时间复杂度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空间复杂度"><span class="nav-number">3.</span> <span class="nav-text">空间复杂度</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树-binary-tree"><span class="nav-number">1.</span> <span class="nav-text">二叉树(binary tree)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉查找树-binary-search-tree"><span class="nav-number">1.1.</span> <span class="nav-text">二叉查找树(binary search tree)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉排序树-binary-sort-tree"><span class="nav-number">1.2.</span> <span class="nav-text">二叉排序树(binary sort tree)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树的遍历"><span class="nav-number">2.</span> <span class="nav-text">二叉树的遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#深度优先遍历"><span class="nav-number">2.1.</span> <span class="nav-text">深度优先遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#广度优先遍历"><span class="nav-number">2.2.</span> <span class="nav-text">广度优先遍历</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉堆"><span class="nav-number">3.</span> <span class="nav-text">二叉堆</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自我调整"><span class="nav-number">3.1.</span> <span class="nav-text">自我调整</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">3.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优先队列"><span class="nav-number">4.</span> <span class="nav-text">优先队列</span></a></li></ol></div>
             
 
           </div>

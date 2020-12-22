@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/favicon.png?v=7.3.0" color="#222">
+  <meta name="google-site-verification" content="dxoMiZ9NBUFWvHj9roOlkaBhNg5MIXQThTekAXHaLKk">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    search: {
+      root: '/',
+      path: 'search.xml'
+    },
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="O(n^2): 冒泡排序、选择排序、插入排序、希尔排序(性能略优于 O(n^2), 又比不上 O(nlogn))  O(nlogn): 快速排序、归并排序、堆排序  O(n): 计数排序、桶排序、基数排序  其他：鸡尾酒排序、猴子排序、睡眠排序   根据稳定性可分为稳定排序和非稳定排序.">
+<meta name="keywords" content="Algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《漫画算法》学习笔记(4) —— 排序算法">
+<meta property="og:url" content="https://s7.zzs7.top/cartoon-algorithm-sort.html">
+<meta property="og:site_name" content="Shiqi Chang&#39;s Blog">
+<meta property="og:description" content="O(n^2): 冒泡排序、选择排序、插入排序、希尔排序(性能略优于 O(n^2), 又比不上 O(nlogn))  O(nlogn): 快速排序、归并排序、堆排序  O(n): 计数排序、桶排序、基数排序  其他：鸡尾酒排序、猴子排序、睡眠排序   根据稳定性可分为稳定排序和非稳定排序.">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-08-30T15:06:17.073Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《漫画算法》学习笔记(4) —— 排序算法">
+<meta name="twitter:description" content="O(n^2): 冒泡排序、选择排序、插入排序、希尔排序(性能略优于 O(n^2), 又比不上 O(nlogn))  O(nlogn): 快速排序、归并排序、堆排序  O(n): 计数排序、桶排序、基数排序  其他：鸡尾酒排序、猴子排序、睡眠排序   根据稳定性可分为稳定排序和非稳定排序.">
+  <link rel="canonical" href="https://s7.zzs7.top/cartoon-algorithm-sort">
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《漫画算法》学习笔记(4) —— 排序算法 | Shiqi Chang's Blog</title>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139554538-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-139554538-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shiqi Chang's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">tough cookie</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+      
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+      
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">18</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+      
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">7</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+      
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">36</span></a>
+
+  </li>
+        <li class="menu-item menu-item-search">
+          <a href="javascript:;" class="popup-trigger">
+          
+            <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+    </div>
+</nav>
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/cartoon-algorithm-sort.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shiqi Chang">
+      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shiqi Chang's Blog">
+    </span>
+      <header class="post-header">
+
+        
+          <h2 class="post-title" itemprop="name headline">《漫画算法》学习笔记(4) —— 排序算法
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-15 15:25:51" itemprop="dateCreated datePublished" datetime="2020-08-15T15:25:51+08:00">2020-08-15</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-08-30 23:06:17" itemprop="dateModified" datetime="2020-08-30T23:06:17+08:00">2020-08-30</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/cartoon-algorithm-sort.html" class="post-meta-item leancloud_visitors" data-flag-title="《漫画算法》学习笔记(4) —— 排序算法">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/cartoon-algorithm-sort.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/cartoon-algorithm-sort.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ol>
+<li><p>O(n^2): 冒泡排序、选择排序、插入排序、希尔排序(性能略优于 O(n^2), 又比不上 O(nlogn))</p>
+</li>
+<li><p>O(nlogn): 快速排序、归并排序、堆排序</p>
+</li>
+<li><p>O(n): 计数排序、桶排序、基数排序</p>
+</li>
+<li><p>其他：鸡尾酒排序、猴子排序、睡眠排序</p>
+</li>
+</ol>
+<p>根据稳定性可分为<strong>稳定排序</strong>和<strong>非稳定排序</strong>.</p>
+<a id="more"></a>
+
+<h2 id="冒泡排序-bubble-sort"><a href="#冒泡排序-bubble-sort" class="headerlink" title="冒泡排序(bubble sort)"></a>冒泡排序(bubble sort)</h2><p>一种稳定排序。</p>
+<p>优化：利用布尔变量 isSorted 作为标记；对数列有序区的界定。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span>[] array)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sortBorder = array.length-<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> lastExchangeIndex = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;array.length-<span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">boolean</span> isSorted = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;sortBorder; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (array[j] &gt; array[j+<span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">int</span> tmp = array[j];</span><br><span class="line">                array[j] = array[j+<span class="number">1</span>];</span><br><span class="line">                array[j+<span class="number">1</span>] = tmp;</span><br><span class="line">                isSorted = <span class="keyword">false</span>;</span><br><span class="line">                lastExchangeIndex = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        sortBorder = lastExchangeInde;</span><br><span class="line">        <span class="keyword">if</span> (isSorted) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubble_sort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    sort_border = len(arr) - <span class="number">1</span></span><br><span class="line">    last_exchange_index = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(arr) - <span class="number">1</span>):</span><br><span class="line">        is_sorted = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(sort_border):</span><br><span class="line">            <span class="keyword">if</span> arr[j] &gt; arr[j + <span class="number">1</span>]:</span><br><span class="line">                arr[j], arr[j + <span class="number">1</span>] = arr[j + <span class="number">1</span>], arr[j]</span><br><span class="line">                is_sorted = <span class="literal">False</span></span><br><span class="line">                last_exchange_index = j</span><br><span class="line"></span><br><span class="line">        sort_border = last_exchange_index</span><br><span class="line">        <span class="keyword">if</span> is_sorted:</span><br><span class="line">            <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="鸡尾酒排序-cocktail-sort"><a href="#鸡尾酒排序-cocktail-sort" class="headerlink" title="鸡尾酒排序(cocktail sort)"></a>鸡尾酒排序(cocktail sort)</h2><p>基于冒泡排序的一种升级排序法。冒泡算法是<strong>从左到右来比较元素，进行单向的位置交换</strong>。</p>
+<p>鸡尾酒算法的元素比较和交换都是<strong>双向</strong>的。使用场景是<strong>大部分元素已经有序</strong>的情况。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">cocktailSort</span><span class="params">(<span class="keyword">int</span>[] array)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tmp = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;array.length/<span class="number">2</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">boolean</span> isSorted = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=i; j&lt;array.length-<span class="number">1</span>-i; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (array[j] &gt; array[j+<span class="number">1</span>]) &#123;</span><br><span class="line">                tmp = array[j];</span><br><span class="line">                array[j] = array[j+<span class="number">1</span>];</span><br><span class="line">                array[j+<span class="number">1</span>] = tmp;</span><br><span class="line">                isSorted = <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (isSorted) <span class="keyword">break</span>;</span><br><span class="line">        isSorted = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=array.length-<span class="number">1</span>-i; j&gt;i; j--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (array[j] &lt; array[j-<span class="number">1</span>]) &#123;</span><br><span class="line">                tmp = array[j];</span><br><span class="line">                array[j] = array[j-<span class="number">1</span>];</span><br><span class="line">                array[j-<span class="number">1</span>] = tmp;</span><br><span class="line">                isSorted = <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (isSorted) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cocktail_sort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(arr) // <span class="number">2</span>):</span><br><span class="line">        is_sorted = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i, len(arr) - <span class="number">1</span> - i):</span><br><span class="line">            <span class="keyword">if</span> arr[j] &gt; arr[j + <span class="number">1</span>]:</span><br><span class="line">                arr[j], arr[j + <span class="number">1</span>] = arr[j + <span class="number">1</span>], arr[j]</span><br><span class="line">                is_sorted = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> is_sorted:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        is_sorted = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(arr) - <span class="number">1</span> - i, i, <span class="number">-1</span>):</span><br><span class="line">            <span class="keyword">if</span> arr[j] &lt; arr[j - <span class="number">1</span>]:</span><br><span class="line">                arr[j], arr[j - <span class="number">1</span>] = arr[j - <span class="number">1</span>], arr[j]</span><br><span class="line">                is_sorted = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> is_sorted:</span><br><span class="line">            <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="快速排序-quick-sort"><a href="#快速排序-quick-sort" class="headerlink" title="快速排序(quick sort)"></a>快速排序(quick sort)</h2><p>和冒泡排序一样，属于<strong>交换排序</strong>。思路是<strong>分治法</strong>。不稳定排序。</p>
+<p>快排的时间复杂度为 O(nlogn), 最坏时间复杂度是 O(n^2); 空间复杂度为 O(logn).</p>
+<h3 id="基准元素-pivot"><a href="#基准元素-pivot" class="headerlink" title="基准元素(pivot)"></a>基准元素(pivot)</h3><p>随机选择一个元素作为基准元素，并且让其和数列首元素交换位置。</p>
+<h3 id="元素交换"><a href="#元素交换" class="headerlink" title="元素交换"></a>元素交换</h3><h4 id="双向循环法"><a href="#双向循环法" class="headerlink" title="双向循环法"></a>双向循环法</h4><ol>
+<li><p>选定基准元素 pivot;</p>
+</li>
+<li><p>第1次循环：</p>
+<ol>
+<li><p>从 right 指针开始，若指针所指向的元素<strong>大于等于</strong> pivot, 指针向左移动，若小于 pivot, 指针停止移动，切换到 left 指针；</p>
+</li>
+<li><p>若 left 指针指向的元素<strong>小于等于</strong> pivot，则指针向右移动，若大于 pivot, 指针停止移动；</p>
+</li>
+<li><p>让 left 和 right 指针指向的元素交换位置。</p>
+</li>
+</ol>
+</li>
+<li><p>第2次循环：重新切换到right指针…</p>
+</li>
+</ol>
+<h4 id="单向循环法"><a href="#单向循环法" class="headerlink" title="单向循环法"></a>单向循环法</h4><ol>
+<li><p>选定基准元素 pivot，同时设置一个 mark 指针指向数列起始位置，它代表<strong>小于基准元素的区域边界</strong>；</p>
+</li>
+<li><p>从 pivot 下一个位置开始遍历，若遍历到的元素小于基准元素：</p>
+<ol>
+<li><p>mark 指针右移一位；</p>
+</li>
+<li><p>让最新遍历的元素和 mark 指针指向的元素交换位置；</p>
+</li>
+<li><p>pivot 元素交换到 mark 指向的位置。</p>
+</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 快速排序（递归）</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> arr 待排序的数组</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> startIndex left指针</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> endIndex right指针</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> startIndex, <span class="keyword">int</span> endIndex)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (startIndex &gt;= endIndex) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> pivotIndex = partition(arr, startIndex, endIndex);</span><br><span class="line">    quickSort(arr, startIndex, pivotIndex-<span class="number">1</span>);</span><br><span class="line">    quickSort(arr, pivotIndex+<span class="number">1</span>, endIndex);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 快速排序（循环）</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> arr 待排序的数组</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> startIndex left指针</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> endIndex right指针</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSortPlus</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> startIndex, <span class="keyword">int</span> endIndex)</span> </span>&#123;</span><br><span class="line">    Stack&lt;Map&lt;String, Integer&gt;&gt; quickSortStack = <span class="keyword">new</span> Stack&lt;Map&lt;String, Integer&gt;&gt;();</span><br><span class="line">    Map rootParam = <span class="keyword">new</span> HashMap();</span><br><span class="line">    rootParam.put(<span class="string">"startIndex"</span>, startIndex);</span><br><span class="line">    rootParam.put(<span class="string">"endIndex"</span>, endIndex);</span><br><span class="line">    quickSortStack.push(rootParam);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!quickSortStack.isEmpty()) &#123;</span><br><span class="line">        Map&lt;String, Integer&gt; param = quickSortStack.pop();</span><br><span class="line">        <span class="keyword">int</span> pivotIndex = partitionPlus(arr, param.get(<span class="string">"startIndex"</span>), param.get(<span class="string">"endIndex"</span>));</span><br><span class="line">        <span class="keyword">if</span> (param.get(<span class="string">"startIndex"</span>) &lt; pivotIndex-<span class="number">1</span>) &#123;</span><br><span class="line">            Map&lt;String, Integer&gt; leftParam = <span class="keyword">new</span> HashMap&lt;String, Integer&gt;();</span><br><span class="line">            leftParam.put(<span class="string">"startIndex"</span>, param.get(<span class="string">"startIndex"</span>));</span><br><span class="line">            leftParam.put(<span class="string">"endIndex"</span>, pivotIndex-<span class="number">1</span>);</span><br><span class="line">            quickSortStack.push(leftParam);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (pivotIndex+<span class="number">1</span> &lt; param.get(<span class="string">"endIndex"</span>)) &#123;</span><br><span class="line">            Map&lt;String, Integer&gt; rightParam = <span class="keyword">new</span> HashMap&lt;String, Integer&gt;();</span><br><span class="line">            rightParam.put(<span class="string">"startIndex"</span>, pivotIndex+<span class="number">1</span>);</span><br><span class="line">            rightParam.put(<span class="string">"endIndex"</span>, param.get(<span class="string">"endIndex"</span>));</span><br><span class="line">            quickSortStack.push(rightParam);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 分治（双边循环法）</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> arr 待交换的数组</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> startIndex 起始下标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> endIndex 结束下标</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> startIndex, <span class="keyword">int</span> endIndex)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> pivot = arr[startIndex];</span><br><span class="line">    <span class="keyword">int</span> left = startIndex;</span><br><span class="line">    <span class="keyword">int</span> right = endIndex;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (left != right) &#123;</span><br><span class="line">        <span class="keyword">while</span> (left &lt; right &amp;&amp; arr[right] &gt; pivot) &#123;</span><br><span class="line">            right--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (left &lt; right &amp;&amp; arr[left] &lt;= pivot) &#123;</span><br><span class="line">            left++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (left &lt; right) &#123;</span><br><span class="line">            <span class="keyword">int</span> p = arr[left];</span><br><span class="line">            arr[left] = arr[right];</span><br><span class="line">            arr[right] = p;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    arr[startIndex] = arr[left];</span><br><span class="line">    arr[left] = pivot;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> left;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 分治（单边循环法）</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> arr 待交换的数组</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> startIndex 起始下标</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> endIndex 结束下标</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">partitionPlus</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> startIndex, <span class="keyword">int</span> endIndex)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> pivot = arr[startIndex];</span><br><span class="line">    <span class="keyword">int</span> mark = startIndex;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=startIndex+<span class="number">1</span>; i&lt;=endIndex; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] &lt; pivot) &#123;</span><br><span class="line">            mark++;</span><br><span class="line">            <span class="keyword">int</span> p = arr[mark];</span><br><span class="line">            arr[mark] = arr[i];</span><br><span class="line">            arr[i] = p;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    arr[startIndex] = arr[mark];</span><br><span class="line">    arr[mark] = pivot;</span><br><span class="line">    <span class="keyword">return</span> mark;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span><span class="params">(arr, start_index, end_index)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> start_index &gt;= end_index:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    pivot_index = partition(arr, start_index, end_index)</span><br><span class="line">    quick_sort(arr, start_index, pivot_index - <span class="number">1</span>)</span><br><span class="line">    quick_sort(arr, pivot_index + <span class="number">1</span>, end_index)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition</span><span class="params">(arr, start_index, end_index)</span>:</span></span><br><span class="line">    pivot = arr[start_index]</span><br><span class="line">    left, right = start_index, end_index</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> left != right:</span><br><span class="line">        <span class="keyword">while</span> left &lt; right <span class="keyword">and</span> pivot &lt; arr[right]:</span><br><span class="line">            right -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left &lt; right <span class="keyword">and</span> arr[left] &lt;= pivot:</span><br><span class="line">            left += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> left &lt; right:</span><br><span class="line">            arr[left], arr[right] = arr[right], arr[left]</span><br><span class="line"></span><br><span class="line">    arr[start_index] = arr[left]</span><br><span class="line">    arr[left] = pivot</span><br><span class="line">    <span class="keyword">return</span> left</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort_plus</span><span class="params">(arr, start_index, end_index)</span>:</span></span><br><span class="line">    <span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line">    stack = deque()</span><br><span class="line">    stack.appendleft(&#123;<span class="string">"startIndex"</span>: start_index, <span class="string">"endIndex"</span>: end_index&#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> stack:</span><br><span class="line">        param = stack.pop()</span><br><span class="line">        pivot_index = partition_plus(arr, param.get(<span class="string">"startIndex"</span>), param.get(<span class="string">"endIndex"</span>))</span><br><span class="line">        <span class="keyword">if</span> param.get(<span class="string">"startIndex"</span>) &lt; pivot_index - <span class="number">1</span>:</span><br><span class="line">            param.appendleft(&#123;<span class="string">"startIndex"</span>: param.get(<span class="string">"startIndex"</span>), <span class="string">"endIndex"</span>: pivot_index - <span class="number">1</span>&#125;)</span><br><span class="line">        <span class="keyword">if</span> pivot_index + <span class="number">1</span> &lt; param.get(<span class="string">"endIndex"</span>):</span><br><span class="line">            param.appendleft(&#123;<span class="string">"startIndex"</span>: pivot_index + <span class="number">1</span>, <span class="string">"endIndex"</span>: param.get(<span class="string">"endIndex"</span>)&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition_plus</span><span class="params">(arr, start_index, end_index)</span>:</span></span><br><span class="line">    pivot = arr[start_index]</span><br><span class="line">    mark = start_index</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(start_index + <span class="number">1</span>, end_index + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> arr[i] &lt; pivot:</span><br><span class="line">            mark += <span class="number">1</span></span><br><span class="line">            arr[mark], arr[i] = arr[i], arr[mark]</span><br><span class="line"></span><br><span class="line">    arr[start_index] = arr[mark]</span><br><span class="line">    arr[mark] = pivot</span><br><span class="line">    <span class="keyword">return</span> mark</span><br></pre></td></tr></table></figure>
+
+<h2 id="堆排序-heap-sort"><a href="#堆排序-heap-sort" class="headerlink" title="堆排序(heap sort)"></a>堆排序(heap sort)</h2><p>不稳定排序。</p>
+<ol>
+<li><p>把无序数组构建成二叉堆，需要从小到大排序，则构建最大堆，反之构建最小堆；</p>
+</li>
+<li><p>循环删除栈顶元素，替换到二叉堆的末尾，调整堆产生新的堆顶。</p>
+</li>
+</ol>
+<p>空间复杂度：O(1); 时间复杂度：O(nlogn)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">heapSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=(arr.length - <span class="number">2</span>) / <span class="number">2</span>; i&gt;=<span class="number">0</span>; i--) &#123;</span><br><span class="line">        downAdjust(arr, i, arr.length);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=arr.length - <span class="number">1</span>; i&gt;<span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">int</span> temp = arr[i];</span><br><span class="line">        arr[i] = arr[<span class="number">0</span>];</span><br><span class="line">        arr[<span class="number">0</span>] = temp;</span><br><span class="line">        downAdjust(arr, <span class="number">0</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">downAdjust</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> parentIndex, <span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp = arr[parentIndex];</span><br><span class="line">    <span class="keyword">int</span> childIndex = <span class="number">2</span> * parentIndex + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (childIndex &lt; length) &#123;</span><br><span class="line">        <span class="keyword">if</span> (childIndex + <span class="number">1</span> &lt; length &amp;&amp; arr[childIndex] &lt; arr[childIndex + <span class="number">1</span>]) &#123;</span><br><span class="line">            childIndex++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (temp &gt;= arr[childIndex]) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        arr[parentIndex] = arr[childIndex];</span><br><span class="line">        parentIndex = childIndex;</span><br><span class="line">        childIndex = <span class="number">2</span> * childIndex + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    arr[parentIndex] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heap_sort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range((len(arr) - <span class="number">2</span>) // <span class="number">2</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">    down_adjust(arr, i, len(arr))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(arr) - <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>):</span><br><span class="line">        arr[i], arr[<span class="number">0</span>] = arr[<span class="number">0</span>], arr[i]</span><br><span class="line">        down_adjust(arr, <span class="number">0</span>, i)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">down_adjust</span><span class="params">(arr, parent_index, length)</span>:</span></span><br><span class="line">    temp = arr[parent_index]</span><br><span class="line">    chilid_index = <span class="number">2</span> * parent_index + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> child_index &lt; length:</span><br><span class="line">        <span class="keyword">if</span> child_index + <span class="number">1</span> &lt; length <span class="keyword">and</span> arr[child_index] &lt; arr[child_index + <span class="number">1</span>]:</span><br><span class="line">            child_index += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> temp &gt;= arr[child_index]:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        arr[parent_index] = arr[child_index]</span><br><span class="line">        parent_index = child_index</span><br><span class="line">        child_index = <span class="number">2</span> * child_index + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    arr[parent_index] = temp</span><br></pre></td></tr></table></figure>
+
+<h2 id="计数排序-count-sort"><a href="#计数排序-count-sort" class="headerlink" title="计数排序(count sort)"></a>计数排序(count sort)</h2><p>数组中每一个下标位置的值代表数列中对应整数出现的次数。适用于一定范围内的整数排序。以<strong>数列最大值-最小值+1</strong>作为统计数组的长度。</p>
+<p>优化版的计数排序是稳定排序。思路：从统计数组的第二个元素开始，每个元素都加上前面所有元素之和。让统计数组存储的元素值，等于相应整数的最终排序位置的序号。再创建输出数组 sortedArray, 长度和输入数列一致。然后从后向前遍历输入数列。</p>
+<p>时间复杂度：O(n+m); 空间复杂度: O(m).</p>
+<p>局限性：当数列最大和最小值差距过大时不适合；当数列元素不是整数时也不适合。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] countSort(<span class="keyword">int</span>[] arr) &#123;</span><br><span class="line">    <span class="keyword">int</span> max = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] &gt; max) &#123;</span><br><span class="line">            max = arr[i]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] countArray = <span class="keyword">new</span> <span class="keyword">int</span>[max+<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;arr.length; i++) &#123;</span><br><span class="line">        countArray[arr[i]]++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] sortedArray = <span class="keyword">new</span> <span class="keyword">int</span>[arr.length];</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;countArray.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;countArray[i]; j++) &#123;</span><br><span class="line">            sortedArray[index++] = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sortedArray;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] countSortPlus(<span class="keyword">int</span>[] arr) &#123;</span><br><span class="line">    <span class="keyword">int</span> max = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> min = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] &gt; max) &#123;</span><br><span class="line">            max = arr[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] &lt; min) &#123;</span><br><span class="line">            min = arr[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> d = max - min;</span><br><span class="line">    <span class="keyword">int</span>[] countArray = <span class="keyword">new</span> <span class="keyword">int</span>[d+<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;arr.length; i++) &#123;</span><br><span class="line">        countArray[arr[i] - min]++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;countArray.length; i++) &#123;</span><br><span class="line">        countArray[i] += countArray[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] sortedArray = <span class="keyword">new</span> <span class="keyword">int</span>[arr.length];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=arr.length-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</span><br><span class="line">        sortedAray[countArray[arr[i] - min] - <span class="number">1</span>] = arr[i];</span><br><span class="line">        countArray[arr[i] - min]--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sortedArray;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_sort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    max_index = arr[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(arr)):</span><br><span class="line">        <span class="keyword">if</span> arr[i] &gt; max_index:</span><br><span class="line">            max_index = arr[i]</span><br><span class="line"></span><br><span class="line">    count_arr = [<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(max_index + <span class="number">1</span>)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(arr)):</span><br><span class="line">        count_arr[arr[i]] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    sorted_arr = [<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(arr))]</span><br><span class="line">    index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(count_arr)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(count_arr[i]):</span><br><span class="line">            sorted_arr[index] = i</span><br><span class="line">            index += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sorted_arr</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_sort_plus</span><span class="params">(arr)</span>:</span></span><br><span class="line">    max_index, min_index = arr[<span class="number">0</span>], arr[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(arr)):</span><br><span class="line">        <span class="keyword">if</span> arr[i] &gt; max_index:</span><br><span class="line">            max_index = arr[i]</span><br><span class="line">        <span class="keyword">if</span> arr[i] &lt; min_index:</span><br><span class="line">            min_index = arr[i]</span><br><span class="line"></span><br><span class="line">    d = max_index - min_index</span><br><span class="line">    count_arr = [<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(d + <span class="number">1</span>)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(arr)):</span><br><span class="line">        count_arr[arr[i] - min_index] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(count_arr)):</span><br><span class="line">        count_arr[i] += count_arr[i - <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">    sorted_arr = [<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(arr))]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(arr) - <span class="number">1</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">        sorted_arr[count_arr[arr[i] - min_index] - <span class="number">1</span>] = arr[i]</span><br><span class="line">        count_arr[arr[i] - min_index] -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sorted_arr</span><br></pre></td></tr></table></figure>
+
+<h2 id="桶排序-bucket-sort"><a href="#桶排序-bucket-sort" class="headerlink" title="桶排序(bucket sort)"></a>桶排序(bucket sort)</h2><p>创建的桶数量等于原始数列的元素数量，除最后一个桶只包含数列最大值外，前面各个桶的区间按照比例确定：区间跨度 = (最大值-最小值) / (桶的数量-1)</p>
+<p>时间/空间复杂度: O(n)；极端情况下时间复杂度会退化为 O(nlogn)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span>[] bucketSort(<span class="keyword">double</span>[] arr) &#123;</span><br><span class="line">    <span class="keyword">double</span> max = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">double</span> min = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] &gt; max) &#123;</span><br><span class="line">            max = arr[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] &lt; min) &#123;</span><br><span class="line">            min = arr[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">double</span> d = max - min;</span><br><span class="line">    <span class="keyword">int</span> bucketNum = arr.length;</span><br><span class="line">    ArrayList&lt;LinkedList&lt;Double&gt;&gt; bucketList = <span class="keyword">new</span> ArrayList&lt;LinkedList&lt;Double&gt;&gt;(bucketNum);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;bucketNum; i++) &#123;</span><br><span class="line">        bucketList.add(<span class="keyword">new</span> LinkedList&lt;&gt;());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> num = (<span class="keyword">int</span>)(arr[i] - min) * (bucketNum - <span class="number">1</span>) / d;</span><br><span class="line">        bucketList.get(num).add(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;bucketList.size(); i++) &#123;</span><br><span class="line">        Collections.sort(bucketList.get(i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">double</span>[] sortedArray = <span class="keyword">new</span> <span class="keyword">double</span>[arr.length];</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (LinkedList&lt;Double&gt; list : bucketList) &#123;</span><br><span class="line">        <span class="keyword">for</span> (element : list) &#123;</span><br><span class="line">            sortedArray[index] = element;</span><br><span class="line">            index++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sortedArray;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>排序算法｜平均时间复杂度｜最坏时间复杂度｜空间复杂度｜是否稳定排序</p>
+<p>冒泡排序｜O(n^2)|O(n^2)|O(1)|稳定</p>
+<p>鸡尾酒排序｜O(n^2)|O(n^2)|O(1)|稳定</p>
+<p>快速排序｜O(nlogn)|O(n^2)|O(logn)|不稳定</p>
+<p>堆排序|O(nlogn)|O(nlogn)|O(1)|不稳定</p>
+<p>计数排序|O(n+m)|O(n+m)|O(m)|稳定</p>
+<p>桶排序|O(n)|O(nlogn)|O(n)|稳定</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+        
+        <div class="post-tags">
+            <a href="/tags/Algorithm/" rel="tag"><i class="fa fa-tag"></i> Algorithm</a>
+          
+        </div>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+              <a href="/cartoon-algorithm-tree.html" rel="next" title="《漫画算法》学习笔记(3) —— 树">
+                <i class="fa fa-chevron-left"></i> 《漫画算法》学习笔记(3) —— 树
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+              <a href="/cartoon-algorithm-interview.html" rel="prev" title="《漫画算法》学习笔记(5) —— 面试中的算法">
+                《漫画算法》学习笔记(5) —— 面试中的算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.gif"
+      alt="Shiqi Chang">
+  <p class="site-author-name" itemprop="name">Shiqi Chang</p>
+  <div class="site-description motion-element" itemprop="description">If debugging is the process of removing software bugs, the programming must be the process of putting them in.</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1NoYXJvbkNoaW9uZw==" title="GitHub &rarr; https://github.com/SharonChiong"><i class="fa fa-fw fa-github"></i></span>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <span class="exturl" data-url="bWFpbHRvOnNoYXJvbmNoaW9uZzM0N0BnbWFpbC5jb20=" title="E-Mail &rarr; mailto:sharonchiong347@gmail.com"><i class="fa fa-fw fa-envelope"></i></span>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS91c2Vycy84NTg4MTQ2L3NoYXJvbg==" title="StackOverflow &rarr; https://stackoverflow.com/users/8588146/sharon"><i class="fa fa-fw fa-stack-overflow"></i></span>
+      </span>
+    
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#冒泡排序-bubble-sort"><span class="nav-number">1.</span> <span class="nav-text">冒泡排序(bubble sort)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#鸡尾酒排序-cocktail-sort"><span class="nav-number">2.</span> <span class="nav-text">鸡尾酒排序(cocktail sort)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速排序-quick-sort"><span class="nav-number">3.</span> <span class="nav-text">快速排序(quick sort)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基准元素-pivot"><span class="nav-number">3.1.</span> <span class="nav-text">基准元素(pivot)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元素交换"><span class="nav-number">3.2.</span> <span class="nav-text">元素交换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#双向循环法"><span class="nav-number">3.2.1.</span> <span class="nav-text">双向循环法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单向循环法"><span class="nav-number">3.2.2.</span> <span class="nav-text">单向循环法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆排序-heap-sort"><span class="nav-number">4.</span> <span class="nav-text">堆排序(heap sort)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计数排序-count-sort"><span class="nav-number">5.</span> <span class="nav-text">计数排序(count sort)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#桶排序-bucket-sort"><span class="nav-number">6.</span> <span class="nav-text">桶排序(bucket sort)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">7.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <span class="exturl" data-url="aHR0cDovL3d3dy5iZWlhbi5taWl0Lmdvdi5jbg==">京ICP备19016512号 </span>&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shiqi Chang</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  <script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+  
+  <script src="/js/affix.js?v=7.3.0"></script>
+  <script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.3.0"></script>
+
+  
+
+  
+  <script src="/js/exturl.js?v=7.3.0"></script>
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'vebAdR7GqyKaflJTWHrShOaU-gzGzoHsz',
+    appKey: 'MRmzap1yYxkdbfBN5ftONT4x',
+    placeholder: '欢迎围观，批评指正～',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn'
+  });
+</script>
+
+
+</body>
+</html>

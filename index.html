@@ -61,13 +61,13 @@
   <meta name="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="website">
-<meta property="og:title" content="import 诗琦">
+<meta property="og:title" content="Shiqi Chang&#39;s Blog">
 <meta property="og:url" content="https://s7.zzs7.top/index.html">
-<meta property="og:site_name" content="import 诗琦">
+<meta property="og:site_name" content="Shiqi Chang&#39;s Blog">
 <meta property="og:description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="import 诗琦">
+<meta name="twitter:title" content="Shiqi Chang&#39;s Blog">
 <meta name="twitter:description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
   <link rel="canonical" href="https://s7.zzs7.top/">
 
@@ -78,7 +78,7 @@
   };
 </script>
 
-  <title>import 诗琦 - tough cookie</title>
+  <title>Shiqi Chang's Blog - tough cookie</title>
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139554538-1"></script>
   <script>
@@ -137,7 +137,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">import 诗琦</span>
+        <span class="site-title">Shiqi Chang's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -207,7 +207,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">31</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">36</span></a>
 
   </li>
         <li class="menu-item menu-item-search">
@@ -261,16 +261,742 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/fibonacci-number.html">
+    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/cartoon-algorithm-practice.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="诗琦">
+      <meta itemprop="name" content="Shiqi Chang">
       <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="import 诗琦">
+      <meta itemprop="name" content="Shiqi Chang's Blog">
+    </span>
+      <header class="post-header">
+
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/cartoon-algorithm-practice.html" class="post-title-link" itemprop="url">《漫画算法》学习笔记(6) —— 算法的实际应用</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-18 16:19:11" itemprop="dateCreated datePublished" datetime="2020-08-18T16:19:11+08:00">2020-08-18</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-08-19 10:19:54" itemprop="dateModified" datetime="2020-08-19T10:19:54+08:00">2020-08-19</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/cartoon-algorithm-practice.html" class="post-meta-item leancloud_visitors" data-flag-title="《漫画算法》学习笔记(6) —— 算法的实际应用">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/cartoon-algorithm-practice.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/cartoon-algorithm-practice.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+            <p>
+              Bitmap 的巧用Bitmap 算法，位图算法：对大量整数做去重和查询操作；高性能的位运算。
+public class MyBitMap &#123;    private long[] words;    private int size;    MyBitMap(int size) &#123
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/cartoon-algorithm-practice.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/cartoon-algorithm-interview.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shiqi Chang">
+      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shiqi Chang's Blog">
+    </span>
+      <header class="post-header">
+
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/cartoon-algorithm-interview.html" class="post-title-link" itemprop="url">《漫画算法》学习笔记(5) —— 面试中的算法</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-16 09:14:42" itemprop="dateCreated datePublished" datetime="2020-08-16T09:14:42+08:00">2020-08-16</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-08-18 16:20:53" itemprop="dateModified" datetime="2020-08-18T16:20:53+08:00">2020-08-18</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/cartoon-algorithm-interview.html" class="post-meta-item leancloud_visitors" data-flag-title="《漫画算法》学习笔记(5) —— 面试中的算法">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/cartoon-algorithm-interview.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/cartoon-algorithm-interview.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="判断链表有环"><a href="#判断链表有环" class="headerlink" title="判断链表有环"></a>判断链表有环</h2><p>思路：创建两个指针 p1 和 p2，同时指向链表的头节点；循环链表，p1 每次向后移动1个节点，p2 每次向后移动2个节点，然后比较两个指针指向的节点是否相同。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/cartoon-algorithm-interview.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/cartoon-algorithm-sort.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shiqi Chang">
+      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shiqi Chang's Blog">
+    </span>
+      <header class="post-header">
+
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/cartoon-algorithm-sort.html" class="post-title-link" itemprop="url">《漫画算法》学习笔记(4) —— 排序算法</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-15 15:25:51" itemprop="dateCreated datePublished" datetime="2020-08-15T15:25:51+08:00">2020-08-15</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-08-30 23:06:17" itemprop="dateModified" datetime="2020-08-30T23:06:17+08:00">2020-08-30</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/cartoon-algorithm-sort.html" class="post-meta-item leancloud_visitors" data-flag-title="《漫画算法》学习笔记(4) —— 排序算法">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/cartoon-algorithm-sort.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/cartoon-algorithm-sort.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>O(n^2): 冒泡排序、选择排序、插入排序、希尔排序(性能略优于 O(n^2), 又比不上 O(nlogn))</p>
+</li>
+<li><p>O(nlogn): 快速排序、归并排序、堆排序</p>
+</li>
+<li><p>O(n): 计数排序、桶排序、基数排序</p>
+</li>
+<li><p>其他：鸡尾酒排序、猴子排序、睡眠排序</p>
+</li>
+</ol>
+<p>根据稳定性可分为<strong>稳定排序</strong>和<strong>非稳定排序</strong>.</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/cartoon-algorithm-sort.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/cartoon-algorithm-tree.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shiqi Chang">
+      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shiqi Chang's Blog">
+    </span>
+      <header class="post-header">
+
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/cartoon-algorithm-tree.html" class="post-title-link" itemprop="url">《漫画算法》学习笔记(3) —— 树</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-15 10:34:24 / 修改时间：15:28:25" itemprop="dateCreated datePublished" datetime="2020-08-15T10:34:24+08:00">2020-08-15</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/cartoon-algorithm-tree.html" class="post-meta-item leancloud_visitors" data-flag-title="《漫画算法》学习笔记(3) —— 树">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/cartoon-algorithm-tree.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/cartoon-algorithm-tree.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>根节点(root)、叶子结点(leaf)、父节点(parent)、孩子节点(child)、兄弟节点(sibling).</p>
+<h2 id="二叉树-binary-tree"><a href="#二叉树-binary-tree" class="headerlink" title="二叉树(binary tree)"></a>二叉树(binary tree)</h2><p>二叉树：每个节点最多两个孩子节点。左孩子(left child)、右孩子(rigth child).</p>
+<p>满二叉树、完全二叉树。</p>
+<p>二叉树可以用链式存储结构和数组存储。</p>
+<p>用数组存储：父节点 parent, 左孩子节点 <code>2*parent+1</code>, 右孩子节点 <code>2*parent*2</code>.</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/cartoon-algorithm-tree.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/cartoon-algorithm-data-structure.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shiqi Chang">
+      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shiqi Chang's Blog">
+    </span>
+      <header class="post-header">
+
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/cartoon-algorithm-data-structure.html" class="post-title-link" itemprop="url">《漫画算法》学习笔记(2) —— 数据结构基础</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-10 21:55:11" itemprop="dateCreated datePublished" datetime="2020-08-10T21:55:11+08:00">2020-08-10</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-08-16 00:31:35" itemprop="dateModified" datetime="2020-08-16T00:31:35+08:00">2020-08-16</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/cartoon-algorithm-data-structure.html" class="post-meta-item leancloud_visitors" data-flag-title="《漫画算法》学习笔记(2) —— 数据结构基础">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="fa fa-comment-o"></i>
+    </span>
+    
+      <span class="post-meta-item-text">评论数：</span>
+    
+  
+    <a href="/cartoon-algorithm-data-structure.html#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/cartoon-algorithm-data-structure.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          <br>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="数组-array"><a href="#数组-array" class="headerlink" title="数组(array)"></a>数组(array)</h2><p>有限个相同类型的变量组成的有序集合。它的一个特点：在内存中 <strong>顺序存储</strong>。</p>
+<h3 id="读取-更新元素"><a href="#读取-更新元素" class="headerlink" title="读取/更新元素"></a>读取/更新元素</h3><p>随机读取：根据下标读取元素</p>
+<p>时间复杂度：O(1)</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/cartoon-algorithm-data-structure.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/fibonacci-number.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shiqi Chang">
+      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shiqi Chang's Blog">
     </span>
       <header class="post-header">
 
@@ -403,13 +1129,13 @@
     <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/max-consecutive-ones.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="诗琦">
+      <meta itemprop="name" content="Shiqi Chang">
       <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="import 诗琦">
+      <meta itemprop="name" content="Shiqi Chang's Blog">
     </span>
       <header class="post-header">
 
@@ -542,13 +1268,13 @@
     <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/find-all-numbers-disappeared-in-an-array.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="诗琦">
+      <meta itemprop="name" content="Shiqi Chang">
       <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="import 诗琦">
+      <meta itemprop="name" content="Shiqi Chang's Blog">
     </span>
       <header class="post-header">
 
@@ -678,13 +1404,13 @@
     <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/third-maximum-number.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="诗琦">
+      <meta itemprop="name" content="Shiqi Chang">
       <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="import 诗琦">
+      <meta itemprop="name" content="Shiqi Chang's Blog">
     </span>
       <header class="post-header">
 
@@ -813,13 +1539,13 @@
     <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/move-zeroes.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="诗琦">
+      <meta itemprop="name" content="Shiqi Chang">
       <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="import 诗琦">
+      <meta itemprop="name" content="Shiqi Chang's Blog">
     </span>
       <header class="post-header">
 
@@ -942,684 +1668,6 @@
   </article>
 
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/missing-number.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="诗琦">
-      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="import 诗琦">
-    </span>
-      <header class="post-header">
-
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/missing-number.html" class="post-title-link" itemprop="url">LeetCode 算法：缺失数字</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-06-02 17:41:29 / 修改时间：17:43:21" itemprop="dateCreated datePublished" datetime="2020-06-02T17:41:29+08:00">2020-06-02</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/missing-number.html" class="post-meta-item leancloud_visitors" data-flag-title="LeetCode 算法：缺失数字">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/missing-number.html#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/missing-number.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="题干"><a href="#题干" class="headerlink" title="题干"></a><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbWlzc2luZy1udW1iZXIv" title="https://leetcode-cn.com/problems/missing-number/">题干<i class="fa fa-external-link"></i></span></h2><p>给定一个包含 <code>0, 1, 2, ..., n</code> 中 <code>n</code> 个数的序列，找到 <code>0..n</code> 中没有出现在序列中的那个数。</p>
-<p>说明：算法应具有线性时间复杂度，能否仅使用额外常量空间来实现？</p>
-<p>难度：简单</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/missing-number.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/contains-duplicate-ii.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="诗琦">
-      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="import 诗琦">
-    </span>
-      <header class="post-header">
-
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/contains-duplicate-ii.html" class="post-title-link" itemprop="url">LeetCode 算法：存在重复元素 II</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-06-02 15:44:08 / 修改时间：16:33:29" itemprop="dateCreated datePublished" datetime="2020-06-02T15:44:08+08:00">2020-06-02</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/contains-duplicate-ii.html" class="post-meta-item leancloud_visitors" data-flag-title="LeetCode 算法：存在重复元素 II">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/contains-duplicate-ii.html#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/contains-duplicate-ii.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="题干"><a href="#题干" class="headerlink" title="题干"></a><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvY29udGFpbnMtZHVwbGljYXRlLWlpLw==" title="https://leetcode-cn.com/problems/contains-duplicate-ii/">题干<i class="fa fa-external-link"></i></span></h2><p>给定一个整数数组和一个整数 <code>k</code>, 判断数组中是否存在两个不同的索引 <code>i</code> 和 <code>j</code>, 使得 <code>nums[i] = nums[j]</code>, 并且 <code>i</code> 和 <code>j</code> 的差的<strong>绝对值</strong>至多为 <code>k</code>.</p>
-<p>难度：简单</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/contains-duplicate-ii.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/contains-duplicate.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="诗琦">
-      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="import 诗琦">
-    </span>
-      <header class="post-header">
-
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/contains-duplicate.html" class="post-title-link" itemprop="url">LeetCode 算法：存在重复元素</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-06-02 15:33:18 / 修改时间：15:36:47" itemprop="dateCreated datePublished" datetime="2020-06-02T15:33:18+08:00">2020-06-02</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/contains-duplicate.html" class="post-meta-item leancloud_visitors" data-flag-title="LeetCode 算法：存在重复元素">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/contains-duplicate.html#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/contains-duplicate.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="题干"><a href="#题干" class="headerlink" title="题干"></a><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvY29udGFpbnMtZHVwbGljYXRlLw==" title="https://leetcode-cn.com/problems/contains-duplicate/">题干<i class="fa fa-external-link"></i></span></h2><p>给定一个整数数组，判断是否存在重复元素。</p>
-<p>如果任意一值在数组中出现至少两次，函数返回 <code>true</code>, 如果数组中每个元素都不相同，则返回 <code>false</code>.</p>
-<p>难度：简单</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/contains-duplicate.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/rotate-array.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="诗琦">
-      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="import 诗琦">
-    </span>
-      <header class="post-header">
-
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/rotate-array.html" class="post-title-link" itemprop="url">LeetCode 算法：旋转数组</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-06-01 20:36:51 / 修改时间：20:40:33" itemprop="dateCreated datePublished" datetime="2020-06-01T20:36:51+08:00">2020-06-01</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/rotate-array.html" class="post-meta-item leancloud_visitors" data-flag-title="LeetCode 算法：旋转数组">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/rotate-array.html#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/rotate-array.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="题干"><a href="#题干" class="headerlink" title="题干"></a><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvcm90YXRlLWFycmF5Lw==" title="https://leetcode-cn.com/problems/rotate-array/">题干<i class="fa fa-external-link"></i></span></h2><p>给定一个数组，将数组中的元素向右移动 <code>k</code> 个位置，其中 <code>k</code> 是非负整数。</p>
-<p>说明：</p>
-<ul>
-<li>尽可能想出更多的解决方案，至少有三种不同的方法可以解决这个问题。</li>
-<li>要求使用空间复杂度为 <code>O(1)</code> 的<strong>原地</strong>算法。</li>
-</ul>
-<p>难度：简单</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/rotate-array.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://s7.zzs7.top/majority-element.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="诗琦">
-      <meta itemprop="description" content="If debugging is the process of removing software bugs, the programming must be the process of putting them in.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="import 诗琦">
-    </span>
-      <header class="post-header">
-
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/majority-element.html" class="post-title-link" itemprop="url">LeetCode 算法：多数元素</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-06-01 14:30:49 / 修改时间：20:40:32" itemprop="dateCreated datePublished" datetime="2020-06-01T14:30:49+08:00">2020-06-01</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/majority-element.html" class="post-meta-item leancloud_visitors" data-flag-title="LeetCode 算法：多数元素">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-            
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="fa fa-comment-o"></i>
-    </span>
-    
-      <span class="post-meta-item-text">评论数：</span>
-    
-  
-    <a href="/majority-element.html#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/majority-element.html" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-          <br>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="题干"><a href="#题干" class="headerlink" title="题干"></a><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbWFqb3JpdHktZWxlbWVudC8=" title="https://leetcode-cn.com/problems/majority-element/">题干<i class="fa fa-external-link"></i></span></h2><p>给定一个大小为 <code>n</code> 的数组，找到其中的多数元素，多数元素是指在数组中出现次数大于 <code>n/2</code> 的元素。</p>
-<p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
-<p>难度：简单</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/majority-element.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1651,8 +1699,8 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image"
       src="/images/avatar.gif"
-      alt="诗琦">
-  <p class="site-author-name" itemprop="name">诗琦</p>
+      alt="Shiqi Chang">
+  <p class="site-author-name" itemprop="name">Shiqi Chang</p>
   <div class="site-description motion-element" itemprop="description">If debugging is the process of removing software bugs, the programming must be the process of putting them in.</div>
 </div>
   <nav class="site-state motion-element">
@@ -1660,7 +1708,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1795,7 +1843,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">诗琦</span>
+  <span class="author" itemprop="copyrightHolder">Shiqi Chang</span>
 </div>
 
         
